@@ -29,7 +29,7 @@ pendiente, intercepto = np.polyfit(años, poblaciones_promedio, 1)
 linea_ajustada = pendiente * años + intercepto
 
 # Dibujar la línea de ajuste general
-plt.plot(años, linea_ajustada, color='red', linestyle='--', linewidth=2, label=f"Tendencia general\nPendiente: {pendiente:.2f}")
+plt.plot(años, linea_ajustada, color='red', linestyle='-', linewidth=2, label=f"Tendencia general\nPendiente: {pendiente:.2f}")
 
 # Mostrar info
 plt.xlabel("Tiempo (años)")
