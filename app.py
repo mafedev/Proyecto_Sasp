@@ -1,92 +1,135 @@
 import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
 import requests
 import folium
 from streamlit_folium import folium_static
-import pandas as pd
+from sklearn.linear_model import LinearRegression
 import plotly.express as px
-from sklearn.ensemble import RandomForestClassifier
-import numpy as np
 
-def get_inat_data(species_name):
-    url = f"https://api.inaturalist.org/v1/observations?taxon_name={species_name}&per_page=50"
-    response = requests.get(url)
-    if response.status_code == 200:
-        return response.json()
-    return None
+st.set_page_config(layout="wide")
+st.title("🌍 Dashboard de Extinción de Especies con IA")
 
-def get_iucn_status(species_name, api_key):
-    url = f"https://apiv3.iucnredlist.org/api/v3/species/{species_name}?token={api_key}"
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        if 'result' in data and data['result']:
-            return data['result'][0]['category']
-    return "Desconocido"
+# ===================== 📥 Cargar archivo Excel =====================
+@st.cache_data
+def cargar_datos_excel(nombre_archivo):
+    if nombre_archivo.endswith(".xlsx"):
+        df = pd.read_excel(nombre_archivo)
+    else:
+        df = pd.read_csv(nombre_archivo)
+    columnas_años = df.columns[1:]
+    años = pd.to_numeric(columnas_años, errors='coerce').dropna().astype(int)
+    return df, años
 
-def get_pollution_data():
-    url = "https://api.openaq.org/v1/latest?country=US&limit=1"
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        return data['results'][0]['measurements'][0]['value']  # Valor de contaminación
-    return None
+archivo_excel = "especies_disperso.xlsx"
+df_excel, años_excel = cargar_datos_excel(archivo_excel)
 
-def create_map(observations):
+# Detectar dinámicamente la columna con los nombres de especie
+columna_especie = df_excel.columns[0]
+
+# ===================== 🔍 Búsqueda en GBIF =====================
+def buscar_en_gbif(nombre_especie):
+    url = f"https://api.gbif.org/v1/occurrence/search?scientificName={nombre_especie}&limit=50"
+    r = requests.get(url)
+    if r.status_code == 200:
+        return r.json().get("results", [])
+    return []
+
+def crear_mapa(observaciones):
     m = folium.Map(location=[0, 0], zoom_start=2)
-    for obs in observations:     
-        lat = obs["geojson"]["coordinates"][1]
-        lon = obs["geojson"]["coordinates"][0]
-        folium.Marker(location=[lat, lon], popup=obs["species_guess"]).add_to(m)
+    for obs in observaciones:
+        lat = obs.get("decimalLatitude")
+        lon = obs.get("decimalLongitude")
+        if lat and lon:
+            folium.Marker(location=[lat, lon], popup=obs.get("country", "Observación")).add_to(m)
     return m
 
-def predict_extinction_risk(pollution, habitat_loss, hunting):
-    model = RandomForestClassifier()
-    X_train = np.array([[30, 50, 70], [10, 20, 30], [70, 80, 90]])  # Datos ficticios
-    y_train = np.array([1, 0, 1])  # 1 = en peligro, 0 = no en peligro
-    model.fit(X_train, y_train)
-    prediction = model.predict([[pollution, habitat_loss, hunting]])
-    return "Alto" if prediction[0] == 1 else "Bajo"
+# ===================== 🔢 IA: Predicción de año de extinción =====================
+def predecir_año_extincion(df, años, especie_objetivo, columna_nombre):
+    X = []
+    y = []
+    for i in range(len(df)):
+        poblacion = df.iloc[i, 1:].values
+        años_validos = años[~pd.isna(poblacion)]
+        poblacion_validos = poblacion[~pd.isna(poblacion)]
+        for a, p in zip(años_validos, poblacion_validos):
+            X.append([a])
+            y.append(p)
+    model = LinearRegression()
+    model.fit(X, y)
 
-st.title("🌍 Dashboard de Extinción de Especies")
-species_name = st.text_input("🔍 Ingrese el nombre científico de la especie:", "Panthera onca")
-api_key = st.text_input("🔑 Ingrese su API Key de IUCN:", type="password")
+    if especie_objetivo in df[columna_nombre].values:
+        st.success("📌 Esta especie ya está extinta. Mostrando gráfico de su descenso poblacional...")
+        return None, model
+    else:
+        año_predicho = int(-model.intercept_ / model.coef_[0])
+        return año_predicho, model
 
-if st.button("Buscar"):
-    st.write(f"🔎 Buscando datos para: {species_name}...")
-    
-    inat_data = get_inat_data(species_name)
-    if inat_data:
-        observations = inat_data["results"]
-        st.success(f"✅ Se encontraron {len(observations)} observaciones en iNaturalist.")
-        
-        df = pd.DataFrame([
-            {"Latitud": obs["geojson"]["coordinates"][1], "Longitud": obs["geojson"]["coordinates"][0]} 
-            for obs in observations if "geojson" in obs
+# ===================== 🎯 Interfaz Principal =====================
+especie_usuario = st.text_input("🔍 Ingrese el nombre científico de una especie:", "Panthera onca")
+
+if st.button("Buscar especie"):
+    st.subheader(f"🔎 Resultados para: {especie_usuario}")
+
+    # 📊 Mapa de registros desde GBIF
+    registros = buscar_en_gbif(especie_usuario)
+    if registros:
+        st.success(f"✅ Se encontraron {len(registros)} registros en GBIF")
+        df_gbif = pd.DataFrame([
+            {"País": r.get("country"), "Lat": r.get("decimalLatitude"), "Lon": r.get("decimalLongitude")}
+            for r in registros if r.get("decimalLatitude") and r.get("decimalLongitude")
         ])
-        
-        st.write("📍 Mapa de Observaciones:")
-        folium_static(create_map(observations))
-        
-        st.write("📊 Distribución Geográfica:")
-        fig = px.scatter_geo(df, lat="Latitud", lon="Longitud", title="Observaciones Globales")
-        st.plotly_chart(fig)
+        col1, col2 = st.columns(2)
+        with col1:
+            folium_static(crear_mapa(registros))
+        with col2:
+            st.plotly_chart(px.scatter_geo(df_gbif, lat="Lat", lon="Lon", title="Distribución Geográfica"))
     else:
-        st.error("⚠️ No se encontraron observaciones en iNaturalist.")
-    
-    if api_key:
-        status = get_iucn_status(species_name, api_key)
-        st.write(f"🛑 Estado de conservación según IUCN: **{status}**")
+        st.warning("⚠️ No se encontraron registros en GBIF.")
+
+        # 📈 Diagrama de dispersión
+    st.subheader("📉 Evolución poblacional")
+    fig, ax = plt.subplots(figsize=(8, 5))
+
+    if especie_usuario in df_excel[columna_especie].values:
+        fila = df_excel[df_excel[columna_especie] == especie_usuario].iloc[0]
+        poblacion = pd.to_numeric(fila[1:].values, errors="coerce")  # 🔹 CORRECCIÓN
+        ax.scatter(años_excel, poblacion, color='orange', label=especie_usuario)
+
+        modelo = LinearRegression()
+        modelo.fit(años_excel.values.reshape(-1, 1), poblacion)
+        y_pred = modelo.predict(años_excel.values.reshape(-1, 1))
+        ax.plot(años_excel, y_pred, color='blue', linestyle='--', label="Ajuste lineal")
     else:
-        st.warning("⚠️ Ingrese una API Key de IUCN para obtener el estado de conservación.")
-    
-    pollution = get_pollution_data() or 50  # Valor por defecto si falla la API
-    habitat_loss = np.random.randint(20, 80)  # Simulación
-    hunting = np.random.randint(10, 60)  # Simulación
-    
-    st.write("📊 Factores de Extinción:")
-    factors_df = pd.DataFrame({"Factor": ["Contaminación", "Pérdida de Hábitat", "Caza"],
-                               "Valor": [pollution, habitat_loss, hunting]})
-    st.bar_chart(factors_df.set_index("Factor"))
-    
-    risk = predict_extinction_risk(pollution, habitat_loss, hunting)
-    st.write(f"🔮 **Predicción de Riesgo de Extinción: {risk}**")
+        for i in range(len(df_excel)):
+            especie = df_excel.iloc[i, 0]
+            valores = pd.to_numeric(df_excel.iloc[i, 1:].values, errors="coerce")  # 🔹 CORRECCIÓN
+            valid = ~np.isnan(valores)  # 🔹 AHORA FUNCIONA
+            ax.scatter(años_excel[valid], valores[valid], alpha=0.3)
+
+        # Ajuste general
+        X_all = []
+        y_all = []
+        for i in range(len(df_excel)):
+            valores = pd.to_numeric(df_excel.iloc[i, 1:].values, errors="coerce")  # 🔹 CORRECCIÓN
+            valid = ~np.isnan(valores)
+            X_all += list(años_excel[valid])
+            y_all += list(valores[valid])
+
+        modelo = LinearRegression()
+        modelo.fit(np.array(X_all).reshape(-1, 1), y_all)
+        y_pred = modelo.predict(np.array(años_excel).reshape(-1, 1))
+        ax.plot(años_excel, y_pred, color='red', linestyle='--', label="Tendencia global")
+
+    ax.set_xlabel("Año")
+    ax.set_ylabel("Población estimada")
+    ax.set_title("Diagrama de dispersión")
+    ax.legend()
+    ax.grid(True)
+    st.pyplot(fig)
+
+    # 🔮 Predicción de año de extinción
+    año_predicho, _ = predecir_año_extincion(df_excel, años_excel, especie_usuario, columna_especie)
+    if año_predicho:
+        st.info(f"🧠 **Predicción de año estimado de extinción para {especie_usuario}: {año_predicho}**")
