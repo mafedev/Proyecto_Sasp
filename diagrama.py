@@ -2,44 +2,40 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Cargar el archivo con años negativos
-archivo = "especies_disperso.xlsx"  # Asegúrate de tener este archivo
+# Cargar el archivo
+archivo = "especies_disperso.xlsx"
+df = pd.read_excel(archivo)
 
-# Determinar el formato y cargar los datos
-if archivo.endswith(".xlsx"):
-    df = pd.read_excel(archivo)
-elif archivo.endswith(".csv"):
-    df = pd.read_csv(archivo)
-
-# 📌 Ver los nombres de las columnas antes de procesarlas
-print("Columnas originales:", df.columns.tolist())
-
-# 🔹 Limpiar y convertir los años correctamente (asegurar que sean enteros negativos)
-columnas_años = df.columns[1:]  # Omitimos la primera columna porque es "Especies"
+# Tomar los nombres de las columnas que representan años
+columnas_años = df.columns[1:]  # primera columna es el nombre de la especie
 años = pd.to_numeric(columnas_años, errors='coerce').dropna().astype(int)
-
-# 🔹 Ordenar los años en orden descendente (de -100 a 0)
-# años = sorted(años, reverse=True)
-
-# 🔹 Verificar si hubo conversiones incorrectas
-print("Años convertidos correctamente:", años)
 
 # Crear la figura
 plt.figure(figsize=(10, 6))
 
-# Graficar cada especie con puntos (sin líneas)
+# Graficar todas las especies con puntos
 for i in range(len(df)):
-    especie = df.iloc[i, 0]  # Nombre de la especie
-    valores = df.iloc[i, 1:].values  # Poblaciones
-    plt.scatter(años, valores, alpha=0.6, label=especie)  # 📌 Solo puntos
+    especie = df.iloc[i, 0]
+    valores = df.iloc[i, 1:].values
+    plt.scatter(años, valores, alpha=0.3)
 
-# Mejorar la visualización
+# 📌 Calcular la media de población por año (eje y)
+poblaciones_promedio = df.iloc[:, 1:].mean(axis=0).values
+
+# 📌 Ajuste lineal: np.polyfit(x, y, grado)
+pendiente, intercepto = np.polyfit(años, poblaciones_promedio, 1)
+
+# 📌 Crear línea ajustada
+linea_ajustada = pendiente * años + intercepto
+
+# Dibujar la línea de ajuste general
+plt.plot(años, linea_ajustada, color='red', linestyle='--', linewidth=2, label=f"Tendencia general\nPendiente: {pendiente:.2f}")
+
+# Mostrar info
 plt.xlabel("Tiempo (años)")
 plt.ylabel("Población estimada")
-plt.title("Evolución de la población de especies extintas")
+plt.title("Tendencia general de la población de especies extintas")
 plt.xticks(rotation=45)
-plt.legend(loc="upper right", bbox_to_anchor=(1.3, 1))  # Ubicar la leyenda fuera del gráfico
+plt.legend(loc="upper right")
 plt.grid(True)
-
-# Mostrar la gráfica
 plt.show()
