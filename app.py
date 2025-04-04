@@ -33,7 +33,7 @@ def get_pollution_data():
 
 def create_map(observations):
     m = folium.Map(location=[0, 0], zoom_start=2)
-    for obs in observations:
+    for obs in observations:     
         lat = obs["geojson"]["coordinates"][1]
         lon = obs["geojson"]["coordinates"][0]
         folium.Marker(location=[lat, lon], popup=obs["species_guess"]).add_to(m)
