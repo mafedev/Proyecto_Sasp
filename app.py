@@ -8,25 +8,37 @@ from sklearn.linear_model import LinearRegression
 import plotly.express as px
 import numpy as np
 
-st.set_page_config(layout="wide") # Configuración de la página
+# ----------------------- Configuración de la página -----------------------
+st.set_page_config(layout="wide")
 st.title("🌍 Dashboard de Extinción de Especies con IA")
 
 # ----------------------- Cargar archivo CSV -----------------------
 
-@st.cache_data # Decorador para almacenar en caché los datos
+@st.cache_data  # Decorador para almacenar en caché los datos
 def cargar_datos_csv(nombre_archivo):
-    df = pd.read_csv(nombre_archivo)  # Carga el CSV
-      # Usar la columna "Especie" como índice
+    df = pd.read_csv(nombre_archivo)
     return df
 
 archivo_csv = "especies_en_peligro.csv"
-df_especies = cargar_datos_csv(archivo_csv) # Cargar el archivo CSV llamando a la función
+df_especies = cargar_datos_csv(archivo_csv)  # Cargar el archivo CSV llamando a la función
+df_especies.set_index("Año", inplace=True)   # Usar la columna "Año" como índice
 
-# Lista de especies disponibles
+# ----------------------- Lista de especies -----------------------
 especies_disponibles = df_especies.columns.tolist()  # Obtiene los nombres de las especies
-especies_disponibles = especies_disponibles[1:]  # Ignorar la primera columna que es el año
 st.sidebar.subheader("📌 Especies disponibles")
-st.sidebar.markdown("\n".join(f"- {especie}" for especie in especies_disponibles)) # Muestra las especies en la barra lateral
+
+# Mostrar botones para seleccionar especie
+for especie in especies_disponibles:
+    if st.sidebar.button(especie):  # Si se hace clic en el botón
+        st.session_state["especie_usuario"] = especie  # Guardar la selección
+
+# Inicializar el estado de la especie seleccionada
+if "especie_usuario" not in st.session_state:
+    st.session_state["especie_usuario"] = especies_disponibles[0]  # Default
+
+# Campo de texto sincronizado con la especie seleccionada
+especie_usuario = st.text_input("🔍 Ingrese el nombre científico de una especie:", st.session_state["especie_usuario"])
+st.session_state["especie_usuario"] = especie_usuario  # Actualizar estado si se escribe
 
 # ===================== 🔍 Búsqueda en GBIF =====================
 def buscar_en_gbif(nombre_especie):
@@ -72,10 +84,7 @@ def predecir_año_extincion(df, especie_objetivo):
     año_extincion = -model.intercept_ / model.coef_[0]
     return int(año_extincion), model
 
-
 # ===================== 🎯 Interfaz Principal =====================
-especie_usuario = st.text_input("🔍 Ingrese el nombre científico de una especie:", "Especie_1")
-
 if especie_usuario in especies_disponibles:
     st.subheader(f"🔎 Resultados para: {especie_usuario}")
 
@@ -99,7 +108,7 @@ if especie_usuario in especies_disponibles:
     st.subheader("📉 Evolución Poblacional de la Especie")
     fig, ax = plt.subplots(figsize=(8, 5))
     ax.scatter(df_especies.index, df_especies[especie_usuario], color='orange', label=especie_usuario)
-    
+
     año_predicho, modelo = predecir_año_extincion(df_especies, especie_usuario)
 
     if año_predicho is not None and modelo is not None:
