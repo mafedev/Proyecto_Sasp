@@ -6,24 +6,27 @@ import folium
 from streamlit_folium import folium_static
 from sklearn.linear_model import LinearRegression
 import plotly.express as px
+import numpy as np
 
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide") # Configuración de la página
 st.title("🌍 Dashboard de Extinción de Especies con IA")
 
-# ===================== 📥 Cargar archivo CSV =====================
-@st.cache_data
+# ----------------------- Cargar archivo CSV -----------------------
+
+@st.cache_data # Decorador para almacenar en caché los datos
 def cargar_datos_csv(nombre_archivo):
-    df = pd.read_csv(nombre_archivo)  # Cargar CSV
+    df = pd.read_csv(nombre_archivo)  # Carga el CSV
       # Usar la columna "Especie" como índice
     return df
 
 archivo_csv = "especies_en_peligro.csv"
-df_especies = cargar_datos_csv(archivo_csv)
+df_especies = cargar_datos_csv(archivo_csv) # Cargar el archivo CSV llamando a la función
 
 # Lista de especies disponibles
-especies_disponibles = df_especies.columns.tolist()
+especies_disponibles = df_especies.columns.tolist()  # Obtiene los nombres de las especies
+especies_disponibles = especies_disponibles[1:]  # Ignorar la primera columna que es el año
 st.sidebar.subheader("📌 Especies disponibles")
-st.sidebar.write(especies_disponibles)
+st.sidebar.markdown("\n".join(f"- {especie}" for especie in especies_disponibles)) # Muestra las especies en la barra lateral
 
 # ===================== 🔍 Búsqueda en GBIF =====================
 def buscar_en_gbif(nombre_especie):
@@ -46,12 +49,29 @@ def crear_mapa(observaciones):
 def predecir_año_extincion(df, especie_objetivo):
     X = df.index.values.reshape(-1, 1)
     y = df[especie_objetivo].values
-    
+
+    # Asegurar que y sea numérico (forzar a float)
+    try:
+        y = y.astype(float)
+    except ValueError:
+        y = pd.to_numeric(y, errors='coerce').astype(float)
+
+    mask = ~np.isnan(y)
+    X_clean = X[mask]
+    y_clean = y[mask]
+
+    if len(X_clean) < 2:
+        return None, None  # No hay suficientes datos
+
     model = LinearRegression()
-    model.fit(X, y)
-    
-    año_predicho = int(-model.intercept_ / model.coef_[0])
-    return año_predicho, model
+    model.fit(X_clean, y_clean)
+
+    if model.coef_[0] == 0:
+        return None, model  # No tiene pendiente
+
+    año_extincion = -model.intercept_ / model.coef_[0]
+    return int(año_extincion), model
+
 
 # ===================== 🎯 Interfaz Principal =====================
 especie_usuario = st.text_input("🔍 Ingrese el nombre científico de una especie:", "Especie_1")
@@ -81,21 +101,30 @@ if especie_usuario in especies_disponibles:
     ax.scatter(df_especies.index, df_especies[especie_usuario], color='orange', label=especie_usuario)
     
     año_predicho, modelo = predecir_año_extincion(df_especies, especie_usuario)
-    y_pred = modelo.predict(df_especies.index.values.reshape(-1, 1))
-    ax.plot(df_especies.index, y_pred, color='blue', linestyle='--', label="Tendencia")
-    
-    ax.set_xlabel("Año")
-    ax.set_ylabel("Población estimada")
-    ax.set_title("Diagrama de Dispersión y Tendencia")
-    ax.legend()
-    ax.grid(True)
-    st.pyplot(fig)
-    
-    # 🔮 Predicción de extinción
-    st.info(f"🧠 **Predicción de extinción para {especie_usuario}: {año_predicho}**")
-    
-    años_restantes = año_predicho - 2024
-    if años_restantes <= 10:
-        st.error(f"⚠️ ¡Alerta! {especie_usuario} podría extinguirse en menos de 10 años.")
-else:
-    st.warning("⚠️ La especie ingresada no está en la base de datos. Pruebe con otra.")
+
+    if año_predicho is not None and modelo is not None:
+        y_pred = modelo.predict(df_especies.index.values.reshape(-1, 1))
+        ax.plot(df_especies.index, y_pred, color='blue', linestyle='--', label="Tendencia")
+
+        ax.set_xlabel("Año")
+        ax.set_ylabel("Población estimada")
+        ax.set_title("Diagrama de Dispersión y Tendencia")
+        ax.legend()
+        ax.grid(True)
+        st.pyplot(fig)
+
+        # 🔮 Predicción de extinción
+        st.info(f"🧠 **Predicción de extinción para {especie_usuario}: {año_predicho}**")
+
+        años_restantes = año_predicho - 2024
+        if años_restantes <= 10:
+            st.error(f"⚠️ ¡Alerta! {especie_usuario} podría extinguirse en menos de 10 años.")
+    else:
+        ax.set_xlabel("Año")
+        ax.set_ylabel("Población estimada")
+        ax.set_title("Diagrama de Dispersión")
+        ax.legend()
+        ax.grid(True)
+        st.pyplot(fig)
+
+        st.warning("⚠️ No hay suficientes datos para hacer una predicción fiable.")
