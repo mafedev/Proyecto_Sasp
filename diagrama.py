@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+from sklearn.linear_model import LinearRegression
 
 # Cargar el archivo
 archivo = "especies_disperso.xlsx"
@@ -8,34 +9,47 @@ df = pd.read_excel(archivo)
 
 # Tomar los nombres de las columnas que representan años
 columnas_años = df.columns[1:]  # primera columna es el nombre de la especie
-años = pd.to_numeric(columnas_años, errors='coerce').dropna().astype(int)
+años = pd.to_numeric(columnas_años, errors='coerce').dropna().astype(int).values.reshape(-1, 1)
 
 # Crear la figura
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(12, 7))
 
-# Graficar todas las especies con puntos
+# Colores para distinguir líneas
+colores = plt.cm.viridis(np.linspace(0, 1, len(df)))
+
+# Graficar cada especie con puntos y su línea de regresión
 for i in range(len(df)):
     especie = df.iloc[i, 0]
-    valores = df.iloc[i, 1:].values
-    plt.scatter(años, valores, alpha=0.3)
+    poblacion = df.iloc[i, 1:].values.astype(float)
+    
+    # Asegurarse de no usar valores vacíos
+    mask = ~np.isnan(poblacion)
+    x = años[mask]
+    y = poblacion[mask]
+    
+    if len(x) < 2:
+        continue  # Se necesita al menos 2 puntos para ajustar línea
+    
+    modelo = LinearRegression()
+    modelo.fit(x, y)
+    y_pred = modelo.predict(x)
 
-# 📌 Calcular la media de población por año (eje y)
-poblaciones_promedio = df.iloc[:, 1:].mean(axis=0).values
+    # Graficar puntos
+    plt.scatter(x, y, alpha=0.3, label=especie)
 
-# 📌 Ajuste lineal: np.polyfit(x, y, grado)
-pendiente, intercepto = np.polyfit(años, poblaciones_promedio, 1)
+    # Graficar línea de regresión
+    plt.plot(x, y_pred, color=colores[i], linewidth=2)
 
-# 📌 Crear línea ajustada
-linea_ajustada = pendiente * años + intercepto
+    # Calcular año en que se extingue (población = 0)
+    if modelo.coef_[0] != 0:
+        año_extincion = -modelo.intercept_ / modelo.coef_[0]
+        if x.min() <= año_extincion <= x.max():
+            plt.axvline(x=año_extincion, color=colores[i], linestyle='--', alpha=0.3)
 
-# Dibujar la línea de ajuste general
-plt.plot(años, linea_ajustada, color='red', linestyle='-', linewidth=2, label=f"Tendencia general\nPendiente: {pendiente:.2f}")
-
-# Mostrar info
-plt.xlabel("Tiempo (años)")
+# Mostrar gráfico
+plt.title("Tendencia de extinción por especie")
+plt.xlabel("Años antes de extinción (0 = extinta)")
 plt.ylabel("Población estimada")
-plt.title("Tendencia general de la población de especies extintas")
-plt.xticks(rotation=45)
-plt.legend(loc="upper right")
 plt.grid(True)
+plt.tight_layout()
 plt.show()
