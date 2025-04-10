@@ -4,7 +4,7 @@ Dashboard interactivo que permite visualizar datos sobre especies en peligro de 
 
 ---
 
-## 📑 Tabla de Contenidos
+## Tabla de Contenidos
 
 - [Descripción](#descripción)  
 - [Instalación](#instalación)  
@@ -14,7 +14,7 @@ Dashboard interactivo que permite visualizar datos sobre especies en peligro de 
 
 ---
 
-## 📘 Descripción
+## Descripción
 
 Este proyecto es una aplicación web construida con **Streamlit**. Permite monitorear el estado de diferentes especies en riesgo, explorar registros geográficos y predecir posibles fechas de extinción utilizando regresión lineal. También incluye una sección para vincular iniciativas empresariales relacionadas con la conservación ambiental.
 
@@ -22,7 +22,7 @@ El propósito es crear una herramienta educativa e interactiva que combine visua
 
 ---
 
-## 💾 Instalación
+## Instalación
 
 1. Clona este repositorio:
 
@@ -47,7 +47,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🚀 Uso
+## Uso
 
 1. Ejecuta la aplicación con:
 
