@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}Especies en Peligro{% endblock %}
+{% block content %}
+
+<h2 class="mb-4">🐾 Especies en Peligro de Extinción</h2>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for especie in especies %}
+  <div class="col">
+    <div class="card h-100">
+      <img src="{{ url_for('static', filename='img/' + especie + '.jpg') }}" class="card-img-top" alt="{{ especie }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ especie }}</h5>
+        <p class="card-text">Haz clic para más información.</p>
+        <a href="/especie/{{ especie }}" class="btn btn-primary">Ver más</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
