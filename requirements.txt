@@ -1,10 +1,7 @@
-streamlit
+flask
 pandas
 numpy
 matplotlib
-scikit-learn
 folium
-streamlit-folium
-plotly
-openpyxl
+scikit-learn
 requests

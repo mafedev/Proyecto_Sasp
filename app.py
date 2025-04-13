@@ -1,31 +1,78 @@
-import streamlit as st
-from paginas import inicio, monitorizar, buscar_especie, empresas
+from flask import Flask, render_template, request
+from utils.funciones import cargar_datos, buscar_en_gbif, crear_mapa_html, predecir_año_extincion
 
-st.set_page_config(layout="wide")
+# Inicializa la aplicación Flask
+app = Flask(__name__)
 
-# ----------------------- Estado inicial -----------------------
-if "pagina_actual" not in st.session_state:
-    st.session_state["pagina_actual"] = "Inicio"
 
-# ----------------------- Función para navegar -----------------------
-def ir_a(pagina):
-    st.session_state["pagina_actual"] = pagina
+@app.route("/") # Indica que es la ruta raíz
+def index():
+    return render_template("index.html") # Se devuelve la plantilla index.html
 
-# ----------------------- Sidebar y botón global -----------------------
-st.sidebar.markdown("---")
-if st.sidebar.button("🏠 Volver al inicio"):
-    ir_a("Inicio")
+# Secciones del sitio
+@app.route("/blog")
+def blog():
+    return render_template("blog.html")
 
-if st.session_state["pagina_actual"] != "Inicio":
-    if st.button("🏠 Volver al inicio", key="volver_inicio"):
-        pagina_actual = "Inicio"
+@app.route("/acciones")
+def acciones():
+    return render_template("ayudar.html")
 
-# ----------------------- Cargar página correspondiente -----------------------
-paginas = {
-    "Inicio": inicio.mostrar,
-    "Monitorizar": monitorizar.mostrar,
-    "Buscar": buscar_especie.mostrar,
-    "Empresas": empresas.mostrar
-}
+@app.route("/casos-exito")
+def casos_exito():
+    return render_template("casos_exito.html")
 
-paginas[st.session_state["pagina_actual"]](ir_a)  # Pasamos la función de navegación a cada página
+@app.route("/galeria")
+def galeria():
+    return render_template("galeria.html")
+
+@app.route("/huella-carbono", methods=["GET", "POST"])
+def huella_carbono():
+    return render_template("huella_carbono.html")
+
+# MONITORIZAR ESPECIES
+@app.route("/monitorizar", methods=["GET", "POST"])
+def monitorizar():
+    df = cargar_datos("data/especies_en_peligro.csv")
+    especies = df.columns.tolist()
+    especie = request.form.get("especie") or especies[0]
+
+    registros = buscar_en_gbif(especie)
+    mapa_html = crear_mapa_html(registros)
+    año_pred, grafico = predecir_año_extincion(df, especie)
+
+    return render_template("monitorizar.html",
+                           especies=especies,
+                           especie=especie,
+                           registros=registros,
+                           mapa_html=mapa_html,
+                           año_pred=año_pred,
+                           plot_img=grafico)
+
+# Vista individual por especie
+@app.route("/especie/<nombre_especie>")
+def detalle_especie(nombre_especie):
+    df = cargar_datos("data/especies_en_peligro.csv")
+    especies = df.columns.tolist()
+    if nombre_especie not in especies:
+        return "Especie no encontrada", 404
+
+    registros = buscar_en_gbif(nombre_especie)
+    mapa_html = crear_mapa_html(registros)
+    año_pred, grafico = predecir_año_extincion(df, nombre_especie)
+
+    return render_template("especie_detalle.html",
+                           especie=nombre_especie,
+                           mapa_html=mapa_html,
+                           año_pred=año_pred,
+                           plot_img=grafico,
+                           registros=registros)
+
+if __name__ == "__main__":
+    app.run(debug=True) # Se corre la app en modo debug para ver errores y cambios en tiempo real
+
+@app.route("/especies")
+def especies():
+    df = cargar_datos("data/especies_en_peligro.csv")
+    especies = df.columns.tolist()
+    return render_template("especies.html", especies=especies)
