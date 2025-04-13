@@ -14,7 +14,7 @@ Dashboard interactivo que permite visualizar datos sobre especies en peligro de 
 
 ---
 
-## Descripción
+Descripción
 
 Este proyecto es una aplicación web construida con **Streamlit**. Permite monitorear el estado de diferentes especies en riesgo, explorar registros geográficos y predecir posibles fechas de extinción utilizando regresión lineal. También incluye una sección para vincular iniciativas empresariales relacionadas con la conservación ambiental.
 
@@ -47,7 +47,9 @@ pip install -r requirements.txt
 
 ---
 
+
 ## Uso
+bootstrap
 
 1. Ejecuta la aplicación con:
 
@@ -61,3 +63,4 @@ streamlit run app.py
    - Monitorizar especies
    - Buscar registros
    - Ver iniciativas empresariales
+
