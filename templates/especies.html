@@ -1,22 +1,22 @@
-{% extends "layout.html" %}
-{% block title %}Especies en Peligro{% endblock %}
-{% block content %}
+<h2>🔍 Búsqueda de Especies</h2>
+<form method="post">
+  <input type="text" name="especie" placeholder="Ej: Panthera onca" value="{{ especie or '' }}">
+  <button type="submit">Buscar</button>
+</form>
 
-<h2 class="mb-4">🐾 Especies en Peligro de Extinción</h2>
+{% if especie %}
+  <hr>
+  <h3>📈 Resultados para: {{ especie }}</h3>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  {% for especie in especies %}
-  <div class="col">
-    <div class="card h-100">
-      <img src="{{ url_for('static', filename='img/' + especie + '.jpg') }}" class="card-img-top" alt="{{ especie }}">
-      <div class="card-body">
-        <h5 class="card-title">{{ especie }}</h5>
-        <p class="card-text">Haz clic para más información.</p>
-        <a href="/especie/{{ especie }}" class="btn btn-primary">Ver más</a>
-      </div>
-    </div>
-  </div>
-  {% endfor %}
-</div>
+  {% if año_pred %}
+    <p><strong>Año estimado de extinción:</strong> {{ año_pred }}</p>
+    <img src="data:image/png;base64,{{ grafico }}" class="img-fluid">
+  {% else %}
+    <p>No se pudo estimar el año de extinción.</p>
+  {% endif %}
 
-{% endblock %}
+  {% if mapa %}
+    <h4>🌍 Ubicaciones</h4>
+    <div>{{ mapa|safe }}</div>
+  {% endif %}
+{% endif %}

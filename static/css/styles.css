@@ -18,3 +18,15 @@ body{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: #8e8d8a;
 }
+
+.carousel-inner {
+  width: 100%;
+  height: 550px; /* Fijamos la altura del carrusel */
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 550px; /* Fijamos la altura de las imágenes */
+  object-fit: cover; /* Ajusta la imagen para cubrir el contenedor */
+  object-position: center; /* Centra el recorte de la imagen */
+}

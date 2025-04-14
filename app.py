@@ -1,35 +1,31 @@
 from flask import Flask, render_template, request
-import pandas as pd
-
-
-# Estas funciones vienen del archivo funciones.py
 from utils.funciones import (
+    cargar_datos,
+    predecir_año_extincion,
     buscar_en_gbif,
-    crear_mapa_html,
+    crear_mapa_html
 )
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
+import base64
+from io import BytesIO
 
-# Estas funciones vienen del archivo modelo_general.py
-from utils.modelo_general import (
-    entrenar_modelo_general,
-    predecir_extincion_especie,
-)
-
-# Inicializa la aplicación Flask
 app = Flask(__name__)
 
+# Datos estructurados para monitorización
+df_monitor = cargar_datos("data/especies_en_peligro.csv")
+especies_monitor = df_monitor.columns.tolist()
 
-def cargar_datos(ruta_csv):
-    import pandas as pd
-    df = pd.read_csv(ruta_csv)
-    print(f"Columnas en {ruta_csv}: {df.columns.tolist()}")
-    return df
+# ----------------------------
+# PÁGINAS ESTÁTICAS
+# ----------------------------
 
-
-@app.route("/") # Indica que es la ruta raíz
+@app.route("/")
 def index():
-    return render_template("index.html") # Se devuelve la plantilla index.html
+    return render_template("index.html")
 
-# Secciones del sitio
 @app.route("/blog")
 def blog():
     return render_template("blog.html")
@@ -50,84 +46,74 @@ def galeria():
 def huella_carbono():
     return render_template("huella_carbono.html")
 
-# MONITORIZAR ESPECIES
+
+# Datos dispersos estilo Excel
+df_disperso = pd.read_excel("data/especies_disperso.xlsx")
+columna_especie = df_disperso.columns[0]
+años_excel = pd.to_numeric(df_disperso.columns[1:], errors="coerce").dropna().astype(int)
+
+# ------------------ MONITORIZACIÓN IA ------------------
 @app.route("/monitorizar", methods=["GET", "POST"])
 def monitorizar():
-    # Cargamos ambos CSV
-    df_actuales = pd.read_csv("data/especies_en_peligro.csv")
-    #print("Columnas en df_actuales:", df_actuales.columns.tolist())  # Depuración
-    #return "Revisando columnas en consola"
-    #df_actuales.columns = ['Especies'] + list(range(-100, 1, 3))  # Ajusta según los años reales
-    #df_extintas = cargar_datos("data/especies_extintas.csv")
-
-    # Ajusta los nombres de las columnas
-    num_years = len(df_actuales.columns) - 1  # Resta 1 para la columna 'Especies'
-    df_actuales.columns = ['Especies'] + list(range(-100, -100 + num_years * 3, 3))  # Ajusta el rango según los años reales
-
-    print("Columnas ajustadas en df_actuales:", df_actuales.columns.tolist())  # Depuración
-    return "Columnas ajustadas correctamente"
-
-    # Verifica las columnas disponibles
-    print("Columnas en df_actuales:", df_actuales.columns)
-    print("Columnas en df_extintas:", df_extintas.columns)
-
-    # Ajusta el código para usar las columnas correctas
-    especies = df_actuales['Especies'].tolist()  # Cambia según el nombre correcto
-    especie = request.form.get("especie") or especies[0]
-
-    # Entrenamos modelo IA con especies extintas
-    modelo_ia = entrenar_modelo_general(df_extintas)
-
-    # Aplicamos modelo IA a especie actual
-    año_pred, grafico = predecir_extincion_especie(df_actuales, especie, modelo_ia)
-
-    # Mapa y registros
-    registros = buscar_en_gbif(especie)
-    mapa_html = crear_mapa_html(registros)
+    especie = request.form.get("especie") or especies_monitor[0]
+    año_pred, grafico_b64 = predecir_año_extincion(df_monitor, especie)
+    observaciones = buscar_en_gbif(especie)
+    mapa_html = crear_mapa_html(observaciones)
 
     return render_template("monitorizar.html",
-                           especies=especies,
+                           especies=especies_monitor,
                            especie=especie,
-                           registros=registros,
-                           mapa_html=mapa_html,
                            año_pred=año_pred,
-                           plot_img=grafico)
+                           grafico=grafico_b64,
+                           mapa=mapa_html)
 
-# Vista individual por especie
-@app.route("/especie/<nombre_especie>")
-def detalle_especie(nombre_especie):
-    # Carga especies actuales
-    df = cargar_datos("data/especies_en_peligro.csv")
-    especies = df.columns.tolist()
-    
-    if nombre_especie not in especies:
-        return "Especie no encontrada", 404
+# ------------------ EXPLORADOR DE ESPECIES ------------------
+@app.route("/especies", methods=["GET", "POST"])
+def especies():
+    especie = request.form.get("especie")
+    datos_especie = None
+    mapa_html = None
+    grafico_b64 = None
+    año_ext = None
 
-    # Entrena modelo IA con especies extintas
-    df_extintas = cargar_datos("data/especies_extintas.csv")
-    modelo_ia = entrenar_modelo_general(df_extintas)
+    if especie:
+        registros = buscar_en_gbif(especie)
+        datos_especie = registros[:50] if registros else []
 
-    # Predicción para la especie actual
-    año_pred, grafico = predecir_extincion_especie(df, nombre_especie, modelo_ia)
+        df_fila = df_disperso[df_disperso[columna_especie] == especie]
+        if not df_fila.empty:
+            fila = df_fila.iloc[0]
+            y = pd.to_numeric(fila[1:].values, errors="coerce")
+            X = años_excel.values.reshape(-1, 1)
+            mask = ~np.isnan(y)
 
-    # Buscar registros y generar el mapa
-    registros = buscar_en_gbif(nombre_especie)
-    mapa_html = crear_mapa_html(registros)
+            if mask.sum() >= 2:
+                modelo = LinearRegression().fit(X[mask], y[mask])
+                año_ext = -modelo.intercept_ / modelo.coef_[0] if modelo.coef_[0] != 0 else None
 
-    # Mostrar plantilla HTML
-    return render_template("especie_detalle.html",
-                           especie=nombre_especie,
-                           mapa_html=mapa_html,
-                           año_pred=año_pred,
-                           plot_img=grafico,
-                           registros=registros)
+                fig, ax = plt.subplots(figsize=(8, 4))
+                ax.scatter(años_excel, y, color='orange', label=especie)
+                ax.plot(años_excel, modelo.predict(X), linestyle="--", color="blue")
+                ax.set_xlabel("Año")
+                ax.set_ylabel("Población")
+                ax.set_title("Evolución poblacional")
+                ax.grid()
+                ax.legend()
 
+                buf = BytesIO()
+                fig.savefig(buf, format="png")
+                buf.seek(0)
+                grafico_b64 = base64.b64encode(buf.read()).decode("utf-8")
+                plt.close(fig)
+
+            mapa_html = crear_mapa_html(registros)
+
+    return render_template("especies.html",
+                           especie=especie,
+                           año_pred=año_ext,
+                           grafico=grafico_b64,
+                           mapa=mapa_html,
+                           datos=datos_especie)
 
 if __name__ == "__main__":
-    app.run(debug=True) # Se corre la app en modo debug para ver errores y cambios en tiempo real
-
-@app.route("/especies")
-def especies():
-    df = cargar_datos("data/especies_en_peligro.csv")
-    especies = df.columns.tolist()
-    return render_template("especies.html", especies=especies)
+    app.run(debug=True)
