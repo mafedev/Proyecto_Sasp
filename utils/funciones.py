@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 import requests
 import folium
+import matplotlib
+matplotlib.use("Agg")  # ← Forza uso de backend sin GUI
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 import base64
@@ -64,3 +66,9 @@ def predecir_año_extincion(df, especie_objetivo):
     plt.close(fig)
 
     return int(año_ext) if año_ext else None, img_b64
+
+# Carga y transforma el CSV de especies extintas (donde los años están como columnas)
+def cargar_datos_extintos(nombre_archivo):
+    df = pd.read_csv(nombre_archivo, index_col=0).T  # Transpone: ahora los años serán las filas (index)
+    df.index = df.index.astype(int)  # Asegura que los años sean números
+    return df
