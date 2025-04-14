@@ -16,9 +16,10 @@
 
   <body>
     <!-- Barra de navegación -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top"> <!-- Hace que el menu quede fijo -->
       <div class="container-fluid">
-        <a class="navbar-brand" aria-current="page" href="/">Nombre</a> <!-- Nombre de la empresa cambiado -->
+        <a class="navbar-brand" aria-current="page" href="/">Nombre</a>
+        <!-- Nombre de la empresa cambiado -->
         <button
           class="navbar-toggler"
           type="button"
@@ -49,9 +50,15 @@
                 Especies en peligro
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/monitorizar">Monitorear especies</a></li>
+                <li>
+                  <a class="dropdown-item" href="/monitorizar"
+                    >Monitorear especies</a
+                  >
+                </li>
                 <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="/especies">Buscar especie</a></li>
+                <li>
+                  <a class="dropdown-item" href="/especies">Buscar especie</a>
+                </li>
               </ul>
             </li>
             <li class="nav-item">
@@ -77,49 +84,50 @@
     <div class="">{% block content %}{% endblock %}</div>
 
     <!-- Sección de pie de página -->
-<section class="pt-0">
-  <div class="container">
-    <div class="row justify-content-between">
-      <!-- Columna 1: Logo y Descripción -->
-      <div class="col-lg-6 col-sm-12">
-        <a href="/">
-          <img class="img-fluid mt-5 mb-4" src="assets/img/black-logo.png" alt="Logo Nombre" />
-        </a>
-        <p class="w-lg-75 text-gray">
-          Social media validation business model canvas graphical user interface launch party creative facebook iPad twitter. <strong>Nombre</strong> is dedicated to improving the environment through technology and research.
-        </p>
+    <section class="footer">
+      <div class="container">
+        <div class="row justify-content-between">
+          <!-- Columna 1: Logo y Descripción -->
+          <div class="col-lg-6 col-sm-12 pe-5">
+            <a href="/">
+              <img
+                class="img-fluid logo-footer mt-5 mb-4"
+                src="/static/img/logo.png"
+                alt="Logo Nombre"
+              />
+            </a>
+            <p class="w-lg-75 text-gray">
+              EcoMonitor es una plataforma dedicada al monitoreo y seguimiento de especies en peligro de extinción. A través de nuestra tecnología, proporcionamos datos esenciales para apoyar los esfuerzos de conservación y promover la preservación de la biodiversidad global.
+            </p>
+          </div>
+
+          <!-- Columna 2: Navegación -->
+          <div class="col-lg-3 col-sm-12">
+            <h3 class="fw-bold fs-1 mt-5 mb-4">Navegación</h3>
+            <ul class="list-unstyled">
+              <li class="my-3"><a href="/">Inicio</a></li>
+              <li class="my-3"><a href="/blog">Noticias</a></li>
+              <li class="my-3"><a href="casos_exito.html">Casos de Éxito</a></li>
+              <li class="my-3"><a href="/monitorizar">Monitorear Especies</a></li>
+              <li class="my-3"><a href="/especies">Buscar Especie</a></li>
+              <li class="my-3"><a href="/galeria">Galería</a></li>
+            </ul>
+          </div>
+
+          <!-- Columna 3: Recursos -->
+          <div class="col-lg-3 col-sm-12">
+            <h3 class="fw-bold fs-1 mt-5 mb-4">Recursos</h3>
+            <ul class="list-unstyled">
+              <li class="my-3"><a href="#">GBIF</a></li>
+              <li class="my-3"><a href="#">Documentación</a></li>
+              <li class="my-3"><a href="#">Guías y Apoyo</a></li>
+            </ul>
+          </div>
+
+        <p class="text-gray mt-5">All rights reserved. Nombre &copy; 2025</p>
+        <!-- Nombre de la empresa -->
       </div>
-
-      <!-- Columna 2: Company -->
-      <div class="col-lg-3 col-sm-12">
-        <h3 class="fw-bold fs-1 mt-5 mb-4">Company</h3>
-        <ul class="list-unstyled">
-          <li class="my-3"><a href="/">Home</a></li>
-          <li class="my-3"><a href="/blog">Noticias</a></li>
-          <li class="my-3"><a href="casos_exito.html">Casos éxito</a></li>
-          <li class="my-3"><a href="/monitorizar">Monitorear especies</a></li>
-          <li class="my-3"><a href="/especies">Buscar especie</a></li>
-          <li class="my-3"><a href="/galeria">Galería</a></li>
-        </ul>
-      </div>
-
-      <!-- Columna 3: Resources -->
-      <div class="col-lg-3 col-sm-12">
-        <h3 class="fw-bold fs-1 mt-5 mb-4">Resources</h3>
-        <ul class="list-unstyled">
-          <li class="my-3"><a href="#">GBIF</a></li> <!-- Enlace a GBIF -->
-          <li class="my-3"><a href="#">Enlace vacío 1</a></li> <!-- Enlace vacío 1 -->
-          <li class="my-3"><a href="#">Enlace vacío 2</a></li> <!-- Enlace vacío 2 -->
-        </ul>
-      </div>
-    </div>
-
-    <p class="text-gray mt-5">All rights reserved. Nombre &copy; 2025</p> <!-- Nombre de la empresa -->
-  </div><!-- end of .container-->
-</section>
-
-
-
+    </section>
 
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
