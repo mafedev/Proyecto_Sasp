@@ -227,3 +227,27 @@ li.my-3 {
   padding: 10px;
   border-radius: 5px;
 }
+
+/* Cambiar el borde y el color de fondo del botón cuando está en foco o al pasar el ratón */
+button.btn-outline-success {
+  border-color: #8e8d8a;  /* Cambia el color del borde */
+  color: #007bff;         /* Cambia el color del texto (en este caso, el ícono de la lupa) */
+}
+
+/* Cambiar el borde y el fondo cuando se pasa el ratón (hover) */
+button.btn-outline-success:hover {
+  background-color: #b4dcb3;  /* Cambiar el color de fondo cuando el botón está en hover */
+  color: white;               /* Cambiar el color del texto a blanco */
+  border-color: transparent;  /* Elimina el borde al pasar el ratón */
+}
+
+/* Cambiar el color cuando el botón está presionado (active) */
+button.btn-outline-success:active {
+  background-color: #000000;  /* Cambiar el color de fondo a negro cuando el botón está presionado */
+  border-color: #000000;      /* Cambiar el color del borde a negro */
+}
+
+/* Cambiar el color del ícono dentro del botón cuando está presionado */
+button.btn-outline-success:active img {
+  filter: brightness(0) invert(1);  /* Cambia el color del ícono de la lupa a blanco */
+}
