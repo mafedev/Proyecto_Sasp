@@ -1,14 +1,16 @@
-# Observatorio Global de Especies en Peligro
+# EcoMonitor – Observatorio Global de Especies en Peligro
 
-Dashboard interactivo que permite visualizar datos sobre especies en peligro de extinción usando inteligencia artificial y datos abiertos.
+Aplicación web interactiva para el monitoreo y análisis de especies en peligro de extinción, construida con **Flask**, **Bootstrap 5** y datos abiertos.
 
 ---
 
 ## Tabla de Contenidos
 
 - [Descripción](#descripción)  
+- [Tecnologías](#tecnologías)  
 - [Instalación](#instalación)  
 - [Uso](#uso)  
+- [Estructura del Proyecto](#estructura-del-proyecto)  
 - [Contribuciones](#contribuciones)  
 - [Licencia](#licencia)
 
@@ -16,48 +18,27 @@ Dashboard interactivo que permite visualizar datos sobre especies en peligro de 
 
 ## Descripción
 
-Este proyecto es una aplicación web construida con **Streamlit**. Permite monitorear el estado de diferentes especies en riesgo, explorar registros geográficos y predecir posibles fechas de extinción utilizando regresión lineal. También incluye una sección para vincular iniciativas empresariales relacionadas con la conservación ambiental.
+**EcoMonitor** es una plataforma web diseñada para visualizar información sobre especies en peligro de extinción. Permite explorar registros, consultar datos por especie, revisar casos de éxito en conservación y acceder a recursos relacionados.
 
-El propósito es crear una herramienta educativa e interactiva que combine visualización de datos, ciencia y conciencia ambiental.
+El objetivo es fomentar la conciencia ambiental a través de herramientas accesibles que combinan ciencia, tecnología y educación.
+
+---
+
+## Tecnologías
+
+- Python 3  
+- Flask  
+- Bootstrap 5  
+- HTML/CSS  
+- JavaScript (opcional)  
+- Jinja2 (para plantillas)  
 
 ---
 
 ## Instalación
 
-1. Clona este repositorio:
+1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/tu_usuario/proyecto_especies.git
-cd proyecto_especies
-```
-
-2. Crea y activa un entorno virtual (opcional pero recomendado):
-
-```bash
-python -m venv venv
-venv\Scripts\activate      # En Windows
-# source venv/bin/activate  # En Mac/Linux
-```
-
-3. Instala las dependencias:
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## Uso
-
-1. Ejecuta la aplicación con:
-
-```bash
-streamlit run app.py
-```
-
-2. Abre tu navegador y accede a la URL que aparece en consola (por lo general `http://localhost:8501`).
-
-3. Usa los botones del menú para navegar por las secciones:
-   - Monitorizar especies
-   - Buscar registros
-   - Ver iniciativas empresariales
+git clone https://github.com/mafedev/Proyecto_Sasp.git
+cd Proyecto_Sasp
