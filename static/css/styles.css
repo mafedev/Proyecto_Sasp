@@ -109,9 +109,10 @@ body{
 }
 
 /* Estilos generales para la sección */
-section.pt-0 {
+section.footer {
   background-color: #f8f9fa; /* Fondo claro para la sección */
-  padding-top: 0; /* Eliminamos el padding superior */
+  margin-top: 60px;
+  padding-top: 40px;
   padding-bottom: 40px; /* Espaciado en la parte inferior */
 }
 
@@ -219,3 +220,21 @@ section p.text-gray {
   margin-top: 30px;
   font-size: 1rem;
 }
+
+.logo-footer {
+  max-width: 100px; /* ajusta este valor según lo que necesites */
+  height: auto;     /* mantiene la proporción */
+}
+
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20px; /* Ajusta la distancia desde el borde inferior */
+  left: 20px; /* Ajusta la distancia desde el borde izquierdo */
+  text-align: left; /* Alinea el texto a la izquierda */
+  color: white; /* Color del texto */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para mejorar la visibilidad del texto */
+  padding: 10px; /* Espaciado alrededor del texto */
+  border-radius: 5px; /* Bordes redondeados para el fondo */
+}
+
