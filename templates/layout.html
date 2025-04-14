@@ -18,7 +18,7 @@
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" aria-current="page" href="\">Nombre</a>
+        <a class="navbar-brand" aria-current="page" href="/">Nombre</a> <!-- Nombre de la empresa cambiado -->
         <button
           class="navbar-toggler"
           type="button"
@@ -55,7 +55,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/galeria">Galería </a>
+              <a class="nav-link" href="/galeria">Galería</a>
             </li>
           </ul>
           <form class="d-flex" role="search">
@@ -74,7 +74,52 @@
     </nav>
 
     <!-- Contenido principal -->
-    <div class="container mt-4">{% block content %}{% endblock %}</div>
+    <div class="">{% block content %}{% endblock %}</div>
+
+    <!-- Sección de pie de página -->
+<section class="pt-0">
+  <div class="container">
+    <div class="row justify-content-between">
+      <!-- Columna 1: Logo y Descripción -->
+      <div class="col-lg-6 col-sm-12">
+        <a href="/">
+          <img class="img-fluid mt-5 mb-4" src="assets/img/black-logo.png" alt="Logo Nombre" />
+        </a>
+        <p class="w-lg-75 text-gray">
+          Social media validation business model canvas graphical user interface launch party creative facebook iPad twitter. <strong>Nombre</strong> is dedicated to improving the environment through technology and research.
+        </p>
+      </div>
+
+      <!-- Columna 2: Company -->
+      <div class="col-lg-3 col-sm-12">
+        <h3 class="fw-bold fs-1 mt-5 mb-4">Company</h3>
+        <ul class="list-unstyled">
+          <li class="my-3"><a href="/">Home</a></li>
+          <li class="my-3"><a href="/blog">Noticias</a></li>
+          <li class="my-3"><a href="casos_exito.html">Casos éxito</a></li>
+          <li class="my-3"><a href="/monitorizar">Monitorear especies</a></li>
+          <li class="my-3"><a href="/especies">Buscar especie</a></li>
+          <li class="my-3"><a href="/galeria">Galería</a></li>
+        </ul>
+      </div>
+
+      <!-- Columna 3: Resources -->
+      <div class="col-lg-3 col-sm-12">
+        <h3 class="fw-bold fs-1 mt-5 mb-4">Resources</h3>
+        <ul class="list-unstyled">
+          <li class="my-3"><a href="#">GBIF</a></li> <!-- Enlace a GBIF -->
+          <li class="my-3"><a href="#">Enlace vacío 1</a></li> <!-- Enlace vacío 1 -->
+          <li class="my-3"><a href="#">Enlace vacío 2</a></li> <!-- Enlace vacío 2 -->
+        </ul>
+      </div>
+    </div>
+
+    <p class="text-gray mt-5">All rights reserved. Nombre &copy; 2025</p> <!-- Nombre de la empresa -->
+  </div><!-- end of .container-->
+</section>
+
+
+
 
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

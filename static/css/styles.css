@@ -108,3 +108,114 @@ body{
   background-color: #0056b3; /* Color de fondo cuando se pasa el ratón */
 }
 
+/* Estilos generales para la sección */
+section.pt-0 {
+  background-color: #f8f9fa; /* Fondo claro para la sección */
+  padding-top: 0; /* Eliminamos el padding superior */
+  padding-bottom: 40px; /* Espaciado en la parte inferior */
+}
+
+.container {
+  max-width: 1200px; /* Ancho máximo para que no se estire demasiado */
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap; /* Asegura que las columnas se ajusten en pantallas pequeñas */
+}
+
+.row .col-lg-6 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinea todo el contenido de la columna al principio */
+  text-align: left; /* Asegura que el texto quede alineado a la izquierda */
+}
+
+.row .col-lg-6 p {
+  text-align: left; /* Asegura que el texto en los párrafos esté alineado a la izquierda */
+}
+
+.row .col-lg-3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinea todo el contenido de las columnas al principio */
+  text-align: left; /* Asegura que el texto quede alineado a la izquierda */
+}
+
+.row .col-sm-12 {
+  text-align: left; /* Alinea el texto hacia la izquierda en pantallas pequeñas */
+}
+
+.text-gray {
+  color: #6c757d; /* Gris claro para texto */
+}
+
+.img-fluid {
+  max-width: 100%; /* Hace que la imagen sea flexible */
+  height: auto; /* Mantiene la proporción de la imagen */
+}
+
+.mt-5 {
+  margin-top: 3rem; /* Espaciado superior */
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem; /* Espaciado inferior */
+}
+
+/* Estilos para los enlaces en los elementos de lista */
+ul.list-unstyled li a {
+  color: #007bff; /* Color de los enlaces */
+  text-decoration: none; /* Elimina subrayado */
+  transition: color 0.3s ease; /* Transición suave */
+}
+
+ul.list-unstyled li a:hover {
+  color: #0056b3; /* Cambio de color al pasar el cursor */
+}
+
+/* Estilos para los títulos */
+h3.fw-bold {
+  font-weight: bold;
+  font-size: 1.5rem; /* Tamaño de la fuente para los encabezados */
+  color: #343a40; /* Título de color oscuro */
+}
+
+h3.fs-1 {
+  font-size: 1.75rem;
+}
+
+li.my-3 {
+  margin-bottom: 0.75rem; /* Espaciado entre los elementos de la lista */
+}
+
+/* Estilos para las etiquetas dentro de los enlaces */
+.bg-success {
+  background-color: #28a745 !important; /* Fondo verde para el badge */
+}
+
+.text-dark {
+  color: #343a40 !important; /* Color oscuro para el texto del badge */
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.rounded-2 {
+  border-radius: 0.25rem; /* Bordes redondeados para las etiquetas */
+}
+
+/* Estilo del pie de página (texto de derechos reservados) */
+section p.text-gray {
+  text-align: center;
+  color: #6c757d;
+  margin-top: 30px;
+  font-size: 1rem;
+}
