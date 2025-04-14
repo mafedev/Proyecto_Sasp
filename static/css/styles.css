@@ -16,21 +16,95 @@
 
 body{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: #9e7e46;
+    background-color: #5a7b3b;
 }
 
+/* Esto hará que el carrusel ocupe toda la altura de la ventana del navegador */
 .carousel-inner {
   width: 100%;
-  height: 550px; /* Fijamos la altura del carrusel */
+  height: 100vh; /* 100% de la altura de la ventana del navegador */
 }
 
 .carousel-item img {
   width: 100%;
-  height: 550px; /* Fijamos la altura de las imágenes */
-  object-fit: cover; /* Ajusta la imagen para cubrir el contenedor */
-  object-position: center; /* Centra el recorte de la imagen */
+  height: 100vh; /* Asegura que la imagen cubra todo el alto de la ventana */
+  object-fit: cover; /* Ajusta la imagen para que cubra el área sin deformarse */
+  object-position: center; /* Asegura que la imagen se mantenga centrada */
+}
+.carousel {
+  margin-bottom: 30px; /* Agrega un margen en la parte inferior del carrusel */
 }
 
 #noticias {
   background-color: #b4dcb3;  
 }
+
+.navbar{
+  background-color: #9e7e46;
+  padding: 10px; /* Espacio interno */
+}
+
+/* Nombre de la app */
+.navbar-brand {
+  color: #5a7b3b;
+}
+
+/* Noticias index */
+#noticias .row {
+  display: flex; /* Asegura que las columnas se comporten como flex containers */
+}
+
+#noticias .col-md-6 {
+  display: flex;
+  align-items: center; /* Centra verticalmente el contenido de las columnas */
+}
+
+#noticias .col-md-6:first-child {
+  justify-content: center; /* Centra el contenido verticalmente en la columna izquierda */
+  text-align: left; /* Alinea el texto de la columna izquierda a la izquierda */
+}
+
+#noticias .col-md-6 .w-100 {
+  text-align: left; /* Asegura que el texto dentro de .w-100 esté alineado a la izquierda */
+}
+
+#noticias .col-md-6 p {
+  font-size: 1.2rem; /* Tamaño del texto */
+  font-family: 'Arial', sans-serif; /* Tipo de fuente */
+  color: #333; /* Color del texto */
+  line-height: 1.6; /* Altura de línea */
+  margin-bottom: 20px; /* Espaciado inferior */
+  text-align: left; /* Alinea el texto a la izquierda */
+}
+
+/* Estilos para la imagen */
+#noticias .col-md-6 .card img {
+  width: 100%;  /* Hace que la imagen ocupe todo el ancho */
+  height: 500px; /* Altura fija para la imagen */
+  object-fit: cover; /* Asegura que la imagen mantenga su proporción */
+  border-radius: 10px; /* Bordes redondeados para la imagen */
+}
+
+/* Estilos para el título de la tarjeta */
+#noticias .col-md-6 .card-title {
+  text-align: center; /* Centra el título dentro de la tarjeta */
+  font-size: 1.5rem; /* Tamaño de fuente */
+  font-weight: bold; /* Negrita para el título */
+}
+
+/* Estilos para centrar el botón */
+#noticias .col-md-6 .btn {
+  display: block; /* Hace que el botón sea un bloque */
+  margin: 20px auto 0; /* Centra el botón horizontalmente y agrega espacio arriba */
+  font-size: 1rem; /* Tamaño de fuente del botón */
+  padding: 10px 20px; /* Padding del botón */
+  border-radius: 5px; /* Bordes redondeados del botón */
+  text-transform: uppercase; /* Hace el texto del botón en mayúsculas */
+  transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+}
+
+/* Efecto hover en el botón */
+#noticias .col-md-6 .btn:hover {
+  background-color: #0056b3; /* Color de fondo cuando se pasa el ratón */
+}
+

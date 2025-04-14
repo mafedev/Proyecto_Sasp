@@ -3,29 +3,56 @@
 {% block title %}Inicio{% endblock %} <!-- Esto establece el título de la página. -->
 {% block content %} <!-- Se inicia el bloque de contenido que se sobreescribirá en la plantilla base. -->
 
+<!-- Carrusel de imágenes -->
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner md-auto">
+    <div class="carousel-item active">
+      <img src="https://valor-compartido.com/wp-content/uploads/2021/02/panda-3875289_1280.jpg" class="d-block w-100" alt="Imagen1_carrousel">
+    </div>
+    <div class="carousel-item">
+      <img src="/static/img/aguila1.jfif" class="d-block w-100" alt="Imagen2_carrousel">
+    </div>
+    <div class="carousel-item">
+      <img src="/static/img/polar3.jpg" class="d-block w-100" alt="Imagen3_carrousel">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
 <h1 class="text-center mb-5">🌍 Bienvenidos a EcoMonitor</h1>
 
 <div class="container mb-5 p-5" id="noticias">
   <div class="row">
-    <div class="col-md-6">
-      <p>Infórmate sobre las últimas noticias y actualizaciones en conservación. Descubre proyectos, estudios y acciones globales para proteger nuestra biodiversidad. <b>¡Mantente informado y haz la diferencia!</b></p>
-      <a href="/blog" class="btn btn-primary" 
-        data-bs-toggle="tooltip" 
-        data-bs-placement="bottom" 
-        title="Ir al Blog">
-        Visitar Blog
-      </a>
+    <div class="col-md-6 d-flex align-items-center">
+      <div class="w-100">
+        <p>Infórmate sobre las últimas noticias y actualizaciones en conservación. Descubre proyectos, estudios y acciones globales para proteger nuestra biodiversidad. <b>¡Mantente informado y haz la diferencia!</b></p>
+        <a href="/blog" class="btn btn-primary" 
+          data-bs-toggle="tooltip" 
+          data-bs-placement="bottom" 
+          title="Ir al Blog">
+          Visitar Blog
+        </a>
+      </div>
     </div>
     <div class="col-md-6">
       <div class="card h-100">
         <div class="card-body">
           <h5 class="card-title">📰 Noticias & Blog</h5>
           <p class="card-text"></p>
+          <img src="/static/img/blog1.jpg" alt="imagen1" class="img-fluid rounded-start" style="width: 100%; height: 500px; object-fit: cover;">
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col">
