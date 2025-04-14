@@ -16,7 +16,7 @@
 
 body{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: #8e8d8a;
+    background-color: #9e7e46;
 }
 
 .carousel-inner {
@@ -29,4 +29,8 @@ body{
   height: 550px; /* Fijamos la altura de las imágenes */
   object-fit: cover; /* Ajusta la imagen para cubrir el contenedor */
   object-position: center; /* Centra el recorte de la imagen */
+}
+
+#noticias {
+  background-color: #b4dcb3;  
 }
