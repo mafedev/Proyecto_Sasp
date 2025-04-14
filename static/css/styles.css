@@ -14,12 +14,15 @@
     Blanco roto (#f0f0f0)
 */
 
-body{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: #5a7b3b;
+/* ============================ */
+/* GENERAL */
+body {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: #5a7b3b;
 }
 
-/* Esto hará que el carrusel ocupe toda la altura de la ventana del navegador */
+/* ============================ */
+/* CARROUSEL */
 .carousel-inner {
   width: 100%;
   height: 100vh; /* 100% de la altura de la ventana del navegador */
@@ -28,18 +31,17 @@ body{
 .carousel-item img {
   width: 100%;
   height: 100vh; /* Asegura que la imagen cubra todo el alto de la ventana */
-  object-fit: cover; /* Ajusta la imagen para que cubra el área sin deformarse */
-  object-position: center; /* Asegura que la imagen se mantenga centrada */
+  object-fit: cover;
+  object-position: center; /* Mantiene la imagen centrada */
 }
+
 .carousel {
   margin-bottom: 30px; /* Agrega un margen en la parte inferior del carrusel */
 }
 
-#noticias {
-  background-color: #b4dcb3;  
-}
-
-.navbar{
+/* ============================ */
+/* NAVBAR */
+.navbar {
   background-color: #9e7e46;
   padding: 10px; /* Espacio interno */
 }
@@ -49,7 +51,12 @@ body{
   color: #5a7b3b;
 }
 
-/* Noticias index */
+/* ============================ */
+/* NOTICIAS */
+#noticias {
+  background-color: #b4dcb3;
+}
+
 #noticias .row {
   display: flex; /* Asegura que las columnas se comporten como flex containers */
 }
@@ -65,138 +72,133 @@ body{
 }
 
 #noticias .col-md-6 .w-100 {
-  text-align: left; /* Asegura que el texto dentro de .w-100 esté alineado a la izquierda */
+  text-align: left;
 }
 
 #noticias .col-md-6 p {
-  font-size: 1.2rem; /* Tamaño del texto */
-  font-family: 'Arial', sans-serif; /* Tipo de fuente */
-  color: #333; /* Color del texto */
-  line-height: 1.6; /* Altura de línea */
-  margin-bottom: 20px; /* Espaciado inferior */
-  text-align: left; /* Alinea el texto a la izquierda */
+  font-size: 1.2rem;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  text-align: left;
 }
 
-/* Estilos para la imagen */
 #noticias .col-md-6 .card img {
-  width: 100%;  /* Hace que la imagen ocupe todo el ancho */
-  height: 500px; /* Altura fija para la imagen */
-  object-fit: cover; /* Asegura que la imagen mantenga su proporción */
-  border-radius: 10px; /* Bordes redondeados para la imagen */
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
-/* Estilos para el título de la tarjeta */
 #noticias .col-md-6 .card-title {
-  text-align: center; /* Centra el título dentro de la tarjeta */
-  font-size: 1.5rem; /* Tamaño de fuente */
-  font-weight: bold; /* Negrita para el título */
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-/* Estilos para centrar el botón */
 #noticias .col-md-6 .btn {
-  display: block; /* Hace que el botón sea un bloque */
-  margin: 20px auto 0; /* Centra el botón horizontalmente y agrega espacio arriba */
-  font-size: 1rem; /* Tamaño de fuente del botón */
-  padding: 10px 20px; /* Padding del botón */
-  border-radius: 5px; /* Bordes redondeados del botón */
-  text-transform: uppercase; /* Hace el texto del botón en mayúsculas */
-  transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+  display: block;
+  margin: 20px auto 0;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
 }
 
-/* Efecto hover en el botón */
 #noticias .col-md-6 .btn:hover {
-  background-color: #0056b3; /* Color de fondo cuando se pasa el ratón */
+  background-color: #0056b3;
 }
 
-/* Estilos generales para la sección */
+/* ============================ */
+/* FOOTER */
 section.footer {
-  background-color: #f8f9fa; /* Fondo claro para la sección */
+  background-color: #f8f9fa;
   margin-top: 60px;
   padding-top: 40px;
-  padding-bottom: 40px; /* Espaciado en la parte inferior */
+  padding-bottom: 40px;
 }
 
-.container {
-  max-width: 1200px; /* Ancho máximo para que no se estire demasiado */
+.footer .container {
+  max-width: 1200px;
 }
 
-.row {
+.footer .row {
   display: flex;
-  flex-wrap: wrap; /* Asegura que las columnas se ajusten en pantallas pequeñas */
+  flex-wrap: wrap;
 }
 
-.row .col-lg-6 {
+.footer .col-lg-6 {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Alinea todo el contenido de la columna al principio */
+  justify-content: flex-start;
   text-align: left; /* Asegura que el texto quede alineado a la izquierda */
 }
 
-.row .col-lg-6 p {
-  text-align: left; /* Asegura que el texto en los párrafos esté alineado a la izquierda */
+.footer .col-lg-6 p {
+  text-align: left;
 }
 
-.row .col-lg-3 {
+.footer .col-lg-3 {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Alinea todo el contenido de las columnas al principio */
-  text-align: left; /* Asegura que el texto quede alineado a la izquierda */
+  justify-content: flex-start;
+  text-align: left;
 }
 
-.row .col-sm-12 {
-  text-align: left; /* Alinea el texto hacia la izquierda en pantallas pequeñas */
+.footer .col-sm-12 {
+  text-align: left;
 }
 
 .text-gray {
-  color: #6c757d; /* Gris claro para texto */
+  color: #6c757d;
 }
 
-.img-fluid {
-  max-width: 100%; /* Hace que la imagen sea flexible */
-  height: auto; /* Mantiene la proporción de la imagen */
+.footer .logo-footer {
+  max-width: 100px;
+  height: auto;
 }
 
-.mt-5 {
-  margin-top: 3rem; /* Espaciado superior */
-}
 
-.mb-4 {
-  margin-bottom: 1.5rem; /* Espaciado inferior */
-}
-
-/* Estilos para los enlaces en los elementos de lista */
+/* ============================ */
+/* ENLACES */
 ul.list-unstyled li a {
-  color: #007bff; /* Color de los enlaces */
-  text-decoration: none; /* Elimina subrayado */
-  transition: color 0.3s ease; /* Transición suave */
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 ul.list-unstyled li a:hover {
-  color: #0056b3; /* Cambio de color al pasar el cursor */
+  color: #0056b3;
 }
 
-/* Estilos para los títulos */
+/* ============================ */
+/* TITULOS */
 h3.fw-bold {
   font-weight: bold;
-  font-size: 1.5rem; /* Tamaño de la fuente para los encabezados */
-  color: #343a40; /* Título de color oscuro */
+  font-size: 1.5rem;
+  color: #343a40;
 }
 
 h3.fs-1 {
   font-size: 1.75rem;
 }
 
+/* ============================ */
+/* LISTAS */
 li.my-3 {
-  margin-bottom: 0.75rem; /* Espaciado entre los elementos de la lista */
+  margin-bottom: 0.75rem;
 }
 
-/* Estilos para las etiquetas dentro de los enlaces */
+/* ============================ */
+/* ETIQUETAS */
 .bg-success {
-  background-color: #28a745 !important; /* Fondo verde para el badge */
+  background-color: #28a745 !important;
 }
 
 .text-dark {
-  color: #343a40 !important; /* Color oscuro para el texto del badge */
+  color: #343a40 !important;
 }
 
 .py-1 {
@@ -210,31 +212,18 @@ li.my-3 {
 }
 
 .rounded-2 {
-  border-radius: 0.25rem; /* Bordes redondeados para las etiquetas */
+  border-radius: 0.25rem;
 }
 
-/* Estilo del pie de página (texto de derechos reservados) */
-section p.text-gray {
-  text-align: center;
-  color: #6c757d;
-  margin-top: 30px;
-  font-size: 1rem;
-}
-
-.logo-footer {
-  max-width: 100px; /* ajusta este valor según lo que necesites */
-  height: auto;     /* mantiene la proporción */
-}
-
-
+/* ============================ */
+/* CAROUSEL CAPTION */
 .carousel-caption {
   position: absolute;
-  bottom: 20px; /* Ajusta la distancia desde el borde inferior */
-  left: 20px; /* Ajusta la distancia desde el borde izquierdo */
-  text-align: left; /* Alinea el texto a la izquierda */
-  color: white; /* Color del texto */
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para mejorar la visibilidad del texto */
-  padding: 10px; /* Espaciado alrededor del texto */
-  border-radius: 5px; /* Bordes redondeados para el fondo */
+  bottom: 20px;
+  left: 20px;
+  text-align: left;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 5px;
 }
-
