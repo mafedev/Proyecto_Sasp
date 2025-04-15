@@ -1,49 +1,26 @@
 {% extends "layout.html" %}
-{% block title %}Monitorizar{% endblock %}
+{% block title %}Monitorización{% endblock %}
 
 {% block content %}
 <h1 class="mb-4">🐾 Monitorización de Especies</h1>
 
-<form method="POST" class="mb-4">
-  <label for="especie" class="form-label">Selecciona una especie:</label>
-  <select name="especie" class="form-select" onchange="this.form.submit()">
-    {% for e in especies %}
-      <option value="{{ e }}" {% if e == especie %}selected{% endif %}>{{ e }}</option>
-    {% endfor %}
-  </select>
-</form>
-
-<h3 class="mb-3">🔎 Resultados para: {{ especie }}</h3>
-
-{% if registros %}
-  <p><strong>✅ {{ registros|length }} registros encontrados en GBIF</strong></p>
-
-  <div class="row">
-    <div class="col-md-6">
-      <h5>🗺️ Mapa de Observaciones</h5>
-      <div class="map-container" style="height: 400px;">
-        {{ mapa_html|safe }}
+<h2 class="mb-4">🌿 Especies Monitorizadas</h2>
+<div class="row mb-5">
+  {% for especie in especies %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{{ especie.imagen }}" class="card-img-top" alt="{{ especie.nombre }}" style="height: 220px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">{{ especie.nombre }}</h5>
+          <p><strong>Población:</strong> {{ especie.poblacion }}</p>
+          <p><strong>Estado:</strong> {{ especie.estado }}</p>
+          {% if especie.descripcion %}
+            <p class="card-text">{{ especie.descripcion }}</p>
+          {% endif %}
+          <a href="/estadisticas/{{ especie.nombre }}" class="btn btn-outline-success w-100 mt-2">Ver estadísticas</a>
+        </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <h5>📊 Evolución Poblacional</h5>
-      {% if plot_img %}
-        <img src="data:image/png;base64,{{ plot_img }}" class="img-fluid border rounded shadow" alt="Gráfico de población">
-      {% else %}
-        <div class="alert alert-secondary">❌ No se pudo generar el gráfico (datos insuficientes).</div>
-      {% endif %}
-    </div>
-  </div>
-
-  {% if año_pred %}
-    <hr>
-    <h4 class="mt-4">📉 Predicción de Extinción</h4>
-    <p>🧠 Posible extinción en el año: <strong>{{ año_pred }}</strong></p>
-    {% if año_pred - 2024 <= 10 %}
-      <div class="alert alert-danger">⚠️ Riesgo crítico: extinción en menos de 10 años.</div>
-    {% endif %}
-  {% endif %}
-{% else %}
-  <div class="alert alert-warning">⚠️ No se encontraron registros para esta especie.</div>
-{% endif %}
+  {% endfor %}
+</div>
 {% endblock %}
