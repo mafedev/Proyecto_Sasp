@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}Huella de Carbono{% endblock %}
+
+{% block content %}
+<div class="container-fluid bg-light">
+  <div class="container">
+    <div class="row">
+      <!-- Columna 1 -->
+      <div class="col-sm-12 col-lg-6 col-xxl-6">
+        <h2 class="mt-5 mx-5 px-5 pt-5">¿Qué es la huella de carbono?</h2>
+        <p class="mx-5 px-5">
+          La huella de carbono es un indicador ambiental que cuantifica la cantidad total de gases de efecto invernadero (GEI) que una actividad,
+          persona, organización o producto libera a la atmósfera. Estos GEI, especialmente el dióxido de carbono (CO2), contribuyen al calentamiento global y 
+          al cambio climático. La huella de carbono se expresa en toneladas de CO2 equivalente (CO2e). 
+        </p>
+        <h2 class="mx-5 px-5 pt-5">¿Cómo ayuda saber mi huella de carbono?</h2> 
+        <p class="mx-5 px-5">
+          Tener una consciencia ambiental es necesario para nuestra supervivencia como especie y para evitar la extinción de muchas otras especies. Nuestro impacto
+          ambiental es muy agresivo y es muy importante tomar medidas para frenar el rumbo al que nos estamos dirigiendo.
+        </p>
+        <p class="m-5 px-5">
+          Nosotros podemos ayudarte a medir esa huella ambiental ya sea para tu negocio o para uso personal ya que creemos que calcular el daño que le hacemos a la tierra 
+          es un derecho de todos.
+        </p>
+      </div>
+
+      <!-- Columna 2 Imagen -->
+      <div class="col-sm-12 col-lg-6 col-xxl-6 text-center mt-5 p-5">
+        <img src="/static/img/plantita.webp" alt="Planta bonita" class="imagen-redondeada img-fluid"> 
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sección de tarjetas -->
+<div class="container p-5">
+  <div class="row p-5">
+    <h2 class="text-center mb-5">Calcula tu Huella de Carbono</h2>
+    <div class="col-sm-12 col-xl-6 p-4">
+      <div class="card p-2">
+        <img src="/static/img/persona.png" class="card-img-top p-5" alt="persona">
+        <div class="card-body">
+          <h5 class="card-title">Personal</h5>
+          <p class="card-text">Calcula la huella ambiental que dejas por año. Es parte de una responsabilidad ambiental como individuo.</p>
+          <a href="/huella_persona" class="btn btn-primary">Vamos</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xl-6 p-4">
+      <div class="card p-2">
+        <img src="/static/img/empresa.png" class="card-img-top p-5" alt="empresa">
+        <div class="card-body">
+          <h5 class="card-title">Empresa</h5>
+          <p class="card-text">Calcula la huella ambiental que deja tu empresa de manera gratuita, sin registrarte, solo contestando un par de preguntas.</p>
+          <a href="/huella_empresa" class="btn btn-primary">Vamos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/static/js/script.js"></script>
+{% endblock %}
