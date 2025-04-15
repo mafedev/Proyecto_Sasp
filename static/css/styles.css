@@ -387,7 +387,6 @@ input[type=number] {
 /* Estilo para el formulario de contacto */
 #contacto {
   background-color: #F5F5DC; /* Beige claro */
-  border: 2px solid #6B8E23; /* Verde musgo 2 */
   border-radius: 15px; /* Bordes redondeados */
   padding: 30px; /* Espaciado interno */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
@@ -439,4 +438,12 @@ input[type=number] {
 #contacto .btn-primary:active {
   background-color: #2c6e40; /* Verde oscuro */
   transform: scale(1); /* Vuelve al tamaño original */
+}
+
+.fondo_ayuda{
+  background-color: #F5F5DC;
+}
+
+.fondo_formulario{
+  background-color: #4d4d4d;
 }
