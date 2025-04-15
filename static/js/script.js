@@ -62,3 +62,12 @@ if (form) {
         `;
     });
 }
+
+// Mostrar el toast de Bootstrap si existe en la página
+document.addEventListener('DOMContentLoaded', () => {
+    const toastLiveExample = document.getElementById('liveToast');
+    if (toastLiveExample) {
+        const toast = new bootstrap.Toast(toastLiveExample, { delay: 5000 });
+        toast.show();
+    }
+});

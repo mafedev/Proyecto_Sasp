@@ -45,6 +45,7 @@
             </li>
             <li class="nav-item"><a class="nav-link" href="/galeria">Galería</a></li>
             <li class="nav-item"><a class="nav-link" href="/huella_carbono">Tu Huella</a></li>
+            <li class="nav-item"><a class="nav-link" href="/ayudar">Como Ayudar</a></li>
           </ul>
           <form class="d-flex" role="search">
             <input
@@ -60,6 +61,18 @@
         </div>
       </div>
     </nav>
+
+    <!-- Toast Alert -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+      <div id="liveToast" class="toast show align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body">
+            ¡Cada donación ayuda a salvar una especie!
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+        </div>
+      </div>
+    </div>
 
     <!-- Contenido principal -->
     <div class="">{% block content %}{% endblock %}</div>
@@ -83,7 +96,7 @@
           </div>
 
           <!-- Columna 2: Navegación -->
-          <div class="col-lg-3 col-sm-12">
+          <div class="col-lg-3 col-sm-12 p-1">
             <h3 class="fw-bold fs-1 mt-5 mb-4">Navegación</h3>
             <ul class="list-unstyled">
               <li class="my-3"><a href="/">Inicio</a></li>
@@ -96,7 +109,7 @@
           </div>
 
           <!-- Columna 3: Recursos -->
-          <div class="col-lg-3 col-sm-12">
+          <div class="col-lg-3 col-sm-12 p-1">
             <h3 class="fw-bold fs-1 mt-5 mb-4">Recursos</h3>
             <ul class="list-unstyled">
               <li class="my-3"><a href="#">GBIF</a></li>
