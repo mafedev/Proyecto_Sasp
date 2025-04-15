@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}Huella Personal{% endblock %}
+
+{% block content %}
+ <!--Encuesta de la calculadora -->
+ <div class="container-fluid m-5">
+    <div class="container p-5">
+        <div class="row">
+            <div class="col-12">
+                <form id="formHuella">
+                    <fieldset>
+                        <div class="row">
+                            <legend class="text-center my-3">Calculadora de Huella de carbono</legend>
+                            <div class="my-3 col-lg-6">
+                                <label for="carne" class="form-label">¿Cuántas comidas con carne haces a la semana?</label>
+                                <select id="carne" class="form-select" required>
+                                    <option value="">Selecciona una opción</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                </select>
+                            </div>
+        
+                            <div class="my-3 col-lg-6">
+                                <label for="vuelos" class="form-label">¿Cuántos vuelos haces al año?</label>
+                                <select id="vuelos" class="form-select" required>
+                                    <option value="">Selecciona una opción</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                </select>  
+                            </div>
+                            <div class="my-3 col-lg-6">
+                                <label for="electricidad" class="form-label">¿Cuánto consumes de electricidad al mes?</label>
+                                <input type="number" id="electricidad" class="form-control" placeholder="kWh" required>
+                            </div>
+        
+                            <div class="my-3 col-lg-6">
+                                <label for="km" class="form-label">¿Cuánto conduces a la semana?</label>
+                                <input type="number" id="km" class="form-control" placeholder="km" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Calcular Huella</button>
+                    </fieldset>
+                </form>
+    
+                <div class="resultado mt-4" id="resultado" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="/static/js/script.js"></script>
+{% endblock %}

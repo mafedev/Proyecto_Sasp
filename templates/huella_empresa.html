@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}Huella Personal{% endblock %}
+
+{% block content %}
+<!-- Encuesta -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <form id="formEmpresa">
+                <fieldset>
+                    <legend>Calculadora de Huella de Carbono Empresarial</legend>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label for="empleados" class="form-label">Número de empleados</label>
+                                <input type="number" id="empleados" class="form-control" required>
+                            </div>
+        
+                            <div class="mb-3">
+                                <label for="electricidadEmpresa" class="form-label">Consumo eléctrico mensual</label>
+                                <input type="number" id="electricidadEmpresa" class="form-control" placeholder="kWh" required>
+                            </div>
+        
+                            <div class="mb-3">
+                                <label for="vehiculos" class="form-label">Número de vehículos de empresa</label>
+                                <input type="number" id="vehiculos" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label for="kmVehiculos" class="form-label">Kilómetros mensuales por vehículo</label>
+                                <input type="number" id="kmVehiculos" class="form-control" required>
+                            </div>
+        
+                            <div class="mb-3">
+                                <label for="vuelosEmpresa" class="form-label">Número de vuelos de negocios al año</label>
+                                <input type="number" id="vuelosEmpresa" class="form-control" required>
+                            </div>
+        
+                            <div class="mb-3">
+                                <label for="residuos" class="form-label">Cantidad de residuos al mes</label>
+                                <input type="number" id="residuos" class="form-control" placeholder="kg" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="papel" class="form-label">Consumo de papel mensual</label>
+                            <input type="number" id="papel" class="form-control" placeholder ="resmas" required>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Calcular Huella</button>
+                </fieldset>
+            </form>
+
+            <div class="resultado mt-4" id="resultadoEmpresa" style="display: none;"></div>
+        </div>
+    </div>
+</div>
+<script src="/static/js/script.js"></script>
+
+{% endblock %}
