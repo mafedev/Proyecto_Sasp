@@ -3,7 +3,6 @@
 
 {% block content %}
 
-
 <!-- Carousel -->
 <div id="animalCarousel" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
@@ -72,5 +71,62 @@
     <p>Con tu ayuda, podemos hacer una gran diferencia en la conservación de la vida silvestre.</p>
   </div>
 </main>
+
+<!-- Formulario -->
+<div class="container my-5 p-5" id="contacto">
+  <h1 class="text-center mb-4">Contáctanos</h1>
+
+  <!-- Descripción introductoria -->
+  <p class="text-center mb-4">Si tienes alguna duda, sugerencia o comentario, no dudes en ponerte en contacto con nosotros.</p>
+
+  <!-- Formulario de contacto -->
+  <form>
+    <div class="row">
+      <!-- Campo de Nombre -->
+      <div class="col-md-6 mb-3">
+        <label for="nombre" class="form-label">Nombre completo</label>
+        <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre completo" required>
+      </div>
+
+      <!-- Campo de Correo Electrónico -->
+      <div class="col-md-6 mb-3">
+        <label for="correo" class="form-label">Correo electrónico</label>
+        <input type="email" class="form-control" id="correo" placeholder="nombre@dominio.com" required>
+        <div id="correoAyuda" class="form-text">Nunca compartiremos su correo con terceros.</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Campo de Teléfono -->
+      <div class="col-md-6 mb-3">
+        <label for="telefono" class="form-label">Número de teléfono</label>
+        <input type="tel" class="form-control" id="telefono" placeholder="Ingrese su número de teléfono" required>
+      </div>
+
+      <!-- Campo de Asunto -->
+      <div class="col-md-6 mb-3">
+        <label for="asunto" class="form-label">Asunto</label>
+        <input type="text" class="form-control" id="asunto" placeholder="Escriba el asunto" required>
+      </div>
+    </div>
+
+    <!-- Campo de Mensaje -->
+    <div class="mb-3">
+      <label for="mensaje" class="form-label">Mensaje</label>
+      <textarea class="form-control" id="mensaje" rows="4" placeholder="Escriba su mensaje" required></textarea>
+    </div>
+
+    <!-- Checkbox de Aceptación de Términos -->
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="aceptarTerminos" required>
+      <label class="form-check-label" for="aceptarTerminos">Acepto los términos y condiciones</label>
+    </div>
+
+    <!-- Botón de Envío -->
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+  </form>
+</div>
 
 {% endblock %}
