@@ -88,10 +88,6 @@ body {
   
 }
 
-.carousel {
-  margin-bottom: 30px; /* Agrega un margen en la parte inferior del carrusel */
-}
-
 /* ============================ */
 /* NAVBAR */
 .navbar {
@@ -303,4 +299,44 @@ button.btn-outline-success:active {
 /* Cambiar el color del ícono dentro del botón cuando está presionado */
 button.btn-outline-success:active img {
   filter: brightness(0) invert(1);  /* Cambia el color del ícono de la lupa a blanco */
+}
+
+/* Estilo global para la columna */
+.icon-link {
+  text-decoration: none; /* Quitar subrayado */
+  display: inline-block; /* Asegura que los íconos estén alineados correctamente */
+}
+
+/* Estilo para los íconos */
+.icon-img {
+  width: 100px; /* Puedes ajustar el tamaño según lo necesites */
+  height: auto; /* Mantener la relación de aspecto */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones para hover */
+  cursor: pointer; /* Cambiar el cursor al pasar por encima */
+}
+
+/* Efecto hover para agrandar los íconos */
+.icon-link:hover .icon-img {
+  transform: scale(1.1); /* Aumentar el tamaño del ícono */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+}
+
+/* Estilo para los textos debajo de los íconos */
+.icon-text {
+  font-size: 1rem; /* Tamaño de fuente moderado */
+  color: #333; /* Color del texto */
+  font-weight: 500; /* Negrita moderada */
+  margin-top: 10px; /* Espaciado entre el ícono y el texto */
+  transition: color 0.3s ease; /* Transición suave para el cambio de color */
+}
+
+/* Cambiar el color del texto cuando el ícono es hover */
+.icon-link:hover .icon-text {
+  color: #007bff; /* Cambiar a un color azul (o el que prefieras) */
+}
+
+#iconos {
+  background-color: #F5F5DC;
 }
