@@ -165,7 +165,6 @@ body {
 /* FOOTER */
 section.footer {
   background-color: #f8f9fa;
-  margin-top: 60px;
   padding-top: 40px;
   padding-bottom: 40px;
 }
@@ -446,4 +445,70 @@ input[type=number] {
 
 .fondo_formulario{
   background-color: #4d4d4d;
+}
+
+/* ============NOTICIAS================ */
+.noticias {
+  padding-top: 80px; /* o 100px si tu navbar es alto */
+  background-image: url('https://images.unsplash.com/photo-1581804928342-4e3405e39c91');
+  color: #ffffff;
+  padding-bottom: 60px; /* Espacio al final para evitar solapamiento */
+}
+
+.noticias #titulo_blog {
+  font-size: 3em;
+  font-weight: bold;
+  color: #000000;
+}
+
+.noticias #subtitulo_blog {
+  font-size: 2em;
+  color: #4caf50;
+}
+
+.noticias #noticias,
+.noticias #blogs {
+  background-color: #1e1e1e;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.noticias #noticias h2,
+.noticias #blogs h2 {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.noticias .mb-4 h4 {
+  font-size: 1.6em;
+  color: #81c784;
+}
+
+.noticias .mb-4 p {
+  font-size: 1.1em;
+  color: #eeeeee;
+}
+
+.noticias .mb-4 a {
+  background-color: #388e3c;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 1.1em;
+  text-decoration: none;
+}
+
+.noticias .mb-4 a:hover {
+  background-color: #2c6f2b;
+}
+
+/* REFUGIOS */
+#mapas {
+  background-color: #5a7b3b;
+}
+
+#encabezado_refugios{
+  margin-top: 50px;
+  overflow-x: hidden;
 }
