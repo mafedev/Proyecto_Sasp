@@ -17,7 +17,7 @@
           {% if especie.descripcion %}
             <p class="card-text">{{ especie.descripcion }}</p>
           {% endif %}
-          <a href="/estadisticas/{{ especie.nombre }}" class="btn btn-outline-success w-100 mt-2">Ver estadísticas</a>
+          <a href="{{ url_for('estadisticas', nombre=especie.nombre) }}" class="btn btn-outline-success">Ver estadísticas</a>
         </div>
       </div>
     </div>

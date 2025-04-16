@@ -182,6 +182,22 @@ def especies():
                            mapa=mapa_html,
                            datos=datos_especie)
 
+@app.route("/estadisticas/<nombre>")
+def estadisticas(nombre):
+    if nombre not in df_monitor.columns:
+        return f"No hay datos para '{nombre}'", 404
+
+    año_pred, grafico_b64 = predecir_año_extincion(df_monitor, nombre)
+    registros = buscar_en_gbif(nombre)
+    mapa_html = crear_mapa_html(registros)
+
+    return render_template("estadisticas.html",
+                           especie=nombre,
+                           año_pred=año_pred,
+                           grafico=grafico_b64,
+                           mapa=mapa_html)
+
+
 # ---------------------- RUN ----------------------
 
 if __name__ == "__main__":
