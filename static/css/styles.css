@@ -530,3 +530,17 @@ input[type=number] {
   margin-top: 50px;
   overflow-x: hidden;
 }
+
+#iconos .col-lg-4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra los iconos dentro de cada columna */
+  align-items: center; /* Centra el contenido dentro de la columna */
+  text-align: center; /* Centra el texto */
+}
+
+/* Efecto hover para las imágenes */
+.icon-button:hover .icon-img {
+  transform: scale(1.1); /* Aumenta el tamaño de la imagen un 10% */
+  transition: transform 0.2s; /* Hace que el cambio de tamaño sea suave en 0.2 segundos */
+}
