@@ -30,10 +30,6 @@ def index():
 def blog():
     return render_template("blog.html")
 
-@app.route("/acciones")
-def acciones():
-    return render_template("ayudar.html")
-
 @app.route("/casos_exito")
 def casos_exito():
     return render_template("casos_exito.html")
@@ -46,9 +42,24 @@ def galeria():
 def huella_carbono():
     return render_template("huella_carbono.html")
 
+@app.route("/huella_persona")
+def huella_persona():
+    return render_template("huella_persona.html")
+
+@app.route("/huella_empresa")
+def huella_empresa():
+    return render_template("huella_empresa.html")
+
+@app.route("/ayudar")
+def acciones():
+    return render_template("ayudar.html")
+
+@app.route("/refugios")
+def refugios():
+    return render_template("refugios.html")
 
 # Datos dispersos estilo Excel
-df_disperso = pd.read_excel("data/especies_disperso.xlsx")
+df_disperso = pd.read_excel("data/especies_extintas.xlsx")
 columna_especie = df_disperso.columns[0]
 años_excel = pd.to_numeric(df_disperso.columns[1:], errors="coerce").dropna().astype(int)
 
