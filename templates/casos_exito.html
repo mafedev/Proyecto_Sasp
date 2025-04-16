@@ -3,130 +3,143 @@
 
 {% block content %} <!-- Se inicia el bloque de contenido que se sobreescribirá en la plantilla base. -->
 
-<!-- Sección: Casos de Especies Salvadas -->
+<!-- SECCIÓN PRINCIPAL -->
 <section id="casos-salvados" class="py-5">
     <div class="container">
-      <h2 class="text-center mb-4">Casos en los que se lograron salvar especies en peligro de extinción</h2>
+      <h2 class="text-center mb-4">Casos de Especies Salvadas de la Extinción</h2>
       <div class="row">
-        <!-- Tarjeta 1 -->
+        <!-- Card: Panda Gigante -->
         <div class="col-md-4 mb-4">
           <div class="card h-100">
-            <img src="ruta/a/imagen1.jpg" class="card-img-top" alt="Imagen del tigre de Sumatra">
+            <img src="/static/img/panda.jpg" class="card-img-top" alt="Panda Gigante">
             <div class="card-body">
-              <h5 class="card-title">Tigre de Sumatra</h5>
-              <p class="card-text">
-                Con esfuerzos de conservación, se han implementado medidas de protección y restauración de su hábitat.
-              </p>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTigreSumatra">
-                Ver más información
-              </button>
+              <h5 class="card-title">Panda Gigante</h5>
+              <p class="card-text">Gracias a los esfuerzos de China en restauración de hábitats y cría en cautiverio.</p>
             </div>
           </div>
         </div>
-
-        <!-- Tarjeta 2 -->
+  
+        <!-- Card: Rinoceronte Blanco -->
         <div class="col-md-4 mb-4">
           <div class="card h-100">
-            <img src="ruta/a/imagen2.jpg" class="card-img-top" alt="Imagen del rinoceronte blanco">
+            <img src="/static/img/rinoceronte.jpg" class="card-img-top" alt="Rinoceronte Blanco">
             <div class="card-body">
               <h5 class="card-title">Rinoceronte Blanco</h5>
-              <p class="card-text">
-                Estrategias de manejo y campañas internacionales han contribuido a mejorar la situación.
-              </p>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRinoceronte">
-                Ver más información
-              </button>
+              <p class="card-text">Gracias a reservas naturales y patrullas anti-caza furtiva en África.</p>
             </div>
           </div>
         </div>
-
-        <!-- Tarjeta 3 -->
+  
+        <!-- Card: Cóndor de California -->
         <div class="col-md-4 mb-4">
           <div class="card h-100">
-            <img src="ruta/a/imagen3.jpg" class="card-img-top" alt="Imagen del oso panda">
+            <img src="/static/img/condor.jpg" class="card-img-top" alt="Cóndor de California">
             <div class="card-body">
-              <h5 class="card-title">Oso Panda Gigante</h5>
-              <p class="card-text">
-                Programas de cría en cautiverio y restauración de áreas protegidas han impulsado su recuperación.
-              </p>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPanda">
-                Ver más información
-              </button>
+              <h5 class="card-title">Cóndor de California</h5>
+              <p class="card-text">Cría en cautiverio y protección aérea desde los años 80.</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Card: Ballena Jorobada -->
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="/static/img/ballena.jpg" class="card-img-top" alt="Ballena Jorobada">
+            <div class="card-body">
+              <h5 class="card-title">Ballena Jorobada</h5>
+              <p class="card-text">Protección internacional desde 1966. Población recuperada en varios océanos.</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Card: Lobo Gris -->
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="/static/img/lobo.jpg" class="card-img-top" alt="Lobo Gris">
+            <div class="card-body">
+              <h5 class="card-title">Lobo Gris</h5>
+              <p class="card-text">Programas de reintroducción en parques nacionales de EE.UU.</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Card: Bisonte Europeo -->
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="/static/img/bisonte.jpg" class="card-img-top" alt="Bisonte Europeo">
+            <div class="card-body">
+              <h5 class="card-title">Bisonte Europeo</h5>
+              <p class="card-text">Gracias a la reintroducción en Europa del Este tras su casi extinción.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Modales de información detallada -->
-  <!-- Modal Tigre de Sumatra -->
-  <div class="modal fade" id="modalTigreSumatra" tabindex="-1" aria-labelledby="modalTigreSumatraLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalTigreSumatraLabel">Tigre de Sumatra - Detalles de conservación</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body">
-          <p>
-            En este caso, organizaciones internacionales y gobiernos locales se unieron para combatir la deforestación y el tráfico ilegal, lo que permitió estabilizar la población.
-          </p>
-          <p>
-            <strong>Métodos utilizados:</strong> Creación de reservas naturales, patrullas anti-caza furtiva, y programas educativos en comunidades locales.
-          </p>
-          <img src="ruta/a/imagen1_detalle.jpg" class="img-fluid" alt="Detalle del hábitat del tigre de Sumatra">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        </div>
+  
+  <!-- TIMELINE -->
+  <div class="container my-5">
+    <h2 class="text-center mb-4">Historias de Recuperación</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h5>Panda Gigante (1980s - hoy)</h5>
+        <p>Reducción de la deforestación, programas de cría en cautiverio. En 2016 dejó de estar en peligro.</p>
+      </div>
+      <div class="timeline-item">
+        <h5>Ballena Jorobada</h5>
+        <p>Protección internacional desde 1966. Poblaciones recuperadas en varios océanos.</p>
+      </div>
+      <div class="timeline-item">
+        <h5>Cóndor de California</h5>
+        <p>En 1987 quedaban solo 27. Hoy, gracias a la cría controlada, hay más de 400.</p>
+      </div>
+      <div class="timeline-item">
+        <h5>Lobo Gris</h5>
+        <p>Reintroducido en Yellowstone en los 90. Recuperación de ecosistemas completos.</p>
       </div>
     </div>
   </div>
-
-  <!-- Modal Rinoceronte Blanco -->
-  <div class="modal fade" id="modalRinoceronte" tabindex="-1" aria-labelledby="modalRinoceronteLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalRinoceronteLabel">Rinoceronte Blanco - Detalles de conservación</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body">
-          <p>
-            Diversas iniciativas han permitido aumentar la vigilancia contra el tráfico ilegal y promover la crianza en reservas especializadas, recuperando gradualmente la población.
-          </p>
-          <p>
-            <strong>Estrategias:</strong> Monitoreo satelital, cooperación internacional y educación ambiental.
-          </p>
-          <img src="ruta/a/imagen2_detalle.jpg" class="img-fluid" alt="Detalle del rinoceronte blanco">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+  
+  <!-- ACORDEÓN DE MÁS ESPECIES -->
+  <div class="container my-5">
+    <h2 class="text-center mb-4">Otras Especies Rescatadas</h2>
+    <div class="accordion" id="especiesRescatadas">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+            Tortuga Carey
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            Amenazada por el tráfico de su caparazón. Hoy protegida en muchas playas y santuarios marinos.
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Modal Oso Panda Gigante -->
-  <div class="modal fade" id="modalPanda" tabindex="-1" aria-labelledby="modalPandaLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalPandaLabel">Oso Panda Gigante - Detalles de conservación</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+  
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+            León Asiático
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            Quedan menos de 700 en el mundo, todos protegidos en la reserva de Gir, India.
+          </div>
         </div>
-        <div class="modal-body">
-          <p>
-            A través de programas de cría en cautiverio y la creación de corredores ecológicos, se ha logrado un crecimiento sostenido en su número.
-          </p>
-          <p>
-            <strong>Acciones clave:</strong> Restauración de su hábitat, investigación genética y campañas de sensibilización.
-          </p>
-          <img src="ruta/a/imagen3_detalle.jpg" class="img-fluid" alt="Detalle del oso panda">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+  
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+            Buitre Quebrantahuesos
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            Reintroducido en Pirineos y Andalucía con monitoreo satelital y prohibición de venenos.
+          </div>
         </div>
       </div>
     </div>
