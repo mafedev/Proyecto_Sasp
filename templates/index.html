@@ -1,38 +1,26 @@
 {% extends "layout.html" %} <!-- Esto incluye el layout base que contiene la barra de navegación y el contenedor principal. -->
 {% block title %}Inicio{% endblock %} <!-- Esto establece el título de la página. -->
+
 {% block content %} <!-- Se inicia el bloque de contenido que se sobreescribirá en la plantilla base. -->
 
+
 <!-- Carrusel de imágenes -->
-<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner md-auto">
-    <!-- Primera imagen del carrusel -->
-    <div class="carousel-item active">
-      <img src="https://valor-compartido.com/wp-content/uploads/2021/02/panda-3875289_1280.jpg" class="d-block w-100" alt="Imagen1_carrousel">
-    </div>
-    <!-- Segunda imagen del carrusel -->
-    <div class="carousel-item">
-      <img src="/static/img/aguila1.jfif" class="d-block w-100" alt="Imagen2_carrousel">
-    </div>
-    <!-- Tercera imagen del carrusel -->
-    <div class="carousel-item">
-      <img src="/static/img/polar3.jpg" class="d-block w-100" alt="Imagen3_carrousel">
-    </div>
-  </div>
-  
-  <!-- Texto estático que no cambia -->
-  <div class="carousel-caption d-none d-md-block">
-    <h1 class="display-4 text-white fw-bold">🌍 Bienvenidos a EcoMonitor</h1>
-    <p>Protegiendo la biodiversidad con tecnología y acción</p>
-  </div>
-  
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+<div class="m-0" id="yoquese">
+  <section id="eco-carousel">
+      <div class="eco-caption">
+        <h1 id="textito">Bienvenidos a N-World</h1>
+        <p>Protegiendo la biodiversidad con tecnología y acción</p>
+      </div>
+    
+      <div class="swiper mySwiper swiper-fade">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" style="background-image: url('/static/img/carrousel1.webp');"></div>
+          <div class="swiper-slide" style="background-image: url('/static/img/aguila1.jfif');"></div>
+          <div class="swiper-slide" style="background-image: url('/static/img/polar3.jpg');"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+  </section>
 </div>
 
 <!-- Tres íconos -->
@@ -173,4 +161,7 @@
   <a href="/casos_exito.html" class="btn btn-warning">Ver Casos de Éxito</a>
 </div>
 
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> <!--Carrousel-->
+<script src="/static/js/script.js"></script>
 {% endblock %} <!-- Se cierra el bloque de contenido. -->
