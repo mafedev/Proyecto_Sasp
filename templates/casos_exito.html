@@ -1,0 +1,135 @@
+{% extends "layout.html" %} <!-- Esto incluye el layout base que contiene la barra de navegación y el contenedor principal. -->
+{% block title %}Inicio{% endblock %} <!-- Esto establece el título de la página. -->
+
+{% block content %} <!-- Se inicia el bloque de contenido que se sobreescribirá en la plantilla base. -->
+
+<!-- Sección: Casos de Especies Salvadas -->
+<section id="casos-salvados" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Casos en los que se lograron salvar especies en peligro de extinción</h2>
+      <div class="row">
+        <!-- Tarjeta 1 -->
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="ruta/a/imagen1.jpg" class="card-img-top" alt="Imagen del tigre de Sumatra">
+            <div class="card-body">
+              <h5 class="card-title">Tigre de Sumatra</h5>
+              <p class="card-text">
+                Con esfuerzos de conservación, se han implementado medidas de protección y restauración de su hábitat.
+              </p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTigreSumatra">
+                Ver más información
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="ruta/a/imagen2.jpg" class="card-img-top" alt="Imagen del rinoceronte blanco">
+            <div class="card-body">
+              <h5 class="card-title">Rinoceronte Blanco</h5>
+              <p class="card-text">
+                Estrategias de manejo y campañas internacionales han contribuido a mejorar la situación.
+              </p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRinoceronte">
+                Ver más información
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="ruta/a/imagen3.jpg" class="card-img-top" alt="Imagen del oso panda">
+            <div class="card-body">
+              <h5 class="card-title">Oso Panda Gigante</h5>
+              <p class="card-text">
+                Programas de cría en cautiverio y restauración de áreas protegidas han impulsado su recuperación.
+              </p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPanda">
+                Ver más información
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modales de información detallada -->
+  <!-- Modal Tigre de Sumatra -->
+  <div class="modal fade" id="modalTigreSumatra" tabindex="-1" aria-labelledby="modalTigreSumatraLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTigreSumatraLabel">Tigre de Sumatra - Detalles de conservación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            En este caso, organizaciones internacionales y gobiernos locales se unieron para combatir la deforestación y el tráfico ilegal, lo que permitió estabilizar la población.
+          </p>
+          <p>
+            <strong>Métodos utilizados:</strong> Creación de reservas naturales, patrullas anti-caza furtiva, y programas educativos en comunidades locales.
+          </p>
+          <img src="ruta/a/imagen1_detalle.jpg" class="img-fluid" alt="Detalle del hábitat del tigre de Sumatra">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Rinoceronte Blanco -->
+  <div class="modal fade" id="modalRinoceronte" tabindex="-1" aria-labelledby="modalRinoceronteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalRinoceronteLabel">Rinoceronte Blanco - Detalles de conservación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Diversas iniciativas han permitido aumentar la vigilancia contra el tráfico ilegal y promover la crianza en reservas especializadas, recuperando gradualmente la población.
+          </p>
+          <p>
+            <strong>Estrategias:</strong> Monitoreo satelital, cooperación internacional y educación ambiental.
+          </p>
+          <img src="ruta/a/imagen2_detalle.jpg" class="img-fluid" alt="Detalle del rinoceronte blanco">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Oso Panda Gigante -->
+  <div class="modal fade" id="modalPanda" tabindex="-1" aria-labelledby="modalPandaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalPandaLabel">Oso Panda Gigante - Detalles de conservación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            A través de programas de cría en cautiverio y la creación de corredores ecológicos, se ha logrado un crecimiento sostenido en su número.
+          </p>
+          <p>
+            <strong>Acciones clave:</strong> Restauración de su hábitat, investigación genética y campañas de sensibilización.
+          </p>
+          <img src="ruta/a/imagen3_detalle.jpg" class="img-fluid" alt="Detalle del oso panda">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %} <!-- Se cierra el bloque de contenido. -->
