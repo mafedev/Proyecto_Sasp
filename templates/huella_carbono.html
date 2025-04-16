@@ -1,5 +1,4 @@
 {% extends "layout.html" %}
-
 {% block title %}Huella de Carbono{% endblock %}
 
 {% block content %}
@@ -34,30 +33,37 @@
 </div>
 
 <!-- Sección de tarjetas -->
+<!-- Sección de tarjetas -->
 <div class="container p-5">
   <div class="row p-5">
     <h2 class="text-center mb-5">Calcula tu Huella de Carbono</h2>
     <div class="col-sm-12 col-xl-6 p-4">
-      <div class="card p-2">
+      <div class="card h-100 d-flex flex-column">
         <img src="/static/img/persona.png" class="card-img-top p-5" alt="persona">
-        <div class="card-body">
+        <div class="card-body d-flex flex-column">
           <h5 class="card-title">Personal</h5>
-          <p class="card-text">Calcula la huella ambiental que dejas por año. Es parte de una responsabilidad ambiental como individuo.</p>
-          <a href="/huella_persona" class="btn btn-primary">Vamos</a>
+          <p class="card-text flex-grow-1">
+            Calcula la huella ambiental que dejas por año. Es parte de una responsabilidad ambiental como individuo.
+          </p>
+          <a href="/huella_persona" class="btn btn-primary mt-auto">Vamos</a>
         </div>
       </div>
     </div>
+
     <div class="col-sm-12 col-xl-6 p-4">
-      <div class="card p-2">
+      <div class="card h-100 d-flex flex-column">
         <img src="/static/img/empresa.png" class="card-img-top p-5" alt="empresa">
-        <div class="card-body">
+        <div class="card-body d-flex flex-column">
           <h5 class="card-title">Empresa</h5>
-          <p class="card-text">Calcula la huella ambiental que deja tu empresa de manera gratuita, sin registrarte, solo contestando un par de preguntas.</p>
-          <a href="/huella_empresa" class="btn btn-primary">Vamos</a>
+          <p class="card-text flex-grow-1">
+            Calcula la huella ambiental que deja tu empresa de manera gratuita, sin registrarte, solo contestando un par de preguntas.
+          </p>
+          <a href="/huella_empresa" class="btn btn-primary mt-auto">Vamos</a>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <script src="/static/js/script.js"></script>
 {% endblock %}
