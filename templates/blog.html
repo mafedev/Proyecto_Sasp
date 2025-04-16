@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block title %}Noticias{% endblock %}
+
+{% block content %}
+
+<!-- Encabezado -->
+<div class="noticias">
+    <div class="text-center p-4">
+        <h1 id="titulo_blog">🌿 Blog de Conservación</h1>
+        <p>Descubre noticias y artículos actuales sobre medio ambiente, biodiversidad y sostenibilidad.</p>
+    </div>
+
+    <!-- Navegación -->
+    <div class="text-center mb-4">
+        <a href="#noticias" class="btn btn-outline-light m-2">📰 Ver Noticias</a>
+        <a href="#blogs" class="btn btn-outline-light m-2">📚 Ir a Blogs</a>
+    </div>
+
+    <!-- Sección de Noticias -->
+    <section id="noticias" class="container my-5">
+        <h2 class="text-center mb-4" id="subtitulo_blog">📰 Noticias destacadas</h2>
+
+        <div class="mb-4 p-3 border border-light rounded">
+            <h4>🌳 Una meta verde: plantar mil millones de árboles</h4>
+            <p>El World Economic Forum lidera una iniciativa global para restaurar ecosistemas mediante la plantación de un billón de árboles.</p>
+            <a href="https://www.1t.org/" target="_blank" class="btn btn-success">Leer más</a>
+        </div>
+
+        <div class="mb-4 p-3 border border-light rounded">
+            <h4>🐢 Celebrando el Día Mundial de los Océanos</h4>
+            <p>La ONU impulsa acciones urgentes para proteger nuestros océanos y la vida marina.</p>
+            <a href="https://www.un.org/es/observances/oceans-day" target="_blank" class="btn btn-success">Leer más</a>
+        </div>
+
+        <div class="mb-4 p-3 border border-light rounded">
+            <h4>🌎 Crónicas ambientales de National Geographic</h4>
+            <p>Reportajes en profundidad sobre el cambio climático, la deforestación y la conservación de especies en peligro.</p>
+            <a href="https://www.nationalgeographicla.com/medio-ambiente" target="_blank" class="btn btn-success">Leer más</a>
+        </div>
+    </section>
+
+    <!-- Sección de Blogs -->
+    <section id="blogs" class="container my-5">
+        <h2 class="text-center mb-4">📚 Blogs recomendados</h2>
+
+        <div class="mb-4 p-3 border border-light rounded">
+            <h4>🐆 Ecología y medio ambiente</h4>
+            <p>Una mirada actualizada a estudios, noticias y reflexiones sobre biodiversidad y conservación natural.</p>
+            <a href="https://www.ecologiaverde.com/" target="_blank" class="btn btn-success">Visitar blog</a>
+        </div>
+
+        <div class="mb-4 p-3 border border-light rounded">
+            <h4>🐒 El Blog Verde</h4>
+            <p>Un espacio comprometido con la sostenibilidad, la educación ambiental y la vida en armonía con la naturaleza.</p>
+            <a href="https://www.elblogverde.com/" target="_blank" class="btn btn-success">Visitar blog</a>
+        </div>
+
+        <div class="mb-4 p-3 border border-light rounded">
+            <h4>🐼 SECEM: Estudio de los mamíferos en España</h4>
+            <p>Blog de la Sociedad Española para la Conservación de los Mamíferos, con investigaciones y proyectos en curso.</p>
+            <a href="https://secem.es/" target="_blank" class="btn btn-success">Visitar blog</a>
+        </div>
+    </section>
+</div>
+
+{% endblock %}
