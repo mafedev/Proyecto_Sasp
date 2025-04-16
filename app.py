@@ -78,6 +78,8 @@ df_disperso = pd.read_excel("data/especies_extintas.xlsx")
 columna_especie = df_disperso.columns[0]
 años_excel = pd.to_numeric(df_disperso.columns[1:], errors="coerce").dropna().astype(int)
 
+info_especies = pd.read_csv("data/info_especies.csv")  # ← contiene imagen, nombre, poblacion, estado, etc.
+
 # ---------------------- RUTAS FLASK ----------------------
 
 @app.route("/")
@@ -118,14 +120,17 @@ def refugios():
 
 @app.route("/monitorizar", methods=["GET", "POST"])
 def monitorizar():
-    especie = request.form.get("especie") or especies_monitor[0]
-    año_pred, grafico_b64 = predecir_año_extincion(df_monitor, especie)
-    observaciones = buscar_en_gbif(especie)
+    especie_seleccionada = request.form.get("especie") or especies_monitor[0]
+    año_pred, grafico_b64 = predecir_año_extincion(df_monitor, especie_seleccionada)
+    observaciones = buscar_en_gbif(especie_seleccionada)
     mapa_html = crear_mapa_html(observaciones)
 
+    # Pasar info de las especies como "cards"
+    cards = info_especies.to_dict(orient="records")
+
     return render_template("monitorizar.html",
-                           especies=especies_monitor,
-                           especie=especie,
+                           especies=cards,
+                           especie=especie_seleccionada,
                            año_pred=año_pred,
                            grafico=grafico_b64,
                            mapa=mapa_html)
