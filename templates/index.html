@@ -1,11 +1,13 @@
 {% extends "layout.html" %} <!-- Esto incluye el layout base que contiene la barra de navegación y el contenedor principal. -->
 {% block title %}Inicio{% endblock %} <!-- Esto establece el título de la página. -->
 
+{% block body_class %}{% endblock %} <!-- Para evitar el mt-5 -->
+
 {% block content %} <!-- Se inicia el bloque de contenido que se sobreescribirá en la plantilla base. -->
 
 
 <!-- Carrusel de imágenes -->
-<div class="m-0" id="yoquese">
+<div class="carrousel" id="carrousel_index">
   <section id="eco-carousel">
     <div class="eco-caption">
       <h1 id="textito">Bienvenidos a N-World</h1>
