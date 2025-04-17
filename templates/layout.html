@@ -82,7 +82,12 @@
     </div>
 
     <!-- Contenido principal -->
-    <div class="">{% block content %}{% endblock %}</div>
+    <body class="{% block body_class %}mt-5{% endblock %}"> <!-- Esto es para que en todas las páginas, menos en el index, se aplique el mt-5 -->
+      <div class="contenido">
+          {% block content %}
+          {% endblock %}
+      </div>
+    </body>
 
     <!-- Sección de pie de página -->
     <section class="footer">
