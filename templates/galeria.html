@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}Huella de Carbono{% endblock %}
+
+{% block content %}
+<div class="container" id="cont_galeria">
+    <div class="input">
+      <input
+        type="text"
+        class="form-control autocomplete"
+        id="autocompleteInput"
+        placeholder="Buscar por animal"
+      />
+    </div>
+    <div class="card text-center mt-2">
+      <div class="card-body">
+        <h5 id="nombre" class="card-title">Cargando el animal...</h5>
+        <p id="descripcion" class="card-text">(...)</p>
+      </div>
+      <img
+        id="imagen"
+        src="https://placehold.co/1000x400"
+        class="card-img-bottom"
+        alt="Imagen de ejemplo"
+      />
+    </div>
+</div>
+
+<script type="module" src="/static/js/main.js"></script>
+{% endblock %}
