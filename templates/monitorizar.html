@@ -9,7 +9,7 @@
   {% for especie in especies %}
     <div class="col-md-4 mb-4">
       <div class="card h-100 shadow-sm">
-        <img src="{{ especie.imagen }}" class="card-img-top" alt="{{ especie.nombre }}" style="height: 220px; object-fit: cover;">
+        <img src="{{ url_for('static', filename=especie.imagen) }}" class="card-img-top" alt="{{ especie.nombre }}" style="height: 220px; object-fit: cover;">
         <div class="card-body">
           <h5 class="card-title">{{ especie.nombre }}</h5>
           <p><strong>Población:</strong> {{ especie.poblacion }}</p>

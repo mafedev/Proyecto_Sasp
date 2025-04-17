@@ -1,7 +1,7 @@
 nombre,descripcion,estado,imagen
-Tigre de Bengala,Gran felino del sudeste asiático,40000.0,static/img/tigre_de_bengala.jpg
-Rinoceronte de Java,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,1000.0,static/img/default.jpg
-Gorila de montaña,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,5000.0,static/img/default.jpg
+Tigre de Bengala,Gran felino del sudeste asiático,40000.0,img/monitoreo/1_tigre.webp
+Rinoceronte de Java,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,1000.0,img/monitoreo/2_rino.jpg
+Gorila de montaña,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,5000.0,img/monitoreo/3_gorila.jpg
 Elefante asiático,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,200000.0,static/img/default.jpg
 Leopardo de Amur,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,300.0,static/img/default.jpg
 Orangután de Borneo,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,230000.0,static/img/default.jpg
