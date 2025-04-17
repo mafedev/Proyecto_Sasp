@@ -1,15 +1,12 @@
 {% extends "layout.html" %} {% block title %}refugios{% endblock %} {% block
 content %}
-<!-- Hero Section -->
-<header class="bg-light py-5 text-center" id="encabezado_refugios">
-  <div class="container">
-    <h1 class="display-5">Protegiendo la Vida Salvaje del Mundo</h1>
-    <p class="lead">
-      Explora áreas protegidas que están salvando especies en peligro en todo el
-      planeta.
-    </p>
-  </div>
-</header>
+  <!-- Hero Section -->
+  <header class="bg-light py-5 text-center" id="encabezado_refugios">
+    <div class="container">
+      <h1 class="display-5">Protegiendo la Vida Salvaje del Mundo</h1>
+      <p class="lead">Explora áreas protegidas que están salvando especies en peligro en todo el planeta.</p>
+    </div>
+  </header>
 
 <!-- Información sobre áreas protegidas -->
 <section class="py-5">
@@ -18,46 +15,60 @@ content %}
     <div class="row g-4">
       <div class="col-md-4">
         <div class="card h-100 shadow">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Zebras%2C_Serengeti_savana_plains%2C_Tanzania.jpg" class="card-img-top" alt="Serengeti"/>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Zebras%2C_Serengeti_savana_plains%2C_Tanzania.jpg" class="card-img-top" alt="Serengeti" />
           <div class="card-body">
             <h5 class="card-title">Parque Nacional Serengeti (Tanzania)</h5>
-            <p class="card-text">
-              Hogar de elefantes, leones y rinocerontes negros. Crucial para la
-              migración anual de ñus.
-            </p>
+            <p class="card-text">Hogar de elefantes, leones y rinocerontes negros. Crucial para la migración anual de ñus.</p>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card h-100 shadow">
-          <img
-            src="https://www.visittheusa.mx/sites/default/files/styles/hero_l/public/images/hero_media_image/2016-10/Yellowstone.jpg?h=2a29b199&itok=SoB8AKTf"
-            class="card-img-top"
-            alt="Yellowstone"
-          />
+          <img src="https://www.visittheusa.mx/sites/default/files/styles/hero_l/public/images/hero_media_image/2016-10/Yellowstone.jpg?h=2a29b199&itok=SoB8AKTf" class="card-img-top" alt="Yellowstone" />
           <div class="card-body">
             <h5 class="card-title">Parque Nacional Yellowstone (EE.UU.)</h5>
-            <p class="card-text">
-              Uno de los parques más antiguos, protege bisontes, lobos grises y
-              osos grizzly en su hábitat natural.
-            </p>
+            <p class="card-text">Uno de los parques más antiguos, protege bisontes, lobos grises y osos grizzly en su hábitat natural.</p>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card h-100 shadow">
-          <img
-            src="https://www.bbva.com/wp-content/uploads/2024/07/bbva-la-gran-barrera-de-coral-1024x575.jpg"
-            class="card-img-top"
-            alt="Great Barrier Reef"
-          />
+          <img src="https://www.bbva.com/wp-content/uploads/2024/07/bbva-la-gran-barrera-de-coral-1024x575.jpg" class="card-img-top" alt="Great Barrier Reef" />
           <div class="card-body">
             <h5 class="card-title">Gran Barrera de Coral (Australia)</h5>
-            <p class="card-text">
-              El mayor sistema coralino del mundo, vital para tortugas marinas,
-              peces exóticos y tiburones en peligro.
-            </p>
+            <p class="card-text">El mayor sistema coralino del mundo, vital para tortugas marinas, peces exóticos y tiburones en peligro.</p>
           </div>
+        </div>
+      </div>
+      <!-- Parque Nacional Banff -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Moraine_Lake_17092005.jpg" class="card-img-top" alt="Banff" />
+        <div class="card-body">
+          <h5 class="card-title">Parque Nacional Banff (Canadá)</h5>
+          <p class="card-text">Montañas, glaciares y lagos turquesa. Hogar de osos pardos, alces y caribús.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Parque Nacional Torres del Paine -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow">
+        <img src="https://torresdelpaine.com/wp-content/uploads/sites/6/2023/08/tdp-atractivo-panoramicas-06-600x338.jpg" class="card-img-top" alt="Torres del Paine" />
+        <div class="card-body">
+          <h5 class="card-title">Parque Nacional Torres del Paine (Chile)</h5>
+          <p class="card-text">Cordilleras, glaciares y guanacos. Una joya de la Patagonia chilena.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reserva de la Biosfera de Sian Ka’an -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow">
+        <img src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/06/6f/10/c3.jpg" class="card-img-top" alt="Sian Ka’an" />
+        <div class="card-body">
+          <h5 class="card-title">Reserva de la Biosfera Sian Ka’an (México)</h5>
+          <p class="card-text">Ecosistemas costeros y selvas mayas. Refugio de jaguares, manatíes y aves tropicales.</p>
         </div>
       </div>
     </div>
@@ -65,7 +76,7 @@ content %}
 </section>
 
 <!-- Directorio con mapas -->
-<section class="py-5" id="mapas">
+<section class="bg-light py-5">
   <div class="container">
     <h2 class="mb-4">Refugios y Centros de Conservación</h2>
     <div class="row g-4">
@@ -75,14 +86,7 @@ content %}
           <p><strong>Ubicación:</strong> Mathura, India</p>
           <p><strong>Email:</strong> info@wildlifesos.org</p>
           <p><strong>Teléfono:</strong> +91 987 654 3210</p>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.5421526928996!2d77.6601343150612!3d27.483093982897963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3973711ff7986cb3%3A0xa4ae6a3e8f4e934b!2sElephant%20Conservation%20and%20Care%20Center%2C%20Mathura!5e0!3m2!1ses!2sin!4v1616384781876!5m2!1ses!2sin"
-            width="100%"
-            height="200"
-            style="border: 0"
-            allowfullscreen=""
-            loading="lazy"
-          ></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.5421526928996!2d77.6601343150612!3d27.483093982897963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3973711ff7986cb3%3A0xa4ae6a3e8f4e934b!2sElephant%20Conservation%20and%20Care%20Center%2C%20Mathura!5e0!3m2!1ses!2sin!4v1616384781876!5m2!1ses!2sin" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
       </div>
       <div class="col-md-6">
@@ -91,14 +95,7 @@ content %}
           <p><strong>Ubicación:</strong> Chengdu, China</p>
           <p><strong>Email:</strong> pandas@conservation.cn</p>
           <p><strong>Teléfono:</strong> +86 28 8351 1234</p>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13725.36519921391!2d104.14979925691958!3d30.736139060960864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x36efc6ff694c8c33%3A0xf61fbb7bc87928da!2sChengdu%20Research%20Base%20of%20Giant%20Panda%20Breeding!5e0!3m2!1ses!2scn!4v1616384881652!5m2!1ses!2scn"
-            width="100%"
-            height="200"
-            style="border: 0"
-            allowfullscreen=""
-            loading="lazy"
-          ></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13725.36519921391!2d104.14979925691958!3d30.736139060960864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x36efc6ff694c8c33%3A0xf61fbb7bc87928da!2sChengdu%20Research%20Base%20of%20Giant%20Panda%20Breeding!5e0!3m2!1ses!2scn!4v1616384881652!5m2!1ses!2scn" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
       </div>
     </div>
