@@ -16,6 +16,9 @@
           {% if especie.descripcion %}
             <p class="card-text">{{ especie.descripcion }}</p>
           {% endif %}
+          <p><strong>Acciones:</strong> {{ especie.acciones_recomendadas }}</p>
+          <p><strong>Organizaciones:</strong> {{ especie.organizaciones }}</p>
+          <p><strong>Amenazas:</strong> {{ especie.amenazas }}</p>
           <a href="{{ url_for('estadisticas', nombre=especie.nombre) }}" class="btn btn-outline-success">Ver estadísticas</a>
         </div>
       </div>
