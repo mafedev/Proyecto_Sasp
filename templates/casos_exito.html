@@ -1,5 +1,5 @@
 {% extends "layout.html" %} <!-- Esto incluye el layout base que contiene la barra de navegación y el contenedor principal. -->
-{% block title %}Inicio{% endblock %} <!-- Esto establece el título de la página. -->
+{% block title %}Casos éxito{% endblock %} <!-- Esto establece el título de la página. -->
 
 {% block content %} <!-- Se inicia el bloque de contenido que se sobreescribirá en la plantilla base. -->
 
@@ -15,6 +15,9 @@
             <div class="card-body">
               <h5 class="card-title">Panda Gigante</h5>
               <p class="card-text">Gracias a los esfuerzos de China en restauración de hábitats y cría en cautiverio.</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPanda">
+                Ver más información
+              </button>
             </div>
           </div>
         </div>
@@ -26,6 +29,9 @@
             <div class="card-body">
               <h5 class="card-title">Rinoceronte Blanco</h5>
               <p class="card-text">Gracias a reservas naturales y patrullas anti-caza furtiva en África.</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRinoceronte">
+                Ver más información
+              </button>
             </div>
           </div>
         </div>
@@ -37,6 +43,9 @@
             <div class="card-body">
               <h5 class="card-title">Cóndor de California</h5>
               <p class="card-text">Cría en cautiverio y protección aérea desde los años 80.</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCondor">
+                Ver más información
+              </button>
             </div>
           </div>
         </div>
@@ -48,6 +57,9 @@
             <div class="card-body">
               <h5 class="card-title">Ballena Jorobada</h5>
               <p class="card-text">Protección internacional desde 1966. Población recuperada en varios océanos.</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalBallena">
+                Ver más información
+              </button>
             </div>
           </div>
         </div>
@@ -59,6 +71,9 @@
             <div class="card-body">
               <h5 class="card-title">Lobo Gris</h5>
               <p class="card-text">Programas de reintroducción en parques nacionales de EE.UU.</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLobo">
+                Ver más información
+              </button>
             </div>
           </div>
         </div>
@@ -70,6 +85,9 @@
             <div class="card-body">
               <h5 class="card-title">Bisonte Europeo</h5>
               <p class="card-text">Gracias a la reintroducción en Europa del Este tras su casi extinción.</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalBisonte">
+                Ver más información
+              </button>
             </div>
           </div>
         </div>
@@ -77,6 +95,139 @@
     </div>
   </section>
   
+  <!-- Modales de información detallada -->
+  <!-- Modal Panda Gigante -->
+  <div class="modal fade" id="modalPanda" tabindex="-1" aria-labelledby="modalPandaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalPandaLabel">Panda Gigante - Detalles de conservación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Gracias a los esfuerzos de China, la restauración de hábitats y la cría en cautiverio han permitido aumentar la población de panda gigante.
+          </p>
+          <p><strong>Acciones clave:</strong> Restauración de bosques de bambú, protección de áreas de cría y programas de reproducción en cautiverio.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Rinoceronte Blanco -->
+  <div class="modal fade" id="modalRinoceronte" tabindex="-1" aria-labelledby="modalRinoceronteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalRinoceronteLabel">Rinoceronte Blanco - Detalles de conservación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Gracias a las reservas naturales y las patrullas anti-caza furtiva en África, la población del rinoceronte blanco se ha estabilizado.
+          </p>
+          <p><strong>Estrategias clave:</strong> Control del tráfico ilegal, monitorización de hábitats y cooperación internacional.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Cóndor de California -->
+  <div class="modal fade" id="modalCondor" tabindex="-1" aria-labelledby="modalCondorLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCondorLabel">Cóndor de California - Detalles de conservación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            A través de la cría en cautiverio y protección aérea, el cóndor de California ha logrado una recuperación significativa desde los años 80.
+          </p>
+          <p><strong>Acciones clave:</strong> Cría en cautiverio, liberación controlada y monitoreo por satélite.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Ballena Jorobada -->
+  <div class="modal fade" id="modalBallena" tabindex="-1" aria-labelledby="modalBallenaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalBallenaLabel">Ballena Jorobada - Detalles de conservación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            La ballena jorobada ha mostrado una recuperación notable gracias a la protección internacional desde 1966.
+          </p>
+          <p><strong>Acciones clave:</strong> Moratoria en la caza comercial y protección de hábitats marinos.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Lobo Gris -->
+  <div class="modal fade" id="modalLobo" tabindex="-1" aria-labelledby="modalLoboLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLoboLabel">Lobo Gris - Detalles de conservación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            El lobo gris ha sido reintroducido con éxito en parques nacionales como Yellowstone, lo que ha resultado en la recuperación de los ecosistemas.
+          </p>
+          <p><strong>Acciones clave:</strong> Programas de reintroducción, protección de hábitats y manejo de ecosistemas.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Bisonte Europeo -->
+  <div class="modal fade" id="modalBisonte" tabindex="-1" aria-labelledby="modalBisonteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalBisonteLabel">Bisonte Europeo - Detalles de conservación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            El bisonte europeo ha sido reintroducido exitosamente en varias áreas de Europa del Este después de haber estado cerca de la extinción.
+          </p>
+          <p><strong>Acciones clave:</strong> Reintroducción en la naturaleza, protección de hábitats y programas de conservación.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
   <!-- TIMELINE -->
   <div class="container my-5">
     <h2 class="text-center mb-4">Historias de Recuperación</h2>
