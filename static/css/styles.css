@@ -80,6 +80,7 @@ body {
 #eco-carousel {
   height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
 .swiper {
@@ -87,9 +88,16 @@ body {
 }
 
 .swiper-slide {
-  background-size: cover;
-  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .eco-caption {
@@ -103,11 +111,9 @@ body {
   z-index: 10;
 }
 
-#textito{
-    font-size: 50px;
+#textito {
+  font-size: 50px;
 }
-
-
 
 /* ============================ */
 /* NAVBAR */
