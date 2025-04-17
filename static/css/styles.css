@@ -566,3 +566,9 @@ input[type=number] {
   background-color: #0d6efd;
   border-radius: 50%;
 }
+
+/* GALERÍA */
+#cont_galeria {
+  margin-top: 80px;
+  margin-bottom: 30px;
+}

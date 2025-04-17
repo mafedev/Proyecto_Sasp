@@ -1,0 +1,512 @@
+[
+  {
+    "id": 1,
+    "name": "Tigre de Bengala",
+    "description": "Nombre científico: Panthera tigris tigris. Habita en una variedad de entornos, incluyendo selvas tropicales, manglares, bosques templados y sabanas en la India, Nepal, Bangladesh y Bután."
+  },
+  {
+    "id": 2,
+    "name": "Rinoceronte de Java",
+    "description": "Nombre científico: Rhinoceros sondaicus. Habita exclusivamente en el Parque Nacional Ujung Kulon en la isla de Java, Indonesia, prefiriendo selvas tropicales densas de tierras bajas."
+  },
+  {
+    "id": 3,
+    "name": "Gorila de montaña",
+    "description": "Nombre científico: Gorilla beringei beringei. Habita en los bosques nubosos de las montañas volcánicas de Virunga (República Democrática del Congo, Ruanda, Uganda) y en el Parque Nacional de la Selva Impenetrable de Bwindi (Uganda)."
+  },
+  {
+    "id": 4,
+    "name": "Elefante asiático",
+    "description": "Nombre científico: Elephas maximus. Se encuentra en el sur y sudeste asiático, habitando bosques tropicales y subtropicales, tanto secos como húmedos, así como pastizales."
+  },
+  {
+    "id": 5,
+    "name": "Leopardo de Amur",
+    "description": "Nombre científico: Panthera pardus orientalis. Habita en los bosques templados montañosos del Extremo Oriente ruso y el norte de China."
+  },
+  {
+    "id": 6,
+    "name": "Orangután de Borneo",
+    "description": "Nombre científico: Pongo pygmaeus. Habita en las selvas tropicales de tierras bajas y bosques pantanosos de la isla de Borneo (Indonesia y Malasia)."
+  },
+  {
+    "id": 7,
+    "name": "Lince ibérico",
+    "description": "Nombre científico: Lynx pardinus. Endémico de la Península Ibérica, habita en áreas de matorral mediterráneo y bosque, principalmente en el sur de España."
+  },
+  {
+    "id": 8,
+    "name": "Cóndor de California",
+    "description": "Nombre científico: Gymnogyps californianus. Habita en zonas montañosas rocosas, cañones y bosques de California, Arizona y Utah (EE.UU.) y Baja California (México)."
+  },
+  {
+    "id": 9,
+    "name": "Vaquita marina",
+    "description": "Nombre científico: Phocoena sinus. Endémica del norte del Golfo de California, México. Habita en aguas costeras poco profundas y turbias."
+  },
+  {
+    "id": 10,
+    "name": "Oso polar",
+    "description": "Nombre científico: Ursus maritimus. Habita en las regiones árticas cubiertas de hielo marino, incluyendo costas y archipiélagos de Canadá, Rusia, Groenlandia, Noruega y Alaska (EE.UU.)."
+  },
+  {
+    "id": 11,
+    "name": "Pangolín malayo",
+    "description": "Nombre científico: Manis javanica. Se encuentra en el sudeste asiático, habitando bosques primarios y secundarios, así como plantaciones."
+  },
+  {
+    "id": 12,
+    "name": "Tortuga carey",
+    "description": "Nombre científico: Eretmochelys imbricata. Habita en aguas tropicales y subtropicales de los océanos Atlántico, Pacífico e Índico, asociada a arrecifes de coral y costas rocosas."
+  },
+  {
+    "id": 13,
+    "name": "Atún rojo del Atlántico",
+    "description": "Nombre científico: Thunnus thynnus. Habita en aguas templadas y subtropicales del Océano Atlántico y el Mar Mediterráneo. Es una especie pelágica y migratoria."
+  },
+  {
+    "id": 14,
+    "name": "Ajolote",
+    "description": "Nombre científico: Ambystoma mexicanum. Endémico del sistema de canales y lagos de Xochimilco, cerca de la Ciudad de México. Habita en aguas dulces."
+  },
+  {
+    "id": 15,
+    "name": "Iguana de Ricord",
+    "description": "Nombre científico: Cyclura ricordi. Endémica de la isla La Española (República Dominicana y Haití), habita en zonas áridas y semiáridas de matorral espinoso y bosque seco."
+  },
+  {
+    "id": 16,
+    "name": "Cacatúa de las Filipinas",
+    "description": "Nombre científico: Cacatua haematuropygia. Endémica de Filipinas, habita en bosques de tierras bajas, manglares y zonas de cultivo cercanas."
+  },
+  {
+    "id": 17,
+    "name": "Gato de cabeza plana",
+    "description": "Nombre científico: Prionailurus planiceps. Habita en humedales, bosques pantanosos y riberas de ríos en la península malaya, Borneo y Sumatra."
+  },
+  {
+    "id": 18,
+    "name": "Mono narigudo",
+    "description": "Nombre científico: Nasalis larvatus. Endémico de la isla de Borneo, habita en manglares, bosques pantanosos y bosques ribereños."
+  },
+  {
+    "id": 19,
+    "name": "Canguro arborícola de Matschie",
+    "description": "Nombre científico: Dendrolagus matschiei. Endémico de la península de Huon en Papúa Nueva Guinea, habita en bosques nubosos de montaña."
+  },
+  {
+    "id": 20,
+    "name": "Delfín del río Irawadi",
+    "description": "Nombre científico: Orcaella brevirostris. Habita en aguas costeras poco profundas, estuarios y grandes ríos del sudeste asiático y la Bahía de Bengala."
+  },
+  {
+    "id": 21,
+    "name": "Tiburón martillo gigante",
+    "description": "Nombre científico: Sphyrna mokarran. Habita en aguas costeras cálidas y templadas y en la plataforma continental de todo el mundo."
+  },
+  {
+    "id": 22,
+    "name": "Geco de cola de hoja satánico",
+    "description": "Nombre científico: Uroplatus phantasticus. Endémico de Madagascar, habita en las selvas tropicales del este de la isla."
+  },
+  {
+    "id": 23,
+    "name": "Pez napoleón",
+    "description": "Nombre científico: Cheilinus undulatus. Habita en arrecifes de coral de la región Indo-Pacífica, desde el Mar Rojo hasta el Pacífico central."
+  },
+  {
+    "id": 24,
+    "name": "Rana dorada de Panamá",
+    "description": "Nombre científico: Atelopus zeteki. Endémica de Panamá, habitaba en arroyos de montaña en bosques nubosos. Posiblemente extinta en estado salvaje."
+  },
+  {
+    "id": 25,
+    "name": "Ciempiés gigante amazónico",
+    "description": "Nombre científico: Scolopendra gigantea. Habita en selvas tropicales y subtropicales del norte de Sudamérica y algunas islas del Caribe."
+  },
+  {
+    "id": 26,
+    "name": "Águila monera",
+    "description": "Nombre científico: Pithecophaga jefferyi. Endémica de Filipinas, habita en las selvas tropicales montañosas de las islas mayores."
+  },
+  {
+    "id": 27,
+    "name": "Caracol tigre de Borneo",
+    "description": "Nombre científico: Bertia brookei (Nota: puede referirse a varias especies grandes de caracoles terrestres de Borneo). Habitan en bosques húmedos de Borneo."
+  },
+  {
+    "id": 28,
+    "name": "Murciélago de la isla de Navidad",
+    "description": "Nombre científico: Pipistrellus murrayi. Endémico de la Isla de Navidad (Australia). Declarado extinto en 2017."
+  },
+  {
+    "id": 29,
+    "name": "Langur de Delacour",
+    "description": "Nombre científico: Trachypithecus delacouri. Endémico del norte de Vietnam, habita en bosques kársticos de piedra caliza."
+  },
+  {
+    "id": 30,
+    "name": "Pez sierra verde",
+    "description": "Nombre científico: Pristis zijsron. Habita en aguas costeras tropicales poco profundas, estuarios y a veces ríos, en la región Indo-Pacífica occidental."
+  },
+  {
+    "id": 31,
+    "name": "Cangrejo de los cocoteros",
+    "description": "Nombre científico: Birgus latro. Habita en islas tropicales de los océanos Índico y Pacífico, en zonas costeras con cocoteros y vegetación."
+  },
+  {
+    "id": 32,
+    "name": "Pato serrucho brasileño",
+    "description": "Nombre científico: Mergus octosetaceus. Habita en ríos rápidos y arroyos de aguas claras en regiones montañosas del centro-sur de Brasil y noreste de Argentina."
+  },
+  {
+    "id": 33,
+    "name": "Salamandra gigante china",
+    "description": "Nombre científico: Andrias davidianus. Habita en arroyos y lagos fríos de montaña en el centro, suroeste y sur de China."
+  },
+  {
+    "id": 34,
+    "name": "Gacela de Cuvier",
+    "description": "Nombre científico: Gazella cuvieri. Habita en zonas montañosas semiáridas, mesetas y bosques abiertos del Atlas en Marruecos, Argelia y Túnez."
+  },
+  {
+    "id": 35,
+    "name": "Pez ángel de Clarión",
+    "description": "Nombre científico: Holacanthus clarionensis. Endémico del Archipiélago de Revillagigedo (México), especialmente la Isla Clarión. Habita en arrecifes rocosos."
+  },
+  {
+    "id": 36,
+    "name": "Tortuga gigante de Aldabra",
+    "description": "Nombre científico: Aldabrachelys gigantea. Endémica del atolón de Aldabra en Seychelles. Habita en una variedad de entornos, desde manglares y matorrales hasta pastizales."
+  },
+  {
+    "id": 37,
+    "name": "Mono araña de cabeza negra",
+    "description": "Nombre científico: Ateles fusciceps. Habita en bosques tropicales húmedos desde Panamá hasta Ecuador."
+  },
+  {
+    "id": 38,
+    "name": "Pez payaso de Mauritania",
+    "description": "Nombre científico: Amphiprion milii (Nota: El nombre común puede ser ambiguo, A. milii se encuentra en Australia occidental. Quizás se refiera a otra especie o sea un error). A. milii habita arrecifes costeros."
+  },
+  {
+    "id": 39,
+    "name": "Tortuga de caparazón blando de Shanghái",
+    "description": "Nombre científico: Rafetus swinhoei. Habitaba ríos y humedales en el río Yangtsé (China) y el Lago Hoan Kiem (Vietnam). Críticamente amenazada, posiblemente funcionalmente extinta."
+  },
+  {
+    "id": 40,
+    "name": "Loro orejiamarillo",
+    "description": "Nombre científico: Ognorhynchus icterotis. Habita en bosques nubosos andinos con palmas de cera, principalmente en Colombia."
+  },
+  {
+    "id": 41,
+    "name": "Pez guitarra común",
+    "description": "Nombre científico: Rhinobatos rhinobatos. Habita en fondos arenosos o fangosos de aguas costeras poco profundas en el Atlántico oriental y el Mar Mediterráneo."
+  },
+  {
+    "id": 42,
+    "name": "Cerceta pardilla",
+    "description": "Nombre científico: Marmaronetta angustirostris. Habita en humedales someros, tanto salobres como dulces, con abundante vegetación emergente, en la región mediterránea y Asia occidental."
+  },
+  {
+    "id": 43,
+    "name": "Pez sapo de Borneo",
+    "description": "Nombre científico: Allenbatrachus grunniens (Puede referirse a varias especies de Batrachoididae de la región). Habitan aguas costeras, estuarios y ríos de agua dulce en el sudeste asiático, incluyendo Borneo."
+  },
+  {
+    "id": 44,
+    "name": "Tortuga estrellada de Birmania",
+    "description": "Nombre científico: Geochelone platynota. Endémica de la zona seca central de Birmania (Myanmar). Habita en bosques secos y matorrales."
+  },
+  {
+    "id": 45,
+    "name": "Pez loro bicolor",
+    "description": "Nombre científico: Cetoscarus bicolor. Habita en arrecifes de coral del Mar Rojo y la región Indo-Pacífica."
+  },
+  {
+    "id": 46,
+    "name": "Gorrión de Worthen",
+    "description": "Nombre científico: Spizella wortheni. Endémico de México, habita en pastizales áridos y semiáridos de altiplano con arbustos dispersos."
+  },
+  {
+    "id": 47,
+    "name": "Pez ángel emperador",
+    "description": "Nombre científico: Pomacanthus imperator. Habita en arrecifes de coral de la región Indo-Pacífica, desde el Mar Rojo hasta Hawái y las Islas Australes."
+  },
+  {
+    "id": 48,
+    "name": "Tortuga de caja de Indochina",
+    "description": "Nombre científico: Cuora galbinifrons. Habita en bosques húmedos montanos del norte de Vietnam, sur de China y Laos."
+  },
+  {
+    "id": 49,
+    "name": "Pez cirujano de aleta amarilla",
+    "description": "Nombre científico: Acanthurus xanthopterus. Habita en lagunas, bahías y arrecifes exteriores de la región Indo-Pacífica."
+  },
+  {
+    "id": 50,
+    "name": "Pez ballesta payaso",
+    "description": "Nombre científico: Balistoides conspicillum. Habita en pendientes de arrecifes exteriores en aguas tropicales del Indo-Pacífico."
+  },
+  {
+    "id": 51,
+    "name": "Pez mariposa de bandas de cobre",
+    "description": "Nombre científico: Chelmon rostratus. Habita en arrecifes de coral y estuarios rocosos del Pacífico occidental, desde las Islas Ryukyu hasta Australia."
+  },
+  {
+    "id": 52,
+    "name": "Pez león rojo",
+    "description": "Nombre científico: Pterois volitans. Nativo de arrecifes y grietas rocosas de la región Indo-Pacífica. Especie invasora en el Atlántico occidental."
+  },
+  {
+    "id": 53,
+    "name": "Pez escorpión de aletas voladoras",
+    "description": "Nombre científico: Pterois miles (a menudo confundido con P. volitans). Nativo del Océano Índico y Mar Rojo. Invasor en el Mediterráneo y Atlántico."
+  },
+  {
+    "id": 54,
+    "name": "Pez piedra",
+    "description": "Nombre científico: Synanceia verrucosa (y otras especies del género Synanceia). Habita en fondos rocosos y coralinos, camuflado entre rocas y escombros, en la región Indo-Pacífica."
+  },
+  {
+    "id": 55,
+    "name": "Ocelote",
+    "description": "Nombre científico: Leopardus pardalis. Habita en una amplia gama de entornos, desde selvas tropicales hasta matorrales áridos y manglares, distribuyéndose desde el suroeste de EE.UU. hasta el norte de Argentina."
+  },
+  {
+    "id": 56,
+    "name": "Zorro de Darwin",
+    "description": "Nombre científico: Lycalopex fulvipes. Endémico de Chile, habita en los bosques templados de la Isla de Chiloé y una pequeña población en el Parque Nacional Nahuelbuta en tierra firme."
+  },
+  {
+    "id": 57,
+    "name": "Gavial del Ganges",
+    "description": "Nombre científico: Gavialis gangeticus. Habita en sistemas fluviales de aguas claras y profundas con bancos de arena en el norte del subcontinente indio."
+  },
+  {
+    "id": 58,
+    "name": "Pez loro azul",
+    "description": "Nombre científico: Scarus coeruleus. Habita en arrecifes de coral del Atlántico occidental, desde Maryland (EE.UU.) hasta Brasil, incluyendo el Caribe."
+  },
+  {
+    "id": 59,
+    "name": "Caimán del Orinoco",
+    "description": "Nombre científico: Crocodylus intermedius. Endémico de la cuenca del río Orinoco en Colombia y Venezuela. Habita en ríos de llanura, caños y lagunas."
+  },
+  {
+    "id": 60,
+    "name": "Tapir malayo",
+    "description": "Nombre científico: Tapirus indicus. Habita en selvas tropicales de tierras bajas de la península malaya, Sumatra y sur de Tailandia y Birmania."
+  },
+  {
+    "id": 61,
+    "name": "Lobo etíope",
+    "description": "Nombre científico: Canis simensis. Endémico de las tierras altas de Etiopía, habita en pastizales y brezales afroalpinos por encima de los 3000 metros."
+  },
+  {
+    "id": 62,
+    "name": "Mofeta moteada pigmea",
+    "description": "Nombre científico: Spilogale pygmaea. Endémica de la costa del Pacífico de México, habita en bosques tropicales caducifolios y matorrales espinosos."
+  },
+  {
+    "id": 63,
+    "name": "Tortuga mapa de Barbour",
+    "description": "Nombre científico: Graptemys barbouri. Habita en los sistemas fluviales de los ríos Apalachicola, Chipola y Flint en Florida, Georgia y Alabama (EE.UU.)."
+  },
+  {
+    "id": 64,
+    "name": "Tiburón duende",
+    "description": "Nombre científico: Mitsukurina owstoni. Habita en aguas profundas (taludes continentales y montes submarinos) de los océanos Atlántico, Pacífico e Índico."
+  },
+  {
+    "id": 65,
+    "name": "Iguana azul",
+    "description": "Nombre científico: Cyclura lewisi. Endémica de la isla de Gran Caimán. Habita en bosques secos, matorrales y zonas costeras rocosas."
+  },
+  {
+    "id": 66,
+    "name": "Gacela dama",
+    "description": "Nombre científico: Nanger dama. Habita en el desierto del Sahara y el Sahel, en zonas áridas con matorrales y acacias."
+  },
+  {
+    "id": 67,
+    "name": "Pato eider de Steller",
+    "description": "Nombre científico: Polysticta stelleri. Cría en la tundra ártica de Siberia y Alaska. Inverna en costas libres de hielo del Mar de Bering y Escandinavia."
+  },
+  {
+    "id": 68,
+    "name": "Caballo de Przewalski",
+    "description": "Nombre científico: Equus ferus przewalskii. Originario de las estepas de Asia Central (Mongolia y China). Habita en estepas y semidesiertos."
+  },
+  {
+    "id": 69,
+    "name": "Guacamayo de Spix",
+    "description": "Nombre científico: Cyanopsitta spixii. Originario de la región de Caatinga en Brasil. Extinto en estado salvaje, sobrevive en programas de cría en cautividad."
+  },
+  {
+    "id": 70,
+    "name": "Gato de Pallas",
+    "description": "Nombre científico: Otocolobus manul. Habita en estepas rocosas frías y áridas y pastizales de Asia Central."
+  },
+  {
+    "id": 71,
+    "name": "Dugongo",
+    "description": "Nombre científico: Dugong dugon. Habita en aguas costeras cálidas y poco profundas, estuarios y bahías con praderas marinas, desde África oriental hasta Vanuatu."
+  },
+  {
+    "id": 72,
+    "name": "Zorro isleño",
+    "description": "Nombre científico: Urocyon littoralis. Endémico de seis de las ocho Islas del Canal de California (EE.UU.). Habita en diversos entornos insulares."
+  },
+  {
+    "id": 73,
+    "name": "Salamandra de cueva olm",
+    "description": "Nombre científico: Proteus anguinus. Habita en aguas subterráneas de cuevas kársticas de los Alpes Dináricos (Eslovenia, Croacia, Bosnia y Herzegovina, Montenegro)."
+  },
+  {
+    "id": 74,
+    "name": "Tortuga gigante de Galápagos",
+    "description": "Nombre científico: Chelonoidis niger (complejo de especies). Endémica de las Islas Galápagos (Ecuador). Habita en zonas áridas de tierras bajas y zonas húmedas de tierras altas."
+  },
+  {
+    "id": 75,
+    "name": "Pangolín chino",
+    "description": "Nombre científico: Manis pentadactyla. Habita en bosques subtropicales y de hoja ancha, así como en pastizales, en el sur de China, Taiwán, Nepal, Bután, norte de India, Bangladés y norte de Indochina."
+  },
+  {
+    "id": 76,
+    "name": "Mariposa monarca",
+    "description": "Nombre científico: Danaus plexippus. Habita en campos abiertos, praderas y jardines durante la cría en Norteamérica. Migra y pasa el invierno en bosques de oyamel en México y bosquecillos de eucaliptos en California."
+  },
+  {
+    "id": 77,
+    "name": "Ciervo almizclero",
+    "description": "Nombre científico: Moschus spp. (varias especies). Habitan en bosques y matorrales de montaña en Asia, desde Siberia hasta el Himalaya."
+  },
+  {
+    "id": 78,
+    "name": "Gorila de río Cross",
+    "description": "Nombre científico: Gorilla gorilla diehli. Habita en los bosques montanos y selvas de tierras bajas en la región fronteriza entre Nigeria y Camerún."
+  },
+  {
+    "id": 79,
+    "name": "Cangrejo de los Yeti",
+    "description": "Nombre científico: Kiwa hirsuta (y otras especies del género Kiwa). Habita en las profundidades marinas, asociado a fuentes hidrotermales y emanaciones frías en el Océano Pacífico y Antártico."
+  },
+  {
+    "id": 80,
+    "name": "Cebra de Grévy",
+    "description": "Nombre científico: Equus grevyi. Habita en pastizales semiáridos y sabanas de Etiopía y Kenia."
+  },
+  {
+    "id": 81,
+    "name": "Antílope saiga",
+    "description": "Nombre científico: Saiga tatarica. Habita en estepas semiáridas abiertas y pastizales de Asia Central (Kazajistán, Uzbekistán, Rusia, Mongolia)."
+  },
+  {
+    "id": 82,
+    "name": "Búho nival",
+    "description": "Nombre científico: Bubo scandiacus. Cría en la tundra ártica. Inverna en praderas abiertas, campos agrícolas y costas en latitudes más bajas de Norteamérica y Eurasia."
+  },
+  {
+    "id": 83,
+    "name": "Águila harpía",
+    "description": "Nombre científico: Harpia harpyja. Habita en las selvas tropicales de tierras bajas desde el sur de México hasta el norte de Argentina."
+  },
+  {
+    "id": 84,
+    "name": "Gato andino",
+    "description": "Nombre científico: Leopardus jacobita. Habita en regiones áridas y rocosas de alta montaña (por encima de 3000m) en los Andes de Argentina, Bolivia, Chile y Perú."
+  },
+  {
+    "id": 85,
+    "name": "Dragón de Komodo",
+    "description": "Nombre científico: Varanus komodoensis. Endémico de unas pocas islas de Indonesia (Komodo, Rinca, Flores, Gili Motang). Habita en bosques tropicales secos, sabanas y manglares."
+  },
+  {
+    "id": 86,
+    "name": "Oso panda gigante",
+    "description": "Nombre científico: Ailuropoda melanoleuca. Habita en bosques templados de bambú en las montañas del centro de China (Sichuan, Shaanxi, Gansu)."
+  },
+  {
+    "id": 87,
+    "name": "Águila filipina",
+    "description": "Nombre científico: Pithecophaga jefferyi. (Duplicado, ver ID 26). Endémica de Filipinas, habita en las selvas tropicales montañosas de las islas mayores."
+  },
+  {
+    "id": 88,
+    "name": "Lobo de crin",
+    "description": "Nombre científico: Chrysocyon brachyurus. Habita en pastizales altos, sabanas y humedales del Cerrado en Sudamérica (Brasil, Paraguay, Argentina, Bolivia, Perú)."
+  },
+  {
+    "id": 89,
+    "name": "Pingüino de Galápagos",
+    "description": "Nombre científico: Spheniscus mendiculus. Endémico de las Islas Galápagos (Ecuador). Habita en las costas volcánicas, alimentándose en las aguas frías de la corriente de Cromwell."
+  },
+  {
+    "id": 90,
+    "name": "Buitre egipcio",
+    "description": "Nombre científico: Neophron percnopterus. Habita en zonas abiertas áridas y semiáridas, acantilados y gargantas en partes de Europa, África y Asia."
+  },
+  {
+    "id": 91,
+    "name": "Delfín rosado del Amazonas",
+    "description": "Nombre científico: Inia geoffrensis. Habita en las cuencas de los ríos Amazonas y Orinoco en Sudamérica, incluyendo afluentes, lagos y aguas inundadas estacionalmente."
+  },
+  {
+    "id": 92,
+    "name": "Periquito de Mauricio",
+    "description": "Nombre científico: Psittacula eques. Endémico de la isla de Mauricio. Habita en los bosques nativos remanentes."
+  },
+  {
+    "id": 93,
+    "name": "Gaviota rosada",
+    "description": "Nombre científico: Rhodostethia rosea. Cría en la tundra ártica alta de Siberia, Groenlandia y Canadá. Inverna en los bordes del hielo marino ártico."
+  },
+  {
+    "id": 94,
+    "name": "Tortuga laúd",
+    "description": "Nombre científico: Dermochelys coriacea. Habita en todos los océanos tropicales y templados del mundo. Es pelágica, pero anida en playas arenosas tropicales."
+  },
+  {
+    "id": 95,
+    "name": "Pez espátula chino",
+    "description": "Nombre científico: Psephurus gladius. Habitaba el sistema del río Yangtsé en China. Declarado extinto en 2020."
+  },
+  {
+    "id": 96,
+    "name": "Cabra de los Pirineos",
+    "description": "Nombre científico: Capra pyrenaica pyrenaica (extinta). La subespecie pirenaica se extinguió en 2000. Otras subespecies de cabra montés ibérica (Capra pyrenaica hispanica, C. p. victoriae) habitan zonas montañosas de la Península Ibérica."
+  },
+  {
+    "id": 97,
+    "name": "Lémur de cola anillada",
+    "description": "Nombre científico: Lemur catta. Endémico del sur y suroeste de Madagascar. Habita en bosques de galería, bosques secos espinosos y matorrales rocosos."
+  },
+  {
+    "id": 98,
+    "name": "Mono capuchino de pecho amarillo",
+    "description": "Nombre científico: Sapajus xanthosternos. Endémico del Bosque Atlántico del este de Brasil."
+  },
+  {
+    "id": 99,
+    "name": "Gato de arena",
+    "description": "Nombre científico: Felis margarita. Habita en desiertos arenosos y pedregosos del norte de África, Oriente Medio y Asia Central."
+  },
+  {
+    "id": 100,
+    "name": "Rana de Darwin",
+    "description": "Nombre científico: Rhinoderma darwinii. Habita en los bosques templados húmedos de Chile y Argentina. Los machos incuban los renacuajos en su saco vocal."
+  },
+  {
+    "id": 101,
+    "name": "Lagarto de cola de látigo",
+    "description": "Nombre científico: Aspidoscelis spp. / Cnemidophorus spp. (géneros con muchas especies). Habitan principalmente en zonas áridas y semiáridas, pastizales y matorrales de América del Norte y del Sur."
+  },
+  {
+    "id": 102,
+    "name": "Ganso nival",
+    "description": "Nombre científico: Anser caerulescens. Cría en la tundra ártica de Groenlandia, Canadá, Alaska y noreste de Siberia. Inverna en costas, marismas y campos agrícolas de Norteamérica."
+  }
+]
