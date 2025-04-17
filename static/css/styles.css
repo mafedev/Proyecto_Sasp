@@ -529,7 +529,7 @@ input[type=number] {
 
 /* REFUGIOS */
 #mapas {
-  background-color: #5a7b3b;
+  background-color: #F5F5DC; /* Beige claro */
 }
 
 #encabezado_refugios{
@@ -537,6 +537,8 @@ input[type=number] {
   overflow-x: hidden;
 }
 
+
+/* Íconos index*/
 #iconos .col-lg-4 {
   display: flex;
   flex-direction: column;
