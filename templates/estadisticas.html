@@ -2,22 +2,47 @@
 {% block title %}Estadísticas de {{ especie }}{% endblock %}
 
 {% block content %}
-<h1 class="mb-4">📊 Estadísticas de {{ especie }}</h1>
+<h1 class="mb-4 text-center">📊 Estadísticas de {{ especie }}</h1>
+
+<div class="row align-items-start mb-4">
+  <!-- Imagen de la especie -->
+  <div class="col-md-4 text-center">
+    <img src="{{ url_for('static', filename=imagen_especie) }}" class="img-fluid rounded shadow" alt="Imagen de {{ especie }}">
+  </div>
+
+  <!-- Datos de la especie -->
+  <div class="col-md-8">
+    <h5>📋 Información de la Especie</h5>
+    <ul class="list-group">
+      <li class="list-group-item">Nombre Científico: <strong>{{ nombre_cientifico }}</strong></li>
+      <li class="list-group-item">Estado de Conservación: <strong>{{ estado_conservacion }}</strong></li>
+      <li class="list-group-item">Hábitat: <strong>{{ habitat }}</strong></li>
+      <li class="list-group-item">Distribución: <strong>{{ distribucion }}</strong></li>
+    </ul>
+  </div>
+</div>
+
+<hr>
 
 <div class="row">
-  <div class="col-md-6">
-    <h5>🗺️ Mapa de Observaciones</h5>
-    <div class="map-container" style="height: 400px;">
+  <!-- Mapa de Observaciones -->
+  <div class="col-md-6 mb-4">
+    <h5 class="text-center">🗺️ Mapa de Observaciones</h5>
+    <div class="map-container border rounded shadow bg-light p-3" style="height: 400px;">
       {{ mapa|safe }}
     </div>
   </div>
-  <div class="col-md-6">
-    <h5>📈 Evolución Poblacional</h5>
-    {% if grafico %}
-      <img src="data:image/png;base64,{{ grafico }}" class="img-fluid border rounded shadow" alt="Gráfico de población">
-    {% else %}
-      <div class="alert alert-secondary">❌ No se pudo generar el gráfico (datos insuficientes).</div>
-    {% endif %}
+
+  <!-- Gráfico de Evolución Poblacional -->
+  <div class="col-md-6 mb-4">
+    <h5 class="text-center">📈 Evolución Poblacional</h5>
+    <div class="d-flex justify-content-center align-items-center border rounded shadow bg-light p-3" style="height: 400px;">
+      {% if grafico %}
+        <img src="data:image/png;base64,{{ grafico }}" class="img-fluid" alt="Gráfico de población">
+      {% else %}
+        <div class="alert alert-secondary text-center mb-0">❌ No se pudo generar el gráfico (datos insuficientes).</div>
+      {% endif %}
+    </div>
   </div>
 </div>
 
