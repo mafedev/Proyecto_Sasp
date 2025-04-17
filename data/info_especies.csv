@@ -1,103 +1,103 @@
-nombre,descripcion,estado,imagen
-Tigre de Bengala,Gran felino del sudeste asiático,40000.0,img/monitoreo/1_tigre.webp
-Rinoceronte de Java,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,1000.0,img/monitoreo/2_rino.webp
-Gorila de montaña,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,5000.0,img/monitoreo/3_gorila.webp
-Elefante asiático,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,200000.0,img/monitoreo/4_elefante.webp
-Leopardo de Amur,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,300.0,img/monitoreo/5_leopardo.webp
-Orangután de Borneo,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,230000.0,img/monitoreo/6_orangutan.webp
-Lince ibérico,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,4000.0,img/monitoreo/7_lince.webp
-Cóndor de California,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,600.0,img/monitoreo/8_condor.webp
-Vaquita marina,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,5000.0,img/monitoreo/9_vaqu.webp
-Oso polar,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,100000.0,img/monitoreo/10_oso.webp
-Pangolín malayo,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,,img/monitoreo/11_pangolin.webp
-Tortuga carey,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,25923.0,img/monitoreo/12_tortuga.webp
-Atún rojo del Atlántico,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,78045.0,img/monitoreo/13_atun.webp
-Ajolote,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,65618.0,img/monitoreo/14_ajolote.webp
-Iguana de Ricord,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,93455.0,img/monitoreo/15_iguana.webp  
-Cacatúa de las Filipinas,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,91153.0,img/monitoreo/16_cacatua.webp
-Gato de cabeza plana,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,70679.0,img/monitoreo/17_gato.webp
-Mono narigudo,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,59839.0,img/monitoreo/18_mono.webp
-Canguro arborícola de Matschie,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,19075.0,img/monitoreo/19_canguro.webp
-Delfín del río Irawadi,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,55936.0,img/monitoreo/20_delfin.webp
-Tiburón martillo gigante,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,92473.0,img/monitoreo/21_tiburon.webp
-Geco de cola de hoja satánico,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,86450.0,img/monitoreo/22_geco.webp
-Pez napoleón,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,81992.0,img/monitoreo/23_pez.webp
-Rana dorada de Panamá,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,62145.0,img/monitoreo/24_rana.webp
-Ciempiés gigante amazónico,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,65773.0,img/monitoreo/25_ciempies.webp
-Águila monera,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,79273.0,img/monitoreo/26_aguila.webp
-Caracol tigre de Borneo,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,33768.0,img/monitoreo/27_caracol.webp
-Murciélago de la isla de Navidad,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,27468.0,img/monitoreo/28_murci.webp
-Langur de Delacour,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,61060.0,img/monitoreo/29_langur.webp
-Pez sierra verde,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,,img/monitoreo/30_pez.webp
-Cangrejo de los cocoteros,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,53802.0,img/monitoreo/31_cangrejo.webp
-Pato serrucho brasileño,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,15166.0,img/monitoreo/32_pato.webp
-Salamandra gigante china,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,30203.0,img/monitoreo/33_salamandra.webp
-Gacela de Cuvier,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,46166.0,img/monitoreo/34_gace.webp
-Pez ángel de Clarión,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,96543.0,img/monitoreo/35_pez.webp
-Tortuga gigante de Aldabra,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,22762.0,img/monitoreo/36_tortuga.webp
-Mono araña de cabeza negra,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,52451.0,img/monitoreo/37_mono.webp
-Pez payaso de Mauritania,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,45181.0,img/monitoreo/38_pez.webp
-Tortuga de caparazón blando de Shanghái,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,25899.0,img/monitoreo/39_tortuga.webp
-Loro orejiamarillo,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,6307.0,img/monitoreo/40_loro.webp
-Pez guitarra común,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,89566.0,img/monitoreo/41_pez.webp
-Cerceta pardilla,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,51213.0,img/monitoreo/42_cerceta.webp
-Pez sapo de Borneo,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,,img/monitoreo/43_pez.webp
-Tortuga estrellada de Birmania,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,91611.0,img/monitoreo/44_tortuga.webp
-Pez loro bicolor,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,60423.0,img/monitoreo/45_pez.webp
-Gorrión de Worthen,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,62496.0,img/monitoreo/46_gorrion.webp
-Pez ángel emperador,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,5453.0,img/monitoreo/47_pez.webp
-Tortuga de caja de Indochina,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,7482.0,img/monitoreo/48_tortuga.webp
-Pez cirujano de aleta amarilla,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,80308.0,img/monitoreo/49_pez.webp
-Pez ballesta payaso,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,99861.0,img/monitoreo/50_pez.webp
-Pez mariposa de bandas de cobre,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,37952.0,img/monitoreo/51_pez.webp
-Pez león rojo,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,21760.0,img/monitoreo/52_pez.webp
-Pez escorpión de aletas voladoras,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,88904.0,img/monitoreo/53_pez.webp
-Pez piedra,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,40186.0,img/monitoreo/54_pez.webp
-Ocelote,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,34755.0,img/monitoreo/55_ocelote.webp
-Zorro de Darwin,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,81168.0,img/monitoreo/56_zorro.webp
-Gavial del Ganges,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,40459.0,img/monitoreo/57_gavial.webp
-Pez loro azul,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,5763.0,img/monitoreo/58_pez.webp
-Caimán del Orinoco,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,,img/monitoreo/59_caiman.webp
-Tapir malayo,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,92386.0,img/monitoreo/60_tapir.webp
-Lobo etíope,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,100000.0,img/monitoreo/61_lobo.webp
-Mofeta moteada pigmea,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,8990.0,img/monitoreo/62_mofeta.webp
-Tortuga mapa de Barbour,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,77478.0,img/monitoreo/63_tortuga.webp
-Tiburón duende,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,30666.0,img/monitoreo/64_tiburon.webp
-Iguana azul,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,38569.0,img/monitoreo/65_iguana.webp
-Gacela dama,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,79956.0,img/monitoreo/66_gacela.webp
-Pato eider de Steller,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,30675.0,img/monitoreo/67_pato.webp
-Caballo de Przewalski,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,100000.0,img/monitoreo/68_caballo.webp
-Guacamayo de Spix,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,65702.0,img/monitoreo/69_guacamayo.webp
-Gato de Pallas,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,52203.0,img/monitoreo/70_gato.webp
-Dugongo,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,26810.0,img/monitoreo/71_dugongo.webp
-Zorro isleño,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,22115.0,img/monitoreo/72_zorro.webp
-Salamandra de cueva olm,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,,img/monitoreo/73_salamandra.webp
-Tortuga gigante de Galápagos,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,85213.0,img/monitoreo/74_tort.webp
-Pangolín chino,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,36828.0,img/monitoreo/75_pangolin.webp
-Mariposa monarca,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,13375.0,img/monitoreo/76_mariposa.webp
-Ciervo almizclero,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,76214.0,img/monitoreo/77.webp
-Gorila de río Cross,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,42174.0,img/monitoreo/78_gorila.webp
-Cangrejo de los Yeti,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,32234.0,img/monitoreo/79_cangrejo.webp
-Cebra de Grévy,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,82908.0,img/monitoreo/80_cebra.webp
-Antílope saiga,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,24803.0,img/monitoreo/81_antilope.webp
-Búho nival,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,87396.0,img/monitoreo/82.webp
-Águila harpía,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,42792.0,img/monitoreo/83_aguila.webp
-Gato andino,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,79186.0,img/monitoreo/84_gato.webp
-Dragón de Komodo,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,72183.0,img/monitoreo/85_dragon.webp
-Oso panda gigante,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,100000.0,img/monitoreo/86_oso.webp
-Águila filipina,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,38617.0,img/monitoreo/87_aguila.webp
-Lobo de crin,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,47142.0,img/monitoreo/88.webp
-Pingüino de Galápagos,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,56561.0,img/monitoreo/89.webp
-Buitre egipcio,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,83042.0,img/monitoreo/90_buitre.webp
-Delfín rosado del Amazonas,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,100000.0,img/monitoreo/91_delfin.webp
-Periquito de Mauricio,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,100000.0,img/monitoreo/92.webp
-Gaviota rosada,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,94462.0,img/monitoreo/93_gaviota.webp
-Tortuga laúd,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,81225.0,img/monitoreo/94_tortuga.webp
-Pez espátula chino,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,10000.0,img/monitoreo/95_pez.webp
-Cabra de los Pirineos,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,97711.0,img/monitoreo/96_cabra.webp
-Lémur de cola anillada,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,100000.0,img/monitoreo/97_lemur.webp
-Mono capuchino de pecho amarillo,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,79909.0,img/monitoreo/98_mono.webp
-Gato de arena,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,,img/monitoreo/99_gato.webp
-Rana de Darwin,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,96793.0,img/monitoreo/100_rana.webp
-Lagarto de cola de látigo,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,,img/monitoreo/101_lagarto.webp
-Ganso nival,Especie en peligro de extinción. Se requieren más datos para una descripción detallada.,14349.0,img/monitoreo/102_ganso.webp
+nombre,descripcion,estado,imagen,nombre_cientifico,acciones_recomendadas,organizaciones,amenazas
+Tigre de Bengala,Imponente depredador del sudeste asiático con un pelaje anaranjado y rayas oscuras.,28,img/monitoreo/1_tigre.webp,Panthera tigris tigris,"Apoyar campañas de protección de hábitat, evitar pieles y productos derivados","WWF, Panthera","Caza furtiva, fragmentación del hábitat"
+Rinoceronte de Java,Mamífero solitario y esquivo uno de los rinocerontes más raros del planeta.,2,img/monitoreo/2_rino.webp,Rhinoceros sondaicus,"Apoyar la vigilancia de parques nacionales","International Rhino Foundation","Destrucción del hábitat, caza furtiva"
+Gorila de montaña,Primate carismático que habita los bosques montañosos de África Central.,11,img/monitoreo/3_gorila.webp,Gorilla beringei beringei,"Participar en turismo ecológico, donar a proyectos de protección","Dian Fossey Gorilla Fund","Enfermedades humanas, deforestación"
+Elefante asiático,Inteligente y social este elefante enfrenta graves amenazas por el conflicto humano-animal.,41,img/monitoreo/4_elefante.webp,Elephas maximus,"Apoyar reservas naturales y evitar el marfil","Wildlife SOS, Elephant Family","Conflictos territoriales, pérdida de hábitat"
+Leopardo de Amur,Felino ágil de clima frío adaptado para sobrevivir en los bosques de Rusia oriental.,4,img/monitoreo/5_leopardo.webp,Panthera pardus orientalis,"Difundir su situación crítica, apoyar organizaciones de conservación","ALTA (Amur Leopard and Tiger Alliance)","Pérdida de presas, expansión urbana"
+Orangután de Borneo,Gran simio arbóreo altamente inteligente vital para los ecosistemas selváticos.,52,img/monitoreo/6_orangutan.webp,Pongo pygmaeus,"Evitar productos con aceite de palma, donar a centros de rescate","BOS Foundation","Deforestación, comercio ilegal de crías"
+Lince ibérico,Felino emblemático de la península ibérica símbolo de la conservación en Europa.,21,img/monitoreo/7_lince.webp,Lynx pardinus,"Promover corredores biológicos, participar en actividades educativas","WWF España","Pérdida de conejo silvestre, atropellos"
+Cóndor de California,Ave carroñera de gran envergadura crucial para mantener los ecosistemas limpios.,7,img/monitoreo/8_condor.webp,Gymnogyps californianus,"Apoyar programas de liberación, evitar plomo en municiones","Ventana Wildlife Society","Contaminación por plomo, baja reproducción"
+Vaquita marina,La marsopa más pequeña y rara del mundo exclusiva del Golfo de California.,1,img/monitoreo/9_vaqu.webp,Phocoena sinus,"Evitar productos de pesca ilegal, exigir medidas gubernamentales","Sea Shepherd, Museo de la Ballena","Captura incidental, pesca de totoaba"
+Oso polar,Cazador ártico dependiente del hielo marinosímbolo del impacto del cambio climático.,35,img/monitoreo/10_oso.webp,Ursus maritimus,"Reducir huella de carbono, apoyar ciencia polar","Polar Bears International","Derretimiento del hielo, contaminación marina"
+Pangolín malayo,Mamífero cubierto de escamas el más traficado del mundo.,1,img/monitoreo/11_pangolin.webp,Manis javanica,"Apoyar leyes contra el tráfico de fauna, evitar medicina tradicional con partes de pangolín","TRAFFIC, Save Pangolins","Tráfico ilegal, pérdida de hábitat"
+Tortuga carey,Tortuga marina con caparazón vistoso clave para la salud de los arrecifes.,26,img/monitoreo/12_tortuga.webp,Eretmochelys imbricata,"Evitar comprar joyería de carey, apoyar programas de conservación marina","WWF, Sea Turtle Conservancy","Caza, contaminación marina"
+Atún rojo del Atlántico,Especie de gran valor comercial y ecológico sobreexplotada por décadas.,78,img/monitoreo/13_atun.webp,Thunnus thynnus,"Consumir pescado de pesca sostenible, apoyar regulaciones pesqueras","Bluefin Tuna Recovery Program","Sobrepesca, pesca ilegal"
+Ajolote,Anfibio mexicano conocido por su capacidad regenerativa y su estado crítico.,66,img/monitoreo/14_ajolote.webp,Ambystoma mexicanum,"Apoyar conservación de humedales, no liberar mascotas en cuerpos de agua","UNAM, Axolotl Conservation","Contaminación, introducción de especies"
+Iguana de Ricord,Reptil endémico con un papel clave en la dispersión de semillas.,93,img/monitoreo/15_iguana.webp,Cyclura ricordii,"Apoyar esfuerzos locales de protección y monitoreo","Zoological Society of London","Destrucción del hábitat, caza"
+Cacatúa de las Filipinas,Ave tropical con plumaje blanco y cresta amarilla símbolo nacional en peligro.,91,img/monitoreo/16_cacatua.webp,Cacatua haematuropygia,"Evitar compra de aves exóticas, promover educación ambiental","Katala Foundation","Tráfico de mascotas, deforestación"
+Gato de cabeza plana,Felino pequeño y semiacuático del sudeste asiático poco conocido y muy raro.,71,img/monitoreo/17_gato.webp,Prionailurus planiceps,"Proteger humedales, apoyar investigación científica","IUCN Cat Specialist Group","Pérdida de hábitat, contaminación"
+Mono narigudo,Primate de gran nariz y nadador habilidoso endémico de Borneo.,60,img/monitoreo/18_mono.webp,Nasalis larvatus,"Apoyar turismo responsable, evitar productos que incentiven la deforestación","Borneo Orangutan Survival Foundation","Expansión agrícola, tala"
+Canguro arborícola de Matschie,Marsupial que habita árboles en Papúa Nueva Guinea amenazado por la caza.,19,img/monitoreo/19_canguro.webp,Dendrolagus matschiei,"Promover reservas forestales, apoyar educación ambiental","Tree Kangaroo Conservation Program","Caza, deforestación"
+Delfín del río Irawadi,Cetáceo de agua dulce muy sensible a la actividad humana.,56,img/monitoreo/20_delfin.webp,Orcaella brevirostris,"Evitar el uso de redes destructivas, donar a proyectos de conservación fluvial","WWF Mekong","Contaminación, colisiones con barcos"
+Tiburón martillo gigante,Tiburón migratorio con gran aleta cefálica vital para los ecosistemas marinos.,92,img/monitoreo/21_tiburon.webp,Sphyrna mokarran,"Apoyar áreas marinas protegidas, rechazar sopa de aleta de tiburón","Shark Trust","Pesca dirigida, aleteo"
+Geco de cola de hoja satánico,Reptil camuflado de Madagascar maestro del mimetismo.,86,img/monitoreo/22_geco.webp,Uroplatus phantasticus,"Evitar comercio de mascotas exóticas, apoyar conservación de bosques","Madagascar Fauna and Flora Group","Pérdida de hábitat, captura ilegal"
+Pez napoleón,Colorido pez de arrecife perseguido por su tamaño y carne exótica.,82,img/monitoreo/23_pez.webp,Cheilinus undulatus,"Consumir mariscos sostenibles, apoyar protección de arrecifes","Reef Check, Coral Triangle Initiative","Sobrepesca, comercio ilegal"
+Rana dorada de Panamá,Anfibio brillante y emblemático víctima de una epidemia fúngica.,62,img/monitoreo/24_rana.webp,Atelopus zeteki,"Apoyar investigaciones médicas, conservar microhábitats","Panama Amphibian Rescue","Hongo quítrido, destrucción de hábitat"
+Ciempiés gigante amazónico,Invertebrado depredador del suelo clave para el equilibrio ecológico.,66,img/monitoreo/25_ciempies.webp,Scolopendra gigantea,"Proteger selvas tropicales, evitar comercio de especies exóticas","Amazon Conservation Association","Pérdida de hábitat, coleccionismo"
+Águila monera,Depredador aéreo poderoso y símbolo nacional filipino.,79,img/monitoreo/26_aguila.webp,Pithecophaga jefferyi,"Apoyar reservas naturales, participar en educación ambiental","Philippine Eagle Foundation","Caza, destrucción de bosques"
+Caracol tigre de Borneo,Caracol de colores vivos esencial en la descomposición orgánica de su hábitat.,34,img/monitoreo/27_caracol.webp,Vittina waigiensis,"Proteger ecosistemas ribereños, evitar contaminación","WWF Malasia","Contaminación del agua, recolección masiva"
+Murciélago de la isla de Navidad,Murciélago endémico y polinizador único en su tipo.,27,img/monitoreo/28_murci.webp,Pipistrellus murrayi,"Limitar especies invasoras, apoyar monitoreo de cuevas","Bat Conservation International","Enfermedades, especies invasoras"
+Langur de Delacour,Primate de Vietnam con pelaje blanco y negro muy amenazado.,61,img/monitoreo/29_langur.webp,Trachypithecus delacouri,"Proteger hábitats montañosos","Fauna & Flora International","Pérdida de hábitat, caza"
+Pez sierra verde,Extraño pez con hocico dentado en forma de sierra muy escaso.,15,img/monitoreo/30_pez.webp,Pristis zijsron,"Apoyar reservas marinas","Shark Trust","Pesca incidental, pérdida de hábitat"
+Cangrejo de los cocoteros,El mayor artrópodo terrestre del mundo trepa árboles por cocos.,54,img/monitoreo/31_cangrejo.webp,Birgus latro,"Respetar áreas protegidas","IUCN","Sobreexplotación, pérdida de hábitat"
+Pato serrucho brasileño,Pato raro de ríos limpios en Brasil extremadamente amenazado.,15,img/monitoreo/32_pato.webp,Mergus octosetaceus,"Proteger cuencas hídricas","BirdLife International","Contaminación, pérdida de hábitat"
+Salamandra gigante china,El mayor anfibio del mundo se encuentra en severo declive.,30,img/monitoreo/33_salamandra.webp,Andrias davidianus,"Apoyar proyectos de cría","Edge of Existence","Contaminación del agua, consumo humano"
+Gacela de Cuvier,Hermosa gacela del norte de África muy afectada por la caza.,46,img/monitoreo/34_gace.webp,Gazella cuvieri,"Evitar la caza furtiva","Sahara Conservation Fund","Caza ilegal, fragmentación del hábitat"
+Pez ángel de Clarión,Pez colorido endémico del Pacífico mexicano vulnerable por comercio.,97,img/monitoreo/35_pez.webp,Holacanthus clarionensis,"Apoyar monitoreos en islas protegidas","Revillagigedo National Park","Captura ilegal, turismo no regulado"
+Tortuga gigante de Aldabra,Una de las tortugas más grandes del mundo ícono de conservación.,23,img/monitoreo/36_tortuga.webp,Aldabrachelys gigantea,"Apoyar programas de reproducción","Island Conservation","Invasión de especies, cambio climático"
+Mono araña de cabeza negra,Primate arborícola ágil en declive por pérdida de selva.,52,img/monitoreo/37_mono.webp,Ateles fusciceps,"Apoyar reforestación","Rainforest Trust","Deforestación, caza"
+Pez payaso de Mauritania,Colorido pez de arrecife endémico poco conocido.,45,img/monitoreo/38_pez.webp,Amphiprion mauritanicus,"Evitar captura comercial","WWF Mauritania","Contaminación marina, pesca excesiva"
+Tortuga de caparazón blando de Shanghái,Una de las tortugas más raras del mundo casi extinta.,26,img/monitoreo/39_tortuga.webp,Rafetus swinhoei,"Apoyar reproducción en cautiverio","Asian Turtle Program","Pérdida de hábitat, reproducción limitada"
+Loro orejiamarillo,Loro colombiano en recuperación símbolo de esperanza para su hábitat.,6,img/monitoreo/40_loro.webp,Ognorhynchus icterotis,"Apoyar programas de reintroducción","ProAves","Destrucción del hábitat, caza"
+Pez guitarra común,Pez cartilaginoso entre tiburón y raya con cuerpo plano.,89,img/monitoreo/41_pez.webp,Rhinobatos rhinobatos,"Proteger zonas costeras","Shark Advocates","Sobrepesca, pérdida de hábitat"
+Cerceta pardilla,Pato pequeño y discreto en humedales del Mediterráneo muy escaso.,51,img/monitoreo/42_cerceta.webp,Marmaronetta angustirostris,"Conservar humedales","SEO/BirdLife","Pérdida de hábitat, perturbación humana"
+Pez sapo de Borneo,Pez poco conocido con cuerpo camuflado amenazado por contaminación.,21,img/monitoreo/43_pez.webp,Batrachomoeus trispinosus,"Estudiar sus poblaciones","EDGE of Existence","Contaminación, desconocimiento"
+Tortuga estrellada de Birmania,Especie con caparazón único en forma de estrella muy codiciada.,91,img/monitoreo/44_tortuga.webp,Geochelone platynota,"Evitar tráfico ilegal","Wildlife Conservation Society","Comercio ilegal, pérdida de hábitat"
+Pez loro bicolor,Pez tropical que ayuda a limpiar los arrecifes colorido y vital.,60,img/monitoreo/45_pez.webp,Scarus bicolor,"Conservar arrecifes","Coral Triangle Initiative","Pesca excesiva, degradación del arrecife"
+Gorrión de Worthen,Pequeña ave endémica de México extremadamente rara.,62,img/monitoreo/46_gorrion.webp,Spizella wortheni,"Apoyar monitoreo poblacional","Pronatura","Fragmentación del hábitat, poca visibilidad"
+Pez ángel emperador,Impresionante pez de arrecife muy afectado por el comercio ornamental.,5,img/monitoreo/47_pez.webp,Pomacanthus imperator,"Evitar capturas comerciales","Reef Check","Captura ilegal, degradación del hábitat"
+Tortuga de caja de Indochina,Tortuga terrestre muy afectada por el tráfico internacional.,7,img/monitoreo/48_tortuga.webp,Cuora galbinifrons,"Apoyar santuarios","Asian Turtle Conservation Network","Comercio ilegal, deforestación"
+Pez cirujano de aleta amarilla,Famoso pez de arrecife muy popular y cada vez más escaso.,80,img/monitoreo/49_pez.webp,Zebrasoma flavescens,"Criar en cautiverio, proteger arrecifes","Marine Aquarium Council","Captura excesiva, degradación de hábitat"
+Pez ballesta payaso,Pez de apariencia llamativa cada vez más amenazado.,99,img/monitoreo/50_pez.webp,Balistoides conspicillum,"Proteger arrecifes, evitar comercio ilegal","WWF","Captura para acuarios, turismo agresivo"
+Pez mariposa de bandas de cobre,Pez tropical de arrecifes con patrones llamativos y comportamiento territorial.,38,img/monitoreo/51_pez.webp,Chaetodon auriga,"Proteger arrecifes","Reef Watch","Degradación de hábitat, comercio ornamental"
+Pez león rojo,Pez invasor en algunas regiones pero vulnerable en su hábitat natural.,22,img/monitoreo/52_pez.webp,Pterois volitans,"Control en zonas invadidas, conservación en origen","NOAA","Captura excesiva, tráfico"
+Pez escorpión de aletas voladoras,Pez venenoso de arrecife con aletas llamativas como alas.,89,img/monitoreo/53_pez.webp,Dendrochirus brachypterus,"Evitar pesca incidental","Marine Life Society","Pesca accidental, degradación del hábitat"
+Pez piedra,Pez camuflado muy venenoso difícil de detectar en el fondo marino.,40,img/monitoreo/54_pez.webp,Synanceia verrucosa,"Evitar perturbaciones en arrecifes","Ocean Conservancy","Turismo no regulado, contaminación"
+Ocelote,Felino americano de hábitos nocturnos afectado por la pérdida de selvas.,35,img/monitoreo/55_ocelote.webp,Leopardus pardalis,"Conservar corredores biológicos","Panthera","Deforestación, atropellamientos"
+Zorro de Darwin,Zorro endémico de Chile con pelaje oscuro altamente amenazado.,81,img/monitoreo/56_zorro.webp,Lycalopex fulvipes,"Apoyar vigilancia de áreas protegidas","Fauna Australis","Pérdida de hábitat, enfermedades"
+Gavial del Ganges,Reptil con hocico alargado y delgado especializado en cazar peces.,40,img/monitoreo/57_gavial.webp,Gavialis gangeticus,"Proteger riberas del río Ganges","Wildlife Trust of India","Contaminación, construcción de represas"
+Pez loro azul,Pez tropical que mantiene sanos los arrecifes comiendo algas.,6,img/monitoreo/58_pez.webp,Scarus coeruleus,"Proteger zonas de reproducción","Blue Ocean Institute","Sobrepesca, pérdida de arrecifes"
+Caimán del Orinoco,Reptil de gran tamaño típico de ríos sudamericanos vulnerable por caza.,12,img/monitoreo/59_caiman.webp,Caiman crocodilus,"Fortalecer criaderos","Fundación Omacha","Caza, destrucción de hábitat"
+Tapir malayo,Mamífero grande de Asia con cuerpo negro y blanco muy tímido.,92,img/monitoreo/60_tapir.webp,Tapirus indicus,"Proteger selvas tropicales","Tapir Specialist Group","Pérdida de hábitat, caza furtiva"
+Lobo etíope,Canino africano que vive en zonas montañosas el más raro del mundo.,100,img/monitoreo/61_lobo.webp,Canis simensis,"Fortalecer monitoreo de poblaciones","Born Free Foundation","Fragmentación del hábitat, enfermedades"
+Mofeta moteada pigmea,La mofeta más pequeña del mundo endémica de México y poco estudiada.,9,img/monitoreo/62_mofeta.webp,Spilogale pygmaea,"Estudiar sus poblaciones","UNAM","Pérdida de hábitat, falta de información"
+Tortuga mapa de Barbour,Tortuga acuática con patrones distintivos afectada por tráfico ilegal.,77,img/monitoreo/63_tortuga.webp,Graptemys barbouri,"Regular comercio de mascotas","Turtle Survival Alliance","Captura, contaminación"
+Tiburón duende,Tiburón de aguas profundas con hocico largo y aspecto prehistórico.,31,img/monitoreo/64_tiburon.webp,Mitsukurina owstoni,"Evitar pesca de arrastre","Deep Sea Conservation Coalition","Pesca de profundidad, desconocimiento"
+Iguana azul,Endémica de las Islas Caimán con colores vibrantes, muy amenazada por la captura ilegal.,38,img/monitoreo/65_iguana.webp,Cyclura lewisi,"National Trust for the Cayman Islands","Caza furtiva y destrucción del hábitat"
+Gacela dama,Gacela nativa de África del Norte vulnerable por la caza y la competencia con ganado.,79,img/monitoreo/66_gacela.webp,Nanger dama,"Fomentar áreas de conservación", "Wildlife Conservation Society","Caza ilegal, competencia con ganado"
+Pato eider de Steller,Pato marino vulnerable conocido por su plumaje y su hábito de anidar en acantilados.,30,img/monitoreo/67_pato.webp,Polysticta stelleri,"Monitorear poblaciones de anidación","BirdLife International","Pérdida de hábitat, cambio climático"
+Caballo de Przewalski,Última especie de caballo verdaderamente salvaje amenazada por la caza y la pérdida de hábitat.,100,img/monitoreo/68_caballo.webp,Equus ferus przewalskii,"Reintroducción en la naturaleza","World Wildlife Fund","Pérdida de hábitat, caza"
+Guacamayo de Spix,Conocido como el guacamayo azul extinto en la naturaleza pero con esfuerzos de conservación.,65,img/monitoreo/69_guacamayo.webp,Cyanopsitta spixii,"Reintroducción en la naturaleza","Al-Wabra Wildlife Preservation","Caza ilegal, destrucción del hábitat"
+Gato de Pallas,Felino de las estepas asiáticas muy discreto y con un pelaje denso, amenazado por la caza.,52,img/monitoreo/70_gato.webp,Otocolobus manul,"WWF","Caza, pérdida de hábitat"
+Dugongo,Mamífero marino similar a los manatíes con un bajo índice de reproducción y amenazado por la captura accidental.,26,img/monitoreo/71_dugongo.webp,Dugong dugon,"Protección de zonas marinas","Marine Conservation Society","Pesca incidental, destrucción del hábitat"
+Zorro isleño,Zorro nativo de las Islas Channel muy vulnerable debido a su reducido hábitat.,22,img/monitoreo/72_zorro.webp,Urocyon littoralis,"Proteger áreas insulares","Channel Islands National Park","Predadores invasores, pérdida de hábitat"
+Salamandra de cueva olm,Reptil subterráneo que vive en aguas de cuevas extremadamente raro y vulnerable.,10,img/monitoreo/73_salamandra.webp,Proteus anguinus,"Proteger hábitats subterráneos","Karst Preservation Group","Destrucción de cuevas, contaminación del agua"
+Tortuga gigante de Galápagos,Icono de conservación famosa por su longevidad y tamaño, y en peligro por la caza histórica.,85,img/monitoreo/74_tort.webp,Chelonoidis nigra,"Galápagos Conservancy","Caza furtiva, especies invasoras"
+Pangolín chino,Un mamífero que se protege enrollándose muy amenazado por la caza ilegal para su piel y carne.,36,img/monitoreo/75_pangolin.webp,Manis pentadactyla,"Wildlife Conservation Society","Caza ilegal, tráfico"
+Mariposa monarca,Mariposa migratoria, conocida por su largo viaje anual entre América del Norte y México.,13,img/monitoreo/76_mariposa.webp,Danaus plexippus,"Monarch Butterfly Fund","Pérdida de hábitat, pesticidas"
+Ciervo almizclero,Un ciervo de pequeño tamaño nativo de Asia conocido por el uso de su almizcle en la perfumería.,76,img/monitoreo/77.webp,Moschus moschiferus,"Prohibir la caza para el almizcle","WWF China","Caza furtiva, destrucción del hábitat"
+Gorila de río Cross,Subespecie de gorila extremadamente rara que habita en las selvas de África central.,42,img/monitoreo/78_gorila.webp,Gorilla gorilla diehli,"Conservación de hábitats de montaña","Gorilla Protection Fund","Caza furtiva, enfermedades humanas"
+Cangrejo de los Yeti,Un cangrejo que habita en las profundidades marinas conocido por sus extrañas pinzas cubiertas de pelo.,32,img/monitoreo/79_cangrejo.webp,Kiwa hirsuta,"Monitoreo de hábitats profundos","Oceanic Preservation Society","Pesca profunda, contaminación"
+Cebra de Grévy,Zebra africana que habita áreas secas amenazada por la caza y la competencia con el ganado.,82,img/monitoreo/80_cebra.webp,Equus grevyi,"Fomentar reservas naturales","African Wildlife Foundation","Pérdida de hábitat, competencia con ganado"
+Antílope saiga,Antílope que vive en las estepas de Asia Central vulnerable por la caza y enfermedades.,24,img/monitoreo/81_antilope.webp,Saiga tatarica,"Control de caza furtiva","Saiga Conservation Alliance","Caza, enfermedades"
+Búho nival,Un búho blanco que habita las regiones árticas cuyas poblaciones han disminuido por el cambio climático.,87,img/monitoreo/82.webp,Bubo scandiacus,"Proteger zonas de anidación","BirdLife International","Cambio climático, caza ilegal"
+Águila harpía,Aguía de gran tamaño que habita las selvas tropicales con poblaciones reducidas por la deforestación.,42,img/monitoreo/83_aguila.webp,Harpia harpyja,"Conservar bosques tropicales","WWF","Deforestación, caza"
+Gato andino,Felino salvaje nativo de los Andes vulnerable por la pérdida de hábitat y la caza.,79,img/monitoreo/84_gato.webp,Leopardus jacobita,"Proteger áreas de montaña","WWF","Pérdida de hábitat, caza furtiva"
+Dragón de Komodo,Reptil gigante nativo de Indonesia muy amenazado por la caza y la destrucción de su hábitat.,72,img/monitoreo/85_dragon.webp,Varanus komodoensis,"Proteger su hábitat natural","Komodo Dragon Conservation Program","Caza, pérdida de hábitat"
+Oso panda gigante,Emblemático de la conservación conocido por su dieta exclusiva de bambú, en grave peligro por la destrucción de bosques.,100,img/monitoreo/86_oso.webp,Ailuropoda melanoleuca,"WWF","Pérdida de hábitat, cambio climático"
+Águila filipina,Una de las aves rapaces más grandes del mundo amenazada por la deforestación y la caza ilegal.,38,img/monitoreo/87_aguila.webp,Pithecophaga jefferyi,"Protección de bosques tropicales","Philippine Eagle Foundation","Deforestación, caza ilegal"
+Lobo de crin,Un lobo sudamericano con crin que habita las pampas en grave peligro por la caza y la pérdida de hábitat.,47,img/monitoreo/88.webp,Chrysocyon brachyurus,"Asegurar su hábitat","WWF","Caza ilegal, destrucción de hábitat"
+Pingüino de Galápagos,El único pingüino que vive cerca del ecuador amenazado por el cambio climático y la depredación.,56,img/monitoreo/89.webp,Spheniscus mendiculus,"Protección de hábitats costeros","Galápagos Conservancy","Cambio climático, predadores invasores"
+Buitre egipcio,Ave carroñera que se encuentra en grave peligro debido a la caza y la destrucción de su hábitat.,83,img/monitoreo/90_buitre.webp,Neophron percnopterus,"Proteger áreas de anidación","BirdLife International","Caza, pérdida de hábitat"
+Delfín rosado del Amazonas,Mamífero acuático de color rosado que habita en los ríos del Amazonas, amenazado por la contaminación y la pesca.,100,img/monitoreo/91_delfin.webp,Inia geoffrensis,"WWF Brasil","Contaminación del agua, pesca incidental"
+Periquito de Mauricio,Una especie de loro pequeña que ha estado extinta en la naturaleza, pero se está rehabilitando en cautiverio.,100,img/monitoreo/92.webp,Psittacula echo,"Mauritius Wildlife Foundation","Introducción de especies invasoras"
+Gaviota rosada,Ave costera conocida por su color rosado amenazada por la pérdida de hábitat y la contaminación.,94,img/monitoreo/93_gaviota.webp,Rhodostethia rosea,"Proteger hábitats costeros","BirdLife International","Contaminación, destrucción del hábitat"
+Tortuga laúd,La tortuga marina más grande conocida por sus migraciones y en grave peligro por la caza y la pesca.,81,img/monitoreo/94_tortuga.webp,Dermochelys coriacea,"Proteger playas de anidación","Marine Conservation Group","Pesca incidental, pérdida de hábitat"
+Pez espátula chino,Peces de agua dulce que habitan ríos en China muy amenazados por la sobrepesca y la contaminación.,10,img/monitoreo/95_pez.webp,Psephurus gladius,"Monitorear ríos y pesquerías","WWF China","Pesca excesiva, contaminación"
+Cabra de los Pirineos,Una cabra salvaje de los Pirineos que se extinguió pero cuyo ADN ha sido preservado, hay esfuerzos de resurrección.,97,img/monitoreo/96_cabra.webp,Capra pyrenaica,"WWF España","Caza, pérdida de hábitat"
+Lémur de cola anillada,Especie de lémur conocida por su distintiva cola anillada muy amenazada por la caza y la destrucción del hábitat.,100,img/monitoreo/97_lemur.webp,Lemur catta,"Fortalecer áreas de conservación","WWF Madagascar","Destrucción de hábitat, caza furtiva"
+Mono capuchino de pecho amarillo,Un pequeño primate de América Central vulnerable a la pérdida de hábitat y la caza.,79,img/monitoreo/98_mono.webp,Cebus xanthosternos,"Asegurar protección de bosques","Monkey Conservation Network","Destrucción de hábitat, caza furtiva"
+Gato de arena,Un felino pequeño de las regiones áridas amenazado por la caza furtiva y la destrucción del hábitat.,35,img/monitoreo/99_gato.webp,Felis margarita,"Proteger hábitats áridos","WWF Arabia","Caza, pérdida de hábitat"
+Rana de Darwin,Anfibio endémico de Chile que ha sido recientemente redescubierto amenazado por la destrucción de su hábitat.,96,img/monitoreo/100_rana.webp,Rhinoderma darwinii,"Monitoreo de poblaciones","Darwin's Frog Conservation Group","Destrucción de hábitat, contaminación"
+Lagarto de cola de látigo,Reptil de zonas secas amenazado por la caza y la pérdida de su hábitat natural.,70,img/monitoreo/101_lagarto.webp,Cnemidophorus lemniscatus,"Proteger zonas áridas","Conservation International","Pérdida de hábitat, caza furtiva"
+Ganso nival,Ave migratoria que habita las regiones frías del norte amenazada por el cambio climático y la caza.,14,img/monitoreo/102_ganso.webp,Anser caerulescens,"Proteger áreas de migración","Wildfowl & Wetlands Trust","Cambio climático, caza ilegal"

@@ -28,7 +28,7 @@
   <!-- Mapa de Observaciones -->
   <div class="col-md-6 mb-4">
     <h5 class="text-center">🗺️ Mapa de Observaciones</h5>
-    <div class="map-container border rounded shadow bg-light p-3" style="height: 400px;">
+    <div class="map-container border rounded shadow bg-light p-3" style="height: 400px;" data-nombre-cientifico="{{ nombre_cientifico }}">
       {{ mapa|safe }}
     </div>
   </div>
@@ -54,4 +54,10 @@
     <div class="alert alert-danger">⚠️ Riesgo crítico: extinción en menos de 10 años.</div>
   {% endif %}
 {% endif %}
+
+<hr>
+<h4 class="mt-4">🌱 Cómo puedes ayudar</h4>
+<p><strong>Acciones recomendadas:</strong> {{ acciones_recomendadas }}</p>
+<p><strong>Organizaciones:</strong> {{ organizaciones }}</p>
+<p><strong>Amenazas:</strong> {{ amenazas }}</p>
 {% endblock %}
