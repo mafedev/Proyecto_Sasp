@@ -582,3 +582,18 @@ input[type=number] {
   margin-top: 80px;
   margin-bottom: 30px;
 }
+
+/*CASOS ÉXITO*/
+/* Centrar los botones en las tarjetas */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Asegura que el contenido se distribuya correctamente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  text-align: center; /* Centra el texto dentro del contenedor */
+}
+
+/* Asegura que los botones se alineen de manera adecuada */
+.card-body .btn {
+  margin-top: auto; /* Para que el botón quede al final del contenido */
+}
