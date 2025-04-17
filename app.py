@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 import base64
 from io import BytesIO
+import csv
 
 app = Flask(__name__)
 
@@ -68,6 +69,18 @@ def predecir_año_extincion(df, especie_objetivo):
     plt.close(fig)
 
     return int(año_ext) if año_ext else None, img_b64
+
+def cargar_datos_especie(nombre_especie):
+    with open('c:\\proyecto_especies\\data\\info_especies.csv', encoding='utf-8') as archivo_csv:
+        lector = csv.DictReader(archivo_csv)
+        for fila in lector:
+            if fila['nombre'] == nombre_especie:
+                return {
+                    'nombre_cientifico': fila['descripcion'],
+                    'estado_conservacion': fila['estado'] if fila['estado'] else 'Desconocido',
+                    'imagen_especie': fila['imagen']
+                }
+    return None
 
 # ---------------------- CARGA DE DATOS ----------------------
 
@@ -184,8 +197,9 @@ def especies():
 
 @app.route("/estadisticas/<nombre>")
 def estadisticas(nombre):
-    if nombre not in df_monitor.columns:
-        return f"No hay datos para '{nombre}'", 404
+    datos_especie = cargar_datos_especie(nombre)
+    if not datos_especie:
+        return "Especie no encontrada", 404
 
     año_pred, grafico_b64 = predecir_año_extincion(df_monitor, nombre)
     registros = buscar_en_gbif(nombre)
@@ -195,7 +209,8 @@ def estadisticas(nombre):
                            especie=nombre,
                            año_pred=año_pred,
                            grafico=grafico_b64,
-                           mapa=mapa_html)
+                           mapa=mapa_html,
+                           **datos_especie)
 
 
 # ---------------------- RUN ----------------------
