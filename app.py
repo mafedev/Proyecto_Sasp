@@ -104,6 +104,24 @@ def predecir_año_extincion(df, especie_objetivo):
         print(f"Error en predecir_año_extincion: {e}")
         return None, None
 
+def verificar_tendencia_reciente(df, especie_objetivo):
+    # Verifica si los valores de los últimos 10 años muestran una tendencia ascendente o descendente.
+    try:
+        y = pd.to_numeric(df[especie_objetivo], errors="coerce")
+        if len(y) < 2:
+            return "Datos insuficientes para evaluar la tendencia"
+        
+        # Evaluar la tendencia en los últimos 10 años
+        if y.iloc[-1] > y.iloc[-2]:
+            return "Incremento"
+        elif y.iloc[-1] < y.iloc[-2]:
+            return "Decremento"
+        else:
+            return "Estable"
+    except Exception as e:
+        print(f"Error en verificar_tendencia_reciente: {e}")
+        return "Desconocido"
+
 def cargar_datos_especie(nombre_especie):
     with open('c:\\proyecto_especies\\data\\info_especies.csv', encoding='utf-8') as archivo_csv:
         lector = csv.DictReader(archivo_csv)
@@ -124,7 +142,6 @@ def cargar_datos_especie(nombre_especie):
 # - Se cargan datos de especies en peligro desde un archivo CSV.
 # - Se cargan datos de especies extintas desde un archivo Excel.
 # - Se cargan datos adicionales de especies (como imágenes y descripciones) desde otro archivo CSV.
-
 # - Los datos cargados aquí se utilizan en las rutas de Flask para generar contenido dinámico.
 
 df_monitor = cargar_datos("data/especies_en_peligro.csv")
@@ -147,7 +164,6 @@ info_especies = pd.read_csv("data/info_especies.csv")  # ← contiene imagen, no
 # - "/monitorizar": Página para monitorizar especies en peligro.
 # - "/especies": Página para consultar información de especies específicas.
 # - "/estadisticas/<nombre>": Página para mostrar estadísticas detalladas de una especie.
-
 # - Aquí se definen las rutas de la aplicación web.
 # - Flask maneja las solicitudes HTTP y renderiza plantillas HTML con Jinja2.
 
@@ -191,7 +207,6 @@ def refugios():
 @app.route("/monitorizar", methods=["GET", "POST"])
 def monitorizar():
     especie_seleccionada = request.form.get("especie") or especies_monitor[0]
-
     # Manejar el retorno de predecir_año_extincion correctamente
     resultado_prediccion = predecir_año_extincion(df_monitor, especie_seleccionada)
     if resultado_prediccion is None or not isinstance(resultado_prediccion, tuple):
@@ -219,7 +234,7 @@ def monitorizar():
 
 @app.route("/especies", methods=["GET", "POST"])
 def especies():
-# Renderiza la plantilla "especies.html" y pasa datos dinámicos como:
+    # Renderiza la plantilla "especies.html" y pasa datos dinámicos como:
     # - Información de la especie (`datos_especie`).
     # - Año predicho de extinción (`año_pred`).
     # - Gráfico en base64 (`grafico`).
@@ -271,12 +286,6 @@ def especies():
 
 @app.route("/estadisticas/<nombre>")
 def estadisticas(nombre):
-    # Renderiza la plantilla "estadisticas.html" y pasa datos dinámicos como:
-    # - Nombre de la especie (`especie`).
-    # - Año predicho de extinción (`año_pred`).
-    # - Gráfico en base64 (`grafico`).
-    # - Mapa interactivo (`mapa`).
-    # - Información adicional de la especie (usando `**datos_especie`).
     datos_especie = cargar_datos_especie(nombre)
     if not datos_especie:
         return "Especie no encontrada", 404
@@ -288,15 +297,19 @@ def estadisticas(nombre):
     else:
         año_pred, grafico_b64 = resultado_prediccion
 
+    # Evaluar la tendencia reciente
+    tendencia_reciente = verificar_tendencia_reciente(df_monitor, nombre)
+
     # Buscar observaciones en GBIF y generar el mapa
     registros = buscar_en_gbif(nombre)
-    mapa_html = crear_mapa_html(registros)  # Generar el mapa directamente
+    mapa_html = crear_mapa_html(registros)
 
     return render_template("estadisticas.html",
                            especie=nombre,
                            año_pred=año_pred,
                            grafico=grafico_b64,
                            mapa=mapa_html,
+                           tendencia_reciente=tendencia_reciente,
                            **datos_especie)
 
 # Ejecución de la aplicación Flask en modo debug.
