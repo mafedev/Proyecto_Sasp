@@ -1,76 +1,79 @@
 # Importación de bibliotecas:
-# - Flask: Framework web para crear aplicaciones web en Python.
+
 # - Jinja2: Motor de plantillas integrado en Flask para renderizar HTML dinámico.
-# - Pandas y NumPy: Para manipulación y análisis de datos.
-# - Requests: Para realizar solicitudes HTTP (en este caso, a la API de GBIF).
-# - Folium: Para generar mapas interactivos en HTML.
-# - Matplotlib: Para crear gráficos y visualizaciones.
-# - Scikit-learn (LinearRegression): Para realizar predicciones basadas en modelos de regresión lineal.
-# - Base64 y BytesIO: Para manejar imágenes y gráficos en formato base64.
-# - CSV: Para leer archivos CSV.
 
-from flask import Flask, render_template, request
-import pandas as pd
-import numpy as np
-import requests
-import folium
-import matplotlib
-matplotlib.use("Agg")
+from flask import Flask, render_template, request # Framework web para crear aplicaciones web en Python
+import pandas as pd # Pandas y NumPy: Para manipulación y análisis de datos.
+import numpy as np 
+import requests # Para realizar solicitudes HTTP (en este caso, a la API de GBIF)
+import folium # Folium: Para generar mapas interactivos en HTML
+import matplotlib # Para crear gráficos y visualizaciones
+matplotlib.use("Agg") # Configura matplotlib para no usar la interfaz gráfica, porque da problemas
 import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression
-import base64
-from io import BytesIO
+from sklearn.linear_model import LinearRegression # Regresión lineal para predecir el año de extinción
+import base64 # Para codificar imágenes en base64, es decir, convertir imágenes a texto para poder enviarlas por HTTP
+
+from io import BytesIO # ----- comprobarlo luego
 import csv
+import urllib.parse  # Para codificar correctamente los nombres de las especies
 
-app = Flask(__name__)  # Flask inicializa la aplicación web.
+# Se inicializa la aplicación web
+app = Flask(__name__)
 
-# Funciones personalizadas:
-# - Cargar datos desde archivos CSV y Excel.
-# - Consultar datos de especies en la API de GBIF.
-# - Crear mapas interactivos con marcadores basados en coordenadas.
-# - Realizar predicciones de extinción usando regresión lineal.
-# - Generar gráficos y convertirlos a imágenes en base64.
-
+# FUNCIONES
+# Carga un csv y lo convierte a un dataframe de pandas, establece la columna "Año" como índice
 def cargar_datos(nombre_archivo):
-    df = pd.read_csv(nombre_archivo)
-    df.set_index("Año", inplace=True)
-    return df
+    df = pd.read_csv(nombre_archivo) # Carga el archivo CSV
+    df.set_index("Año", inplace=True) # Establece la columna "Año" como índice
+    return df # Devuelve el dataframe
 
+# Carga un csv, intercambia las filas con las columnas y convierte el índice a entero
 def cargar_datos_extintos(nombre_archivo):
-    df = pd.read_csv(nombre_archivo, index_col=0).T
-    df.index = df.index.astype(int)
+    df = pd.read_csv(nombre_archivo, index_col=0).T # Carga el archivo e intercambia filas y columnas
+    df.index = df.index.astype(int) # Convierte el índice a entero
     return df
 
+# Busca en la API de GBIF usando el nombre científico de la especie y devuelve los resultados
 def buscar_en_gbif(nombre_especie):
-    url = f"https://api.gbif.org/v1/occurrence/search?scientificName={nombre_especie}&limit=50"
+    # Primero intenta buscar el nombre completo usando el parámetro `q` para coincidencias amplias
+    nombre_especie_codificado = urllib.parse.quote(nombre_especie)
+    url = f"https://api.gbif.org/v1/occurrence/search?q={nombre_especie_codificado}&limit=50"
     r = requests.get(url)
     if r.status_code == 200:
-        return r.json().get("results", [])
-    return []
+        resultados = r.json().get("results", [])
+        if resultados:  # Si encuentra resultados con el nombre completo, los devuelve
+            return resultados
 
+    # Si no encuentra resultados, intenta buscar con cada palabra del nombre
+    palabras = nombre_especie.split()
+    for palabra in palabras:
+        nombre_especie_codificado = urllib.parse.quote(palabra)
+        url = f"https://api.gbif.org/v1/occurrence/search?q={nombre_especie_codificado}&limit=50"
+        r = requests.get(url)
+        if r.status_code == 200:
+            resultados = r.json().get("results", [])
+            if resultados:  # Si encuentra resultados con una palabra, los devuelve
+                return resultados
+
+    return []  # Si no encuentra nada, devuelve una lista vacía
+
+# Crea un mapa HTML usando Folium y coloca marcadores para cada observación de la especie
 def crear_mapa_html(observaciones):
-    m = folium.Map(location=[0, 0], zoom_start=2)
-    for obs in observaciones:
-        lat = obs.get("decimalLatitude")
-        lon = obs.get("decimalLongitude")
-        if lat and lon:
-            clima = obtener_datos_climaticos(lat, lon)
-            temp = clima['current']['temp'] if clima else "Desconocido"
+    m = folium.Map(location=[0, 0], zoom_start=3) # Crea un mapa centrado en el ecuador y con un zoom inicial de 3
+    for obs in observaciones: # Itera sobre cada observación
+        lat = obs.get("decimalLatitude") # Obtiene la latitud de la observación
+        lon = obs.get("decimalLongitude") # Obtiene la longitud de la observación
+        if lat and lon: # Verifica si la latitud y longitud son válidas
             folium.Marker(
                 location=[lat, lon],
-                popup=f"País: {obs.get('country', 'Desconocido')}<br>Temperatura: {temp}°C"
+                popup=f"País: {obs.get('country', 'Desconocido')}"
             ).add_to(m)
     return m._repr_html_()
 
-def predecir_año_extincion(df, especie_objetivo, datos_climaticos):
+def predecir_año_extincion(df, especie_objetivo):
     try:
         X = df.index.values.reshape(-1, 1)
         y = pd.to_numeric(df[especie_objetivo], errors="coerce")
-        clima = datos_climaticos.get(especie_objetivo, [])
-
-        # Combinar datos climáticos con años
-        if clima:
-            X = np.hstack((X, np.array(clima).reshape(-1, 1)))
 
         mask = ~np.isnan(y)
         if mask.sum() < 2:
@@ -115,14 +118,6 @@ def cargar_datos_especie(nombre_especie):
                     'organizaciones': fila.get('organizaciones', 'No especificado'),
                     'amenazas': fila.get('amenazas', 'No especificado')
                 }
-    return None
-
-def obtener_datos_climaticos(lat, lon):
-    api_key = "TU_API_KEY"
-    url = f"http://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude=minutely,hourly&appid={api_key}"
-    response = requests.get(url)
-    if response.status_code == 200:
-        return response.json()
     return None
 
 # Carga de datos:
@@ -195,17 +190,10 @@ def refugios():
 
 @app.route("/monitorizar", methods=["GET", "POST"])
 def monitorizar():
-    # Renderiza la plantilla "monitorizar.html" y pasa datos dinámicos como:
-    # - Lista de especies (`especies`).
-    # - Especie seleccionada (`especie`).
-    # - Año predicho de extinción (`año_pred`).
-    # - Gráfico en base64 (`grafico`).
-    # - Mapa interactivo (`mapa`).
-
     especie_seleccionada = request.form.get("especie") or especies_monitor[0]
 
     # Manejar el retorno de predecir_año_extincion correctamente
-    resultado_prediccion = predecir_año_extincion(df_monitor, especie_seleccionada, {})
+    resultado_prediccion = predecir_año_extincion(df_monitor, especie_seleccionada)
     if resultado_prediccion is None or not isinstance(resultado_prediccion, tuple):
         año_pred, grafico_b64 = None, None
     else:
@@ -214,14 +202,13 @@ def monitorizar():
     # Procesar las especies para mostrarlas en las tarjetas
     cards = info_especies.to_dict(orient="records")
     for card in cards:
-        # Validar que las columnas existan y tengan valores válidos
         card['acciones_recomendadas'] = card.get('acciones_recomendadas', 'No especificado')
         card['organizaciones'] = card.get('organizaciones', 'No especificado')
         card['amenazas'] = card.get('amenazas', 'No especificado')
 
     # Generar el mapa de observaciones
     observaciones = buscar_en_gbif(especie_seleccionada)
-    mapa_html = crear_mapa_html(observaciones)
+    mapa_html = crear_mapa_html(observaciones)  # Genera el mapa
 
     return render_template("monitorizar.html",
                            especies=cards,
@@ -295,7 +282,7 @@ def estadisticas(nombre):
         return "Especie no encontrada", 404
 
     # Manejar el retorno de predecir_año_extincion correctamente
-    resultado_prediccion = predecir_año_extincion(df_monitor, nombre, {})
+    resultado_prediccion = predecir_año_extincion(df_monitor, nombre)
     if resultado_prediccion is None or not isinstance(resultado_prediccion, tuple):
         año_pred, grafico_b64 = None, None
     else:
@@ -303,7 +290,7 @@ def estadisticas(nombre):
 
     # Buscar observaciones en GBIF y generar el mapa
     registros = buscar_en_gbif(nombre)
-    mapa_html = crear_mapa_html(registros)
+    mapa_html = crear_mapa_html(registros)  # Generar el mapa directamente
 
     return render_template("estadisticas.html",
                            especie=nombre,
