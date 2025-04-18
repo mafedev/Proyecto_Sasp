@@ -2,70 +2,94 @@
 {% block title %}Estadísticas de {{ especie }}{% endblock %}
 
 {% block content %}
-<h1 class="mb-4 text-center">📊 Estadísticas de {{ especie }}</h1>
+<h1 class="mb-4 text-center">Estadísticas de {{ especie }}</h1>
 
-<div class="row align-items-start mb-4">
-  <!-- Imagen de la especie -->
-  <div class="col-md-4 text-center">
-    <img src="{{ url_for('static', filename=imagen_especie) }}" class="img-fluid rounded shadow" alt="Imagen de {{ especie }}">
-  </div>
-
-  <!-- Datos de la especie -->
-  <div class="col-md-8">
-    <h5>📋 Información de la Especie</h5>
-    <ul class="list-group">
-      <li class="list-group-item">Nombre Científico: <strong>{{ nombre_cientifico }}</strong></li>
-      <li class="list-group-item">Estado de Conservación: <strong>{{ estado_conservacion }}</strong></li>
-      <li class="list-group-item">Hábitat: <strong>{{ habitat }}</strong></li>
-      <li class="list-group-item">Distribución: <strong>{{ distribucion }}</strong></li>
-    </ul>
-  </div>
-</div>
-
-<hr>
-
-<div class="row">
-  <!-- Mapa de Observaciones -->
-  <div class="col-md-6 mb-4">
-    <h5 class="text-center">🗺️ Mapa de Observaciones</h5>
-    <div class="map-container border rounded shadow bg-light p-3" style="height: 400px;" data-nombre-cientifico="{{ nombre_cientifico }}">
-      {{ mapa|safe }}
+<div class="estadisticas">
+  <div class="row align-items-start mb-4">
+    <!-- Imagen de la especie -->
+    <div class="col-12 col-md-4 text-center" id="especie_imagen">
+      <!-- Se carga la imagen desde static con la función url_for; img-fluid es para que la imagen sea responsiva y alt es para el texto que aparece si no carga la imagen -->
+      <img src="{{ url_for('static', filename=imagen_especie) }}" class="img-fluid rounded shadow" alt="Imagen de {{ especie }}">
+    </div>
+  
+    <!-- Datos de la especie -->
+    <div class="col-12 col-md-8">
+      <h5>Información de la Especie</h5>
+      <table class="table table-striped" id="especie_info">
+        <thead>
+          <tr>
+            <th scope="col">Atributo</th>
+            <th scope="col">Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Nombre Científico:</th>
+            <td>{{ nombre_cientifico }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Hábitat:</th>
+            <td>{{ habitat }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Estado:</th>
+            <td>{{ estado }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Amenazas:</th>
+            <td>{{ amenazas }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-
-  <!-- Gráfico de Evolución Poblacional -->
-  <div class="col-md-6 mb-4">
-    <h5 class="text-center">📈 Evolución Poblacional</h5>
-    <div class="d-flex justify-content-center align-items-center border rounded shadow bg-light p-3" style="height: 400px;">
-      {% if grafico %}
-        <img src="data:image/png;base64,{{ grafico }}" class="img-fluid" alt="Gráfico de población">
-      {% else %}
-        <div class="alert alert-secondary text-center mb-0">❌ No se pudo generar el gráfico (datos insuficientes).</div>
-      {% endif %}
-    </div>
-  </div>
-</div>
-
-{% if año_pred %}
+  
+  
   <hr>
-  <h4 class="mt-4">📉 Predicción de Extinción</h4>
-
-  {% if tendencia_reciente and ("incremento" in tendencia_reciente.lower() or "aumento" in tendencia_reciente.lower()) %}
-    <div class="alert alert-success">
-      🌿 En los últimos años, la especie ha mostrado un aumento significativo en su población.
-      Por lo tanto, no es certero indicar un año de extinción. ¡Esperamos que esta especie logre salvarse! 💚
+  
+  <div class="row">
+    <!-- Mapa de Observaciones -->
+    <div class="col-md-6 mb-4">
+      <h5 class="text-center">🗺️ Mapa de Observaciones</h5>
+      <div class="map-container border rounded shadow bg-light p-3" style="height: 400px;" data-nombre-cientifico="{{ nombre_cientifico }}">
+        {{ mapa|safe }}
+      </div>
     </div>
-  {% else %}
-    <p>🧠 Posible extinción en el año: <strong>{{ año_pred }}</strong></p>
-    {% if año_pred - 2024 <= 10 %}
-      <div class="alert alert-danger">⚠️ Riesgo crítico: extinción en menos de 10 años.</div>
+  
+    <!-- Gráfico de Evolución Poblacional -->
+    <div class="col-md-6 mb-4">
+      <h5 class="text-center">📈 Evolución Poblacional</h5>
+      <div class="d-flex justify-content-center align-items-center border rounded shadow bg-light p-3" style="height: 400px;">
+        {% if grafico %}
+          <img src="data:image/png;base64,{{ grafico }}" class="img-fluid" alt="Gráfico de población">
+        {% else %}
+          <div class="alert alert-secondary text-center mb-0">❌ No se pudo generar el gráfico (datos insuficientes).</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  
+  {% if año_pred %}
+    <hr>
+    <h4 class="mt-4">📉 Predicción de Extinción</h4>
+  
+    {% if tendencia_reciente and ("incremento" in tendencia_reciente.lower() or "aumento" in tendencia_reciente.lower()) %}
+      <div class="alert alert-success">
+        🌿 En los últimos años, la especie ha mostrado un aumento significativo en su población.
+        Por lo tanto, no es certero indicar un año de extinción. ¡Esperamos que esta especie logre salvarse! 💚
+      </div>
+    {% else %}
+      <p>🧠 Posible extinción en el año: <strong>{{ año_pred }}</strong></p>
+      {% if año_pred - 2024 <= 10 %}
+        <div class="alert alert-danger">⚠️ Riesgo crítico: extinción en menos de 10 años.</div>
+      {% endif %}
     {% endif %}
   {% endif %}
-{% endif %}
-
-<hr>
-<h4 class="mt-4">🌱 Cómo puedes ayudar</h4>
-<p><strong>Acciones recomendadas:</strong> {{ acciones_recomendadas }}</p>
-<p><strong>Organizaciones:</strong> {{ organizaciones }}</p>
-<p><strong>Amenazas:</strong> {{ amenazas }}</p>
+  
+  <hr>
+  <h4 class="mt-4">🌱 Cómo puedes ayudar</h4>
+  <p><strong>Acciones recomendadas:</strong> {{ acciones_recomendadas }}</p>
+  <p><strong>Organizaciones:</strong> {{ organizaciones }}</p>
+  <p><strong>Amenazas:</strong> {{ amenazas }}</p>
+</div>
 {% endblock %}
