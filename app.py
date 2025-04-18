@@ -10,7 +10,6 @@ import folium # Folium: Para generar mapas interactivos en HTML
 import matplotlib # Para crear gráficos y visualizaciones
 matplotlib.use("Agg") # Configura matplotlib para no usar la interfaz gráfica, porque da problemas
 import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression # Regresión lineal para predecir el año de extinción
 import base64 # Para codificar imágenes en base64, es decir, convertir imágenes a texto para poder enviarlas por HTTP
 
 from io import BytesIO # ----- comprobarlo luego
@@ -70,57 +69,100 @@ def crear_mapa_html(observaciones):
             ).add_to(m)
     return m._repr_html_()
 
-def predecir_año_extincion(df, especie_objetivo):
+def predecir_año_extincion(df, especie):
     try:
-        X = df.index.values.reshape(-1, 1)
-        y = pd.to_numeric(df[especie_objetivo], errors="coerce")
+        # Obtener años y población como arrays numéricos
+        anios = df.index.values.astype(float)
+        poblacion = pd.to_numeric(df[especie], errors="coerce").values
 
-        mask = ~np.isnan(y)
-        if mask.sum() < 2:
+        # Eliminar valores nulos
+        datos_validos = ~np.isnan(poblacion)
+        anios = anios[datos_validos]
+        poblacion = poblacion[datos_validos]
+
+        if len(anios) < 2:
             return None, None
 
-        model = LinearRegression().fit(X[mask], y[mask])
-        año_ext = -model.intercept_ / model.coef_[0] if model.coef_[0] != 0 else None
+        # Calcular promedios
+        promedio_anios = np.mean(anios)
+        promedio_poblacion = np.mean(poblacion)
 
-        # Generar el gráfico
+        # Calcular pendiente (a) e intercepto (b) de la recta
+        numerador = np.sum((anios - promedio_anios) * (poblacion - promedio_poblacion))
+        denominador = np.sum((anios - promedio_anios) ** 2)
+
+        if denominador == 0:
+            return None, None
+
+        pendiente = numerador / denominador
+        intercepto = promedio_poblacion - pendiente * promedio_anios
+
+        # Predecir año en que la población será 0
+        if pendiente == 0:
+            return None, None
+
+        anio_extincion = -intercepto / pendiente
+
+        # Crear el gráfico
         fig, ax = plt.subplots(figsize=(8, 4))
-        ax.scatter(df.index, y, color='orange', label=especie_objetivo)
-        if año_ext:
-            y_pred = model.predict(X)
-            ax.plot(df.index, y_pred, linestyle="--", color="blue", label="Tendencia")
+        ax.scatter(anios, poblacion, color='orange', label=especie)
+
+        if anio_extincion:
+            poblacion_estim = pendiente * anios + intercepto
+            ax.plot(anios, poblacion_estim, linestyle="--", color="blue", label="Tendencia")
             ax.legend()
             ax.set_xlabel("Año")
             ax.set_ylabel("Población estimada")
             ax.grid()
 
-        buf = BytesIO()
-        fig.savefig(buf, format="png")
-        buf.seek(0)
-        img_b64 = base64.b64encode(buf.read()).decode("utf-8")
+        # Convertir el gráfico a imagen base64
+        buffer = BytesIO()
+        fig.savefig(buffer, format="png")
+        buffer.seek(0)
+        imagen_base64 = base64.b64encode(buffer.read()).decode("utf-8")
         plt.close(fig)
 
-        return int(año_ext) if año_ext else None, img_b64
-    except Exception as e:
-        print(f"Error en predecir_año_extincion: {e}")
+        return int(anio_extincion) if anio_extincion > 0 else None, imagen_base64
+
+    except Exception as error:
+        print(f"Error en predecir_anio_extincion: {error}")
         return None, None
 
-def verificar_tendencia_reciente(df, especie_objetivo):
-    # Verifica si los valores de los últimos 10 años muestran una tendencia ascendente o descendente.
+
+def verificar_tendencia_reciente(df, especie):
     try:
-        y = pd.to_numeric(df[especie_objetivo], errors="coerce")
-        if len(y) < 2:
-            return "Datos insuficientes para evaluar la tendencia"
-        
-        # Evaluar la tendencia en los últimos 10 años
-        if y.iloc[-1] > y.iloc[-2]:
+        # Convertir a números y eliminar valores nulos
+        datos = df[especie].astype(float).dropna()
+
+        if len(datos) < 10:
+            return "No hay suficientes datos para evaluar 10 años"
+
+        # Tomar los últimos 10 datos
+        ultimos = datos[-10:]
+
+        # Crear valores para X (años ficticios del 0 al 9)
+        x = np.arange(len(ultimos))
+        y = ultimos.values
+
+        # Calcular regresión lineal manual
+        x_mean = np.mean(x)
+        y_mean = np.mean(y)
+        numerador = np.sum((x - x_mean) * (y - y_mean))
+        denominador = np.sum((x - x_mean) ** 2)
+        pendiente = numerador / denominador if denominador != 0 else 0
+
+        # Evaluar la tendencia
+        if pendiente > 0:
             return "Incremento"
-        elif y.iloc[-1] < y.iloc[-2]:
+        elif pendiente < 0:
             return "Decremento"
         else:
             return "Estable"
-    except Exception as e:
-        print(f"Error en verificar_tendencia_reciente: {e}")
-        return "Desconocido"
+
+    except:
+        return "Error en los datos"
+
+
 
 def cargar_datos_especie(nombre_especie):
     with open('c:\\proyecto_especies\\data\\info_especies.csv', encoding='utf-8') as archivo_csv:
@@ -234,11 +276,6 @@ def monitorizar():
 
 @app.route("/especies", methods=["GET", "POST"])
 def especies():
-    # Renderiza la plantilla "especies.html" y pasa datos dinámicos como:
-    # - Información de la especie (`datos_especie`).
-    # - Año predicho de extinción (`año_pred`).
-    # - Gráfico en base64 (`grafico`).
-    # - Mapa interactivo (`mapa`).
     especie = request.form.get("especie")
     datos_especie = None
     mapa_html = None
@@ -253,16 +290,29 @@ def especies():
         if not df_fila.empty:
             fila = df_fila.iloc[0]
             y = pd.to_numeric(fila[1:].values, errors="coerce")
-            X = años_excel.values.reshape(-1, 1)
+            x = años_excel.values.astype(float)
             mask = ~np.isnan(y)
+            x = x[mask]
+            y = y[mask]
 
-            if mask.sum() >= 2:
-                modelo = LinearRegression().fit(X[mask], y[mask])
-                año_ext = -modelo.intercept_ / modelo.coef_[0] if modelo.coef_[0] != 0 else None
+            if len(x) >= 2:
+                # Calcular regresión lineal manualmente
+                x_mean = np.mean(x)
+                y_mean = np.mean(y)
+                numerador = np.sum((x - x_mean) * (y - y_mean))
+                denominador = np.sum((x - x_mean) ** 2)
+                pendiente = numerador / denominador if denominador != 0 else 0
+                intercepto = y_mean - pendiente * x_mean
+
+                año_ext = -intercepto / pendiente if pendiente != 0 else None
 
                 fig, ax = plt.subplots(figsize=(8, 4))
-                ax.scatter(años_excel, y, color='orange', label=especie)
-                ax.plot(años_excel, modelo.predict(X), linestyle="--", color="blue")
+                ax.scatter(x, y, color='orange', label=especie)
+
+                # Dibujar línea de tendencia
+                y_pred = pendiente * x + intercepto
+                ax.plot(x, y_pred, linestyle="--", color="blue", label="Tendencia")
+
                 ax.set_xlabel("Año")
                 ax.set_ylabel("Población")
                 ax.set_title("Evolución poblacional")
