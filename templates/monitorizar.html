@@ -2,27 +2,25 @@
 {% block title %}Monitorización{% endblock %}
 
 {% block content %}
-
 <h2 class="mb-4">Especies Monitorizadas</h2>
-<div class="row mb-5">
-  {% for especie in especies %}
-    <div class="col-md-4 mb-4">
-      <div class="card h-100 shadow-sm">
+<div class="row mb-5"> <!-- Fila con tres columnas -->
+  {% for especie in especies %} <!-- Itera sobre cada especie en el archivo csv -->
+    <div class="col-md-4 mb-4"> 
+      <div class="card h-100 shadow-sm"> <!-- Crea la tarjeta para cada especie -->
+        <!--Coloca la imagen de la especie
+            Donde url_for es una función de Flask, que genera la ruta del archivo en la carpeta estática (static),
+            usando el nombre de archivo contenido en especie.imagen (extraído del CSV)
+            La imagen se ajusta a un tamaño de 220px de alto y se recorta para que no se deforme-->
         <img src="{{ url_for('static', filename=especie.imagen) }}" class="card-img-top" alt="{{ especie.nombre }}" style="height: 220px; object-fit: cover;">
         <div class="card-body">
-          <h5 class="card-title">{{ especie.nombre }}</h5>
-          <p><strong>Población:</strong> {{ especie.poblacion }}</p>
-          <p><strong>Estado:</strong> {{ especie.estado }}</p>
-          {% if especie.descripcion %}
-            <p class="card-text">{{ especie.descripcion }}</p>
-          {% endif %}
-          <p><strong>Acciones:</strong> {{ especie.acciones_recomendadas }}</p>
-          <p><strong>Organizaciones:</strong> {{ especie.organizaciones }}</p>
-          <p><strong>Amenazas:</strong> {{ especie.amenazas }}</p>
+          <h5 class="card-title">{{ especie.nombre }}</h5> <!-- Muestra el nombre de la especie con especie.nombre, también del CSV -->
+          <p class="card-text">{{ especie.descripcion }}</p> <!-- Muestra la descripción de la especie con especie.descripcion, también del CSV -->
+          <!-- El botón "Ver estadísticas" redirige a la ruta /estadisticas con el nombre de la especie como parámetro,
+               cuando se hace clic en el botón, se accede a la página de estadísticas de esa especie -->
           <a href="{{ url_for('estadisticas', nombre=especie.nombre) }}" class="btn btn-outline-success">Ver estadísticas</a>
         </div>
       </div>
     </div>
-  {% endfor %}
+  {% endfor %} <!-- Termina el bucle -->
 </div>
-{% endblock %}
+{% endblock %} <!-- Termina el bloque de contenido -->
