@@ -1,7 +1,8 @@
 /*
+COLORES
+
   TONOS VERDE
     Verde oscuro: #2c6e40
-    
     Verde musgo: #5a7b3b
     Verde musgo 2: #6B8E23
     Verde lima: #A8E05E
@@ -15,7 +16,7 @@
     Verde jungla: #006400
     Verde lima brillante: #32CD32
     
-    TONOS MARRÓN
+  TONOS MARRÓN
     Marrón arena: #D2B48C
     Marrón madera: #8B4513
     Marrón suave: #9e7e46
@@ -28,7 +29,7 @@
     Marrón terracota: #E27D60
     Beige claro: #F5F5DC // Café verdoso
     
-    TONOS GRIS
+  TONOS GRIS
     Gris cálido: #8e8d8a
     Gris oscuro: #4d4d4d
     Gris muy claro: #f3f3f3
@@ -44,12 +45,12 @@
     Amarillo sol: #FFD700
     Amarillo limón: #FFF700
     
-    TONOS ROJO
+  TONOS ROJO
     Rojo tomate: #FF6347
     Rojo coral: #e64a42
     Rojo flor tropical: #FF6347
     
-    TONOS AZUL
+  TONOS AZUL
     Verde pino oscuro: #2F4F4F //Oscuro
     Verde pino: #01796F
     Verde claro: #b4dcb3
@@ -62,135 +63,20 @@
     Verde agua: #40E0D0
     Azul glacial: #5F9EA0
     
-    TONOS BLANCO
+  TONOS BLANCO
     Blanco roto: #f0f0f0
     Blanco nieve: #FFFAFA
     Blanco niebla: #F5F5F5
 */
 
-/* ============================ */
-/* GENERAL */
+/* ---------- GENERAL ---------- */
+
 body {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   background-color: #8A9A5B;
 }
 
-/* ============================ */
-/* CARROUSEL */
-
-
-#eco-carousel {
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-}
-
-.swiper {
-  height: 100%;
-}
-
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-.swiper-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.eco-caption {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  text-align: center;
-  text-shadow: 2px 2px 8px black;
-  z-index: 10;
-}
-
-#textito {
-  font-size: 50px;
-}
-
-/* ============================ */
-/* NAVBAR */
-.navbar {
-  background-color: #9e7e46;
-  padding: 10px; /* Espacio interno */
-}
-
-/* Nombre de la app */
-.navbar-brand {
-  color: #5a7b3b;
-}
-
-/* ============================ */
-/* NOTICIAS */
-#noticias {
-  background-color: #F5F5DC; /* Beige claro */
-}
-
-#noticias .row {
-  display: flex; /* Asegura que las columnas se comporten como flex containers */
-}
-
-#noticias .col-md-6 {
-  display: flex;
-  align-items: center; /* Centra verticalmente el contenido de las columnas */
-}
-
-#noticias .col-md-6:first-child {
-  justify-content: center; /* Centra el contenido verticalmente en la columna izquierda */
-  text-align: left; /* Alinea el texto de la columna izquierda a la izquierda */
-}
-
-#noticias .col-md-6 .w-100 {
-  text-align: left;
-}
-
-#noticias .col-md-6 p {
-  font-size: 1.2rem;
-  font-family: 'Arial', sans-serif;
-  color: #333;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  text-align: left;
-}
-
-#noticias .col-md-6 .card img {
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-#noticias .col-md-6 .card-title {
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-#noticias .col-md-6 .btn {
-  display: block;
-  margin: 20px auto 0;
-  font-size: 1rem;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease;
-}
-
-#noticias .col-md-6 .btn:hover {
-  background-color: #0056b3;
-}
-
-/* ============================ */
-/* FOOTER */
+/* ---------- FOOTER ---------- */
 section.footer {
   background-color: #f8f9fa;
   padding-top: 40px;
@@ -237,61 +123,45 @@ section.footer {
   height: auto;
 }
 
-/* ============================ */
-/* ENLACES */
-ul.list-unstyled li a {
-  color: #007bff;
-  text-decoration: none;
-  transition: color 0.3s ease;
+/* ---------- CARROUSEL INDEX ---------- */
+#eco-carousel {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
-ul.list-unstyled li a:hover {
-  color: #0056b3;
+.swiper {
+  height: 100%;
 }
 
-/* ============================ */
-/* TITULOS */
-h3.fw-bold {
-  font-weight: bold;
-  font-size: 1.5rem;
-  color: #343a40;
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-h3.fs-1 {
-  font-size: 1.75rem;
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* ============================ */
-/* LISTAS */
-li.my-3 {
-  margin-bottom: 0.75rem;
+.eco-caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  text-shadow: 2px 2px 8px black;
+  z-index: 10;
 }
 
-/* ============================ */
-/* ETIQUETAS */
-.bg-success {
-  background-color: #28a745 !important;
+#textito {
+  font-size: 50px;
 }
 
-.text-dark {
-  color: #343a40 !important;
-}
-
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-
-.px-2 {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-
-.rounded-2 {
-  border-radius: 0.25rem;
-}
-
-/* ============================ */
 /* CAROUSEL CAPTION */
 .carousel-caption {
   position: absolute;
@@ -367,6 +237,133 @@ button.btn-outline-success:active img {
 #iconos {
   background-color: #F5F5DC;
 }
+
+
+/* ---------- NAVBAR  ---------- */
+.navbar {
+  background-color: #9e7e46;
+  padding: 10px; /* Espacio interno */
+}
+
+/* Nombre de la app */
+.navbar-brand {
+  color: #5a7b3b;
+}
+
+/* ---------- NOTICIAS ---------- */
+#noticias {
+  background-color: #F5F5DC; /* Beige claro */
+}
+
+#noticias .row {
+  display: flex;
+}
+
+#noticias .col-md-6 {
+  display: flex;
+  align-items: center; /* Centra verticalmente el contenido de las columnas */
+}
+
+#noticias .col-md-6:first-child {
+  justify-content: center;
+  text-align: left;
+}
+
+#noticias .col-md-6 .w-100 {
+  text-align: left;
+}
+
+#noticias .col-md-6 p {
+  font-size: 1.2rem;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+#noticias .col-md-6 .card img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+#noticias .col-md-6 .card-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+#noticias .col-md-6 .btn {
+  display: block;
+  margin: 20px auto 0;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+#noticias .col-md-6 .btn:hover {
+  background-color: #0056b3;
+}
+
+/* ============================ */
+/* ENLACES */
+ul.list-unstyled li a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+ul.list-unstyled li a:hover {
+  color: #0056b3;
+}
+
+/* ============================ */
+/* TITULOS */
+h3.fw-bold {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #343a40;
+}
+
+h3.fs-1 {
+  font-size: 1.75rem;
+}
+
+/* ============================ */
+/* LISTAS */
+li.my-3 {
+  margin-bottom: 0.75rem;
+}
+
+/* ============================ */
+/* ETIQUETAS */
+.bg-success {
+  background-color: #28a745 !important;
+}
+
+.text-dark {
+  color: #343a40 !important;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.rounded-2 {
+  border-radius: 0.25rem;
+}
+
+
 
 
 /* HUELLA CARBONO */
@@ -535,7 +532,6 @@ input[type=number] {
 }
 
 #encabezado_refugios{
-  margin-top: 50px;
   overflow-x: hidden;
 }
 
@@ -577,17 +573,22 @@ input[type=number] {
   border-radius: 50%;
 }
 
-/* GALERÍA */
-#cont_galeria {
-  margin-top: 80px;
-  margin-bottom: 30px;
-}
-
-/*CASOS ÉXITO*/
 #cards_casos .card {
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* Asegura que el contenido se distribuya correctamente */
   align-items: center; /* Centra los elementos horizontalmente */
   text-align: center; /* Centra el texto dentro del contenedor */
+}
+
+#timeline {
+  background-color: #f0f8ff; /* Azul claro, puedes cambiarlo */
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+/* GALERÍA */
+#cont_galeria {
+  margin-top: 80px;
+  margin-bottom: 30px;
 }
