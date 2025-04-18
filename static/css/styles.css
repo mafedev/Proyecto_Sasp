@@ -592,3 +592,34 @@ input[type=number] {
   margin-top: 80px;
   margin-bottom: 30px;
 }
+
+/* ESTADÍSTICAS */
+.estadisticas {
+  margin: 20px !important;
+}
+
+/* TABLA */
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse; /* Asegura que las celdas no tengan espacio entre ellas */
+  background-color: #FFFFFF; /* Blanco */
+  border: 1px solid #8A9A5B; /* Verde musgo pálido */
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.table th {
+  background-color: #556B2F; /* Verde oliva */
+  color: white;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #F5F5DC; /* Beige claro */
+}
