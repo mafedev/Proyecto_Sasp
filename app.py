@@ -163,7 +163,6 @@ def verificar_tendencia_reciente(df, especie):
         return "Error en los datos"
 
 
-
 def cargar_datos_especie(nombre_especie):
     with open('c:\\proyecto_especies\\data\\info_especies.csv', encoding='utf-8') as archivo_csv:
         lector = csv.DictReader(archivo_csv)

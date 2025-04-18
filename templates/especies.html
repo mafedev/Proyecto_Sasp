@@ -1,3 +1,8 @@
+{% extends "layout.html" %}
+{% block title %}Especies{% endblock %}
+
+{% block content %}
+
 <h2>🔍 Búsqueda de Especies</h2>
 <form method="post">
   <input type="text" name="especie" placeholder="Ej: Panthera onca" value="{{ especie or '' }}">
@@ -20,3 +25,4 @@
     <div>{{ mapa|safe }}</div>
   {% endif %}
 {% endif %}
+{% endblock %}
