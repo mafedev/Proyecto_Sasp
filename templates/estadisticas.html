@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} 
 {% block title %}Estadísticas de {{ especie }}{% endblock %}
 
 {% block content %}
@@ -49,9 +49,17 @@
 {% if año_pred %}
   <hr>
   <h4 class="mt-4">📉 Predicción de Extinción</h4>
-  <p>🧠 Posible extinción en el año: <strong>{{ año_pred }}</strong></p>
-  {% if año_pred - 2024 <= 10 %}
-    <div class="alert alert-danger">⚠️ Riesgo crítico: extinción en menos de 10 años.</div>
+
+  {% if tendencia_reciente and ("incremento" in tendencia_reciente.lower() or "aumento" in tendencia_reciente.lower()) %}
+    <div class="alert alert-success">
+      🌿 En los últimos años, la especie ha mostrado un aumento significativo en su población.
+      Por lo tanto, no es certero indicar un año de extinción. ¡Esperamos que esta especie logre salvarse! 💚
+    </div>
+  {% else %}
+    <p>🧠 Posible extinción en el año: <strong>{{ año_pred }}</strong></p>
+    {% if año_pred - 2024 <= 10 %}
+      <div class="alert alert-danger">⚠️ Riesgo crítico: extinción en menos de 10 años.</div>
+    {% endif %}
   {% endif %}
 {% endif %}
 
