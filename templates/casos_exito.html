@@ -1,21 +1,21 @@
-{% extends "layout.html" %} <!-- Esto incluye el layout base que contiene la barra de navegación y el contenedor principal. -->
-{% block title %}Casos éxito{% endblock %} <!-- Esto establece el título de la página. -->
+{% extends "layout.html" %} <!-- Esto incluye el layout base que contiene la barra de navegación y el contenedor principal -->
+{% block title %}Casos éxito{% endblock %} <!-- Esto establece el título de la página -->
 
-{% block content %} <!-- Se inicia el bloque de contenido que se sobreescribirá en la plantilla base. -->
+{% block content %} <!-- Se inicia el bloque de contenido que se sobreescribirá en la plantilla base -->
 
 <!-- SECCIÓN PRINCIPAL -->
-<section id="casos-salvados" class="py-5">
+<section id="casos_salvados" class="py-5">
   <div class="container">
       <h2 class="text-center mb-4">Casos de Especies Salvadas de la Extinción</h2>
-      <div id="cards_casos" class="row justify-content-center"> <!-- ID añadido y clases para centrar -->
+      <div id="cards_casos" class="row justify-content-center">
           <!-- Card: Panda Gigante -->
           <div class="col-md-4 mb-4">
-              <div class="card h-100">
+              <div class="card h-100"> <!-- h-100 es para que todas las tarjetas tengan la misma altura -->
                   <img src="/static/img/casos_exito/panda.jpg" class="card-img-top" alt="Panda Gigante">
-                  <div class="card-body">
+                  <div class="card-body"> <!-- Contenido de la tarjeta -->
                       <h5 class="card-title">Panda Gigante</h5>
                       <p class="card-text">Gracias a los esfuerzos de China en restauración de hábitats y cría en cautiverio.</p>
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPanda">
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPanda"> <!-- Botón para abrir el modal -->
                           Ver más información
                       </button>
                   </div>
@@ -95,8 +95,141 @@
   </div>
 </section>
 
+<!-- Modales de información detallada, es la información que aparece al dar clic en el botón -->
+  <!-- Modal Panda Gigante -->
+  <div class="modal fade" id="modalPanda" aria-labelledby="modalPandaLabel" aria-hidden="true"> <!-- aria-labelledby es para la accesibilidad, aria-hidden indica que el modal está oculto inicialmente -->
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalPandaLabel">Panda Gigante - Detalles de conservación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Gracias a los esfuerzos de China, la restauración de hábitats y la cría en cautiverio han permitido aumentar la población de panda gigante.
+          </p>
+          <p><strong>Acciones clave:</strong> Restauración de bosques de bambú, protección de áreas de cría y programas de reproducción en cautiverio.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button> <!-- Botón para cerrar el modal -->
+        </div>
+      </div>
+    </div>
+  </div>
 
-<!-- TIMELINE -->
+  <!-- Modal Rinoceronte Blanco -->
+  <div class="modal fade" id="modalRinoceronte" aria-labelledby="modalRinoceronteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalRinoceronteLabel">Rinoceronte Blanco - Detalles de conservación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Gracias a las reservas naturales y las patrullas anti-caza furtiva en África, la población del rinoceronte blanco se ha estabilizado.
+          </p>
+          <p><strong>Estrategias clave:</strong> Control del tráfico ilegal, monitorización de hábitats y cooperación internacional.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Cóndor de California -->
+  <div class="modal fade" id="modalCondor" aria-labelledby="modalCondorLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCondorLabel">Cóndor de California - Detalles de conservación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            A través de la cría en cautiverio y protección aérea, el cóndor de California ha logrado una recuperación significativa desde los años 80.
+          </p>
+          <p><strong>Acciones clave:</strong> Cría en cautiverio, liberación controlada y monitoreo por satélite.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Ballena Jorobada -->
+  <div class="modal fade" id="modalBallena" aria-labelledby="modalBallenaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalBallenaLabel">Ballena Jorobada - Detalles de conservación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            La ballena jorobada ha mostrado una recuperación notable gracias a la protección internacional desde 1966.
+          </p>
+          <p><strong>Acciones clave:</strong> Moratoria en la caza comercial y protección de hábitats marinos.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Lobo Gris -->
+  <div class="modal fade" id="modalLobo" aria-labelledby="modalLoboLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLoboLabel">Lobo Gris - Detalles de conservación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            El lobo gris ha sido reintroducido con éxito en parques nacionales como Yellowstone, lo que ha resultado en la recuperación de los ecosistemas.
+          </p>
+          <p><strong>Acciones clave:</strong> Programas de reintroducción, protección de hábitats y manejo de ecosistemas.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Bisonte Europeo -->
+  <div class="modal fade" id="modalBisonte" aria-labelledby="modalBisonteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalBisonteLabel">Bisonte Europeo - Detalles de conservación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            El bisonte europeo ha sido reintroducido exitosamente en varias áreas de Europa del Este después de haber estado cerca de la extinción.
+          </p>
+          <p><strong>Acciones clave:</strong> Reintroducción en la naturaleza, protección de hábitats y programas de conservación.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LÍNEA DEL TIEMPO -->
 <div class="container my-5" id="timeline">
   <h2 class="text-center mb-4">Historias de Recuperación</h2>
   <div class="timeline">
@@ -126,13 +259,13 @@
     
     <!-- Tortuga Carey -->
     <div class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-          Tortuga Carey
+      <h2 class="accordion-header" id="headingOne"> 
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"> <!-- Botón para abrir el acordeón -->
+          Tortuga Carey <!-- Texto que aparece en el botón del acordeón -->
         </button>
       </h2>
-      <div id="collapseOne" class="accordion-collapse collapse show">
-        <div class="accordion-body">
+      <div id="collapseOne" class="accordion-collapse collapse show"> <!-- El primer acordeón está abierto por defecto -->
+        <div class="accordion-body"> <!-- Contenido del acordeón -->
           La tortuga carey (<em>Eretmochelys imbricata</em>) es una especie de tortuga marina críticamente amenazada. Su caparazón, de colores vivos y patrones únicos, ha sido muy codiciado en el mercado ilegal para la fabricación de joyas y artesanías.<br><br>
           <strong>Hábitat:</strong> Arrecifes de coral, lagunas costeras y playas tropicales.<br>
           <strong>Amenazas:</strong> Caza furtiva, destrucción del hábitat, contaminación marina y cambio climático.<br>
@@ -180,6 +313,5 @@
 
   </div>
 </div>
-
 
 {% endblock %} <!-- Se cierra el bloque de contenido. -->
