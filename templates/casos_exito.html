@@ -4,10 +4,10 @@
 {% block content %} <!-- Se inicia el bloque de contenido que se sobreescribirá en la plantilla base -->
 
 <!-- SECCIÓN PRINCIPAL -->
-<section id="casos_salvados" class="py-5">
+<section id="casos_salvados">
+  <h2 class="text-center mb-5">Casos de Especies Salvadas de la Extinción</h2>
   <div class="container">
-      <h2 class="text-center mb-4">Casos de Especies Salvadas de la Extinción</h2>
-      <div id="cards_casos" class="row justify-content-center">
+      <div id="cards_casos" class="row justify-content-center my-4">
           <!-- Card: Panda Gigante -->
           <div class="col-md-4 mb-4">
               <div class="card h-100"> <!-- h-100 es para que todas las tarjetas tengan la misma altura -->
@@ -253,9 +253,9 @@
 </div>
 
 <!-- ACORDEÓN DE MÁS ESPECIES -->
-<div class="container my-5">
-  <h2 class="text-center mb-4">Otras Especies Rescatadas</h2>
-  <div class="accordion" id="especiesRescatadas">
+<div class="container-fluid"  id="especiesRescatadas">
+  <h2 class="text-center mb-4" style="color: white">Otras Especies Rescatadas</h2>
+  <div class="accordion">
     
     <!-- Tortuga Carey -->
     <div class="accordion-item">
@@ -300,7 +300,7 @@
           Buitre Quebrantahuesos
         </button>
       </h2>
-      <div id="collapseThree" class="accordion-collapse collapse">
+      <div id="collapseThree" class="accordion-collapse collapse mb-0">
         <div class="accordion-body">
           El buitre quebrantahuesos (<em>Gypaetus barbatus</em>) es una de las aves más impresionantes de Europa, conocida por su técnica única de alimentación: lanza huesos desde gran altura para romperlos y comerse la médula.<br><br>
           <strong>Hábitat:</strong> Zonas montañosas escarpadas, principalmente en los Pirineos, los Alpes y partes de Asia.<br>
@@ -310,7 +310,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
