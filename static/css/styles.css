@@ -1,5 +1,3 @@
-
-
 /* HUELLA CARBONO */
 .imagen-redondeada {
   width: 100%;
@@ -101,35 +99,17 @@ input[type=number] {
 }
 
 .fondo_formulario{
-  background-color: #4d4d4d;
+  background-color: var(--marron-madera);
 }
-
 
 /* REFUGIOS */
 #mapas {
-  background-color: #F5F5DC; /* Beige claro */
+  background-color: var(--verde-claro); /* Beige claro */
 }
 
-#encabezado_refugios{
-  overflow-x: hidden;
+#areas_protegidas {
+  background-color: var(--verde-pino);
 }
-
-
-/* Íconos index*/
-#iconos .col-lg-4 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centra los iconos dentro de cada columna */
-  align-items: center; /* Centra el contenido dentro de la columna */
-  text-align: center; /* Centra el texto */
-}
-
-/* Efecto hover para las imágenes */
-.icon-button:hover .icon-img {
-  transform: scale(1.1); /* Aumenta el tamaño de la imagen un 10% */
-  transition: transform 0.2s; /* Hace que el cambio de tamaño sea suave en 0.2 segundos */
-}
-
 
 /* CASOS*/
 .timeline {
@@ -166,39 +146,24 @@ input[type=number] {
   border-radius: 10px;
 }
 
+#casos_salvados {
+  background-color: var(--blanco-verde);
+}
+
+#casos_salvados h2{
+  padding: 50px;
+  background-color: #333;
+  color: #f0f0f0 ;
+}
+
+#especiesRescatadas {
+  padding: 50px;
+  margin:0px;
+  background-color: var(--marron-suave);
+}
+
 /* GALERÍA */
 #cont_galeria {
   margin-top: 80px;
   margin-bottom: 30px;
-}
-
-/* ESTADÍSTICAS */
-.estadisticas {
-  margin: 20px !important;
-}
-
-/* TABLA */
-.table {
-  width: 100%;
-  margin-bottom: 1rem;
-  color: #212529;
-  border-collapse: collapse; /* Asegura que las celdas no tengan espacio entre ellas */
-  background-color: #FFFFFF; /* Blanco */
-  border: 1px solid #8A9A5B; /* Verde musgo pálido */
-}
-
-.table th,
-.table td {
-  padding: 0.75rem;
-  vertical-align: top;
-  border-top: 1px solid #dee2e6;
-}
-
-.table th {
-  background-color: #556B2F; /* Verde oliva */
-  color: white;
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: #F5F5DC; /* Beige claro */
 }
