@@ -2,7 +2,8 @@
 
 # - Jinja2: Motor de plantillas integrado en Flask para renderizar HTML dinámico.
 
-from flask import Flask, render_template, request # Framework web para crear aplicaciones web en Python
+from flask import Flask, render_template, request, redirect, url_for
+import os
 import pandas as pd # Pandas y NumPy: Para manipulación y análisis de datos.
 import numpy as np 
 import requests # Para realizar solicitudes HTTP (en este caso, a la API de GBIF)
@@ -12,12 +13,43 @@ matplotlib.use("Agg") # Configura matplotlib para no usar la interfaz gráfica, 
 import matplotlib.pyplot as plt
 import base64 # Para codificar imágenes en base64, es decir, convertir imágenes a texto para poder enviarlas por HTTP
 
-from io import BytesIO # ----- comprobarlo luego
+from io import BytesIO
 import csv
 import urllib.parse  # Para codificar correctamente los nombres de las especies
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing.image import load_img, img_to_array
+import json
+from werkzeug.utils import secure_filename
 
 # Se inicializa la aplicación web
 app = Flask(__name__)
+
+# Configuración para subir imágenes
+app.config['UPLOAD_FOLDER'] = 'static/uploads'
+
+# Cargar modelo y clases
+modelo = load_model('c:\\proyecto_especies\\modelo_especies.h5')
+
+with open('c:\\proyecto_especies\\clases.json', 'r') as f:
+    clases = json.load(f)
+    clases = {v: k for k, v in clases.items()}  # Invertimos para buscar por índice
+
+IMG_SIZE = (150, 150)
+
+# Cargar archivo de información adicional
+def cargar_info_conservacion():
+    ruta_archivo = 'data/info_modelo.csv'  # Cambia por .csv si usas csv
+    if ruta_archivo.endswith('.xlsx'):
+        return pd.read_excel(ruta_archivo)
+    else:
+        return pd.read_csv(ruta_archivo)
+
+def obtener_info_especie(nombre_especie):
+    df = cargar_info_conservacion()
+    resultado = df[df['nombre'].str.lower() == nombre_especie.lower()]
+    if not resultado.empty:
+        return resultado.iloc[0].to_dict()
+    return None
 
 # FUNCIONES
 # Carga un csv y lo convierte a un dataframe de pandas, establece la columna "Año" como índice
@@ -275,63 +307,39 @@ def monitorizar():
 
 @app.route("/especies", methods=["GET", "POST"])
 def especies():
-    especie = request.form.get("especie")
-    datos_especie = None
-    mapa_html = None
-    grafico_b64 = None
-    año_ext = None
+    prediccion = None
+    imagen_url = None
+    info = None
 
-    if especie:
-        registros = buscar_en_gbif(especie)
-        datos_especie = registros[:50] if registros else []
+    if request.method == 'POST':
+        archivo = request.files['imagen']
+        if archivo:
+            nombre_archivo = secure_filename(archivo.filename)
+            ruta_imagen = os.path.join(app.config['UPLOAD_FOLDER'], nombre_archivo)
+            archivo.save(ruta_imagen)
 
-        df_fila = df_disperso[df_disperso[columna_especie] == especie]
-        if not df_fila.empty:
-            fila = df_fila.iloc[0]
-            y = pd.to_numeric(fila[1:].values, errors="coerce")
-            x = años_excel.values.astype(float)
-            mask = ~np.isnan(y)
-            x = x[mask]
-            y = y[mask]
+            # Procesar imagen
+            try:
+                imagen = load_img(ruta_imagen, target_size=IMG_SIZE)
+                imagen = img_to_array(imagen) / 255.0
+                imagen = np.expand_dims(imagen, axis=0)
 
-            if len(x) >= 2:
-                # Calcular regresión lineal manualmente
-                x_mean = np.mean(x)
-                y_mean = np.mean(y)
-                numerador = np.sum((x - x_mean) * (y - y_mean))
-                denominador = np.sum((x - x_mean) ** 2)
-                pendiente = numerador / denominador if denominador != 0 else 0
-                intercepto = y_mean - pendiente * x_mean
+                # Predicción
+                resultado = modelo.predict(imagen)
+                indice = np.argmax(resultado)
+                prediccion = clases[indice]
+                imagen_url = '/' + ruta_imagen.replace("\\", "/")
 
-                año_ext = -intercepto / pendiente if pendiente != 0 else None
+                # Buscar info en archivo
+                info = obtener_info_especie(prediccion)
 
-                fig, ax = plt.subplots(figsize=(8, 4))
-                ax.scatter(x, y, color='orange', label=especie)
+                print(f"Predicción: {prediccion}")  # Depuración
+                print(f"Resultado del modelo: {resultado}")  # Depuración
 
-                # Dibujar línea de tendencia
-                y_pred = pendiente * x + intercepto
-                ax.plot(x, y_pred, linestyle="--", color="blue", label="Tendencia")
+            except Exception as e:
+                print(f"Error al procesar la imagen: {e}")  # Depuración
 
-                ax.set_xlabel("Año")
-                ax.set_ylabel("Población")
-                ax.set_title("Evolución poblacional")
-                ax.grid()
-                ax.legend()
-
-                buf = BytesIO()
-                fig.savefig(buf, format="png")
-                buf.seek(0)
-                grafico_b64 = base64.b64encode(buf.read()).decode("utf-8")
-                plt.close(fig)
-
-            mapa_html = crear_mapa_html(registros)
-
-    return render_template("especies.html",
-                           especie=especie,
-                           año_pred=año_ext,
-                           grafico=grafico_b64,
-                           mapa=mapa_html,
-                           datos=datos_especie)
+    return render_template('especies.html', prediccion=prediccion, imagen_url=imagen_url, info=info)
 
 @app.route("/estadisticas/<nombre>")
 def estadisticas(nombre):
