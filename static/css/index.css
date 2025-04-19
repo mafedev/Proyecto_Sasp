@@ -187,8 +187,6 @@ button.btn-outline-success:active img {
   color: #006400; /* Verde jungla */
 }
 
-
-
 /* Íconos index*/
 #iconos .col-lg-4 {
     display: flex;
@@ -202,4 +200,48 @@ button.btn-outline-success:active img {
 .icon-button:hover .icon-img {
   transform: scale(1.1); /* Aumenta el tamaño de la imagen un 10% */
   transition: transform 0.2s; /* Hace que el cambio de tamaño sea suave en 0.2 segundos */
+}
+
+.colapsados p {
+    text-align: center;
+}
+  
+.card-body {
+    margin-bottom: 50px;
+}
+/* Asegurándonos de que todo el texto dentro de la sección sea blanco */
+#introduccion {
+    position: relative; /* Necesario para posicionar el overlay */
+    margin: 0;
+    padding: 70px;
+    background-image: url("/static/img/mancha.avif");
+    background-size: cover;
+    min-height: 60vh;
+}
+
+#introduccion .text-center.m-5 h2,
+#introduccion .text-center.m-5 p {
+    color: var(--amarillo);
+    position: relative;
+    z-index: 2; /* El texto estará sobre el overlay */
+}
+
+#introduccion .colapsados p {
+    position: relative;
+}
+
+#introduccion::before {
+    content: ''; /* Necesario para crear un pseudo-elemento */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); /* Opacidad del overlay para oscurecer la imagen */
+    z-index: 1; /* Coloca el overlay sobre la imagen de fondo */
+}
+
+.collapse {
+    position: relative;
+    z-index: 3; /* Elementos colapsables estarán encima del overlay */
 }
