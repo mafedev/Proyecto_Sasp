@@ -75,7 +75,7 @@ button.btn-outline-success:active img {
 
 /* Estilo global para la columna */
 .icon-link {
-  text-decoration: none; /* Quitar subrayado */
+  text-decoration: nprimero; /* Quitar subrayado */
   display: inline-block; /* Asegura que los íconos estén alineados correctamente */
 }
 
@@ -85,7 +85,7 @@ button.btn-outline-success:active img {
   height: auto; /* Mantener la relación de aspecto */
   border-radius: 8px; /* Bordes redondeados */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones para hover */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciprimeros para hover */
   cursor: pointer; /* Cambiar el cursor al pasar por encima */
 }
 
@@ -113,87 +113,13 @@ button.btn-outline-success:active img {
   background-color: #F5F5DC;
 }
 
-
-/*Seccion después de noticias*/
-#imagenIndexCasos{
-  width: 50%; /* Ajusta al tamaño que desees, por ejemplo, el 60% */
-  height: auto; /* Mantiene la proporción de la imagen */
-  object-fit: cover; /* Asegura que la imagen cubra el área del contenedor */
-}
-
-#seccionIndex3{
-  background-color: #1E3A5F;
-  padding: 50px;
-}
-
-#seccionIndex3 h3{
-  text-align: center;
-}
-
-#one {
-  background-color: #9e7e46; /* Marrón suave */
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-}
-
-#one .row {
-  display: flex;
-  align-items: center;
-}
-
-#one .img-fluid {
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-#one h2 a {
-  color: #FFFFFF; /* Verde oscuro */
-  font-size: 1.8rem;
-  text-decoration: none;
-}
-
-#one h2 a:hover {
-  color: #006400; /* Verde jungla */
-}
-
-#one .info {
-  font-size: 0.9rem;
-  color: #3E2723; /* Marrón chocolate */
-}
-
-#one .btn-outline-success {
-  border-color: #2c6e40; /* Verde oscuro */
-  color: #2c6e40;
-  background-color: transparent;
-}
-
-#one .btn-outline-success:hover {
-  background-color: #2c6e40; /* Verde oscuro */
-  color: white;
-}
-
-#one ul {
-  padding-left: 1.5rem;
-}
-
-#one ul li {
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-  color: #3E2723; /* Marrón chocolate */
-}
-
-#one ul li strong {
-  color: #006400; /* Verde jungla */
-}
-
 /* Íconos index*/
 #iconos .col-lg-4 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centra los iconos dentro de cada columna */
-    align-items: center; /* Centra el contenido dentro de la columna */
-    text-align: center; /* Centra el texto */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra los iconos dentro de cada columna */
+  align-items: center; /* Centra el contenido dentro de la columna */
+  text-align: center; /* Centra el texto */
 }
   
 /* Efecto hover para las imágenes */
@@ -203,45 +129,219 @@ button.btn-outline-success:active img {
 }
 
 .colapsados p {
-    text-align: center;
+  text-align: center;
 }
   
 .card-body {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
-/* Asegurándonos de que todo el texto dentro de la sección sea blanco */
+
 #introduccion {
-    position: relative; /* Necesario para posicionar el overlay */
-    margin: 0;
-    padding: 70px;
-    background-image: url("/static/img/mancha.avif");
-    background-size: cover;
-    min-height: 60vh;
+  position: relative; /* Necesario para posicionar el overlay */
+  margin: 0;
+  padding: 70px;
+  background-image: url("/static/img/mancha.avif");
+  background-size: cover;
+  min-height: 60vh;
 }
 
 #introduccion .text-center.m-5 h2,
 #introduccion .text-center.m-5 p {
-    color: var(--amarillo);
-    position: relative;
-    z-index: 2; /* El texto estará sobre el overlay */
+  color: var(--amarillo);
+  position: relative;
+  z-index: 2; /* El texto estará sobre el overlay */
 }
 
 #introduccion .colapsados p {
-    position: relative;
+  position: relative;
 }
 
 #introduccion::before {
-    content: ''; /* Necesario para crear un pseudo-elemento */
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.4); /* Opacidad del overlay para oscurecer la imagen */
-    z-index: 1; /* Coloca el overlay sobre la imagen de fondo */
+  content: ''; /* Necesario para crear un pseudo-elemento */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Opacidad del overlay para oscurecer la imagen */
+  z-index: 1; /* Coloca el overlay sobre la imagen de fondo */
+}
+
+#introduccion .btn {
+  position: relative;
+  z-index: 3; /* Botprimeros deben estar encima del overlay */
 }
 
 .collapse {
-    position: relative;
-    z-index: 3; /* Elementos colapsables estarán encima del overlay */
+  position: relative; /* Asegura que los elementos colapsables estén correctamente posicionados */
+  z-index: 4; /* Coloca el contenido colapsable por encima del overlay */
+}
+
+/* Asegura que el contenido dentro de los colapsables también esté sobre el overlay */
+.collapse .card {
+  position: relative;
+  z-index: 5; /* Las tarjetas del contenido colapsable deben estar encima del overlay */
+}
+
+/*Seccion después de noticias*/
+#imagenIndexCasos {
+  width: 50%; /* Mantén este tamaño para la imagen */
+  height: auto; /* Mantiene la proporción de la imagen */
+  object-fit: cover; /* Asegura que la imagen cubra el área del contenedor */
+}
+
+#seccionIndex3 {
+  padding: 50px;
+  border: var(--blanco-verde);
+}
+
+.hover-title {
+  color: var(--blanco-verde);
+  font-size: 4rem;
+  margin-bottom: 30px;
+}
+
+.hover-title:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+#seccionIndex3 .card-body {
+  color: #34495E; /* Gris oscuro para el texto dentro de la tarjeta */
+}
+
+#seccionIndex3 .card-body a {
+  color: #1E90FF; /* Azul marino para los enlaces */
+}
+
+#seccionIndex3 .card-body a:hover {
+  color: #4682B4; /* Azul más oscuro cuando se pasa el mouse */
+}
+
+/*ARTICULOS*/
+#primero {
+  background-color: var(--marron-suave-2);
+  padding: 80px;
+  width: 100vw;
+}
+
+#primero .row {
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#primero .img-fluid {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%; /* La imagen ocupará el 80% del contenedor */
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#primero h2 a {
+  color: #FFFFFF; /* Color del texto del título */
+  font-size: 1.8rem;
+  text-decoration: none;
+}
+
+#primero h2 a:hover {
+  color: var(--marron-chocolate);
+}
+
+#primero .info {
+  font-size: 0.9rem;
+  color: #3E2723; /* Marrón chocolate */
+}
+
+#primero .btn-outline-success {
+  border-color: var(--blanco-verde);
+  color: var(--blanco-verde);
+  background-color: transparent;
+}
+
+#primero .btn-outline-success:hover {
+  background-color: var(--marron-chocolate);
+  color: white;
+}
+
+#primero ul {
+  padding-left: 1.5rem;
+}
+
+#primero ul li {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: #3E2723; /* Marrón chocolate */
+}
+
+/* Segundo articulo */  
+#segundo .row {
+  display: flex;
+  align-items: center;
+}
+
+#segundo .img-fluid {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#segundo ul {
+  padding-left: 1.5rem;
+}
+
+#segundo ul li {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: #B4A38B; /* Gris cálido */
+}
+
+#segundo ul li strong {
+  color: #A8D5BA; /* Verde pálido */
+}
+
+/*REFUGIOS*/
+#index_refugios{
+  background-color: var(--verde-amarillo); /* Verde claro */
+  padding: 50px;
+  border-radius: 10px;
+}
+
+#index_refugios h1 {
+  color: var(--blanco-verde); /* Verde claro */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.post.style1.container.py-4 {
+  padding: 80px;
+  margin: 60px;
+}
+
+.post.style1.container.py-4 .btn-outline-primary {
+  border-color: #A8D5BA; /* Verde pálido */
+  color: #A8D5BA;
+  background-color: transparent;
+}
+
+.post.style1.container.py-4 .btn-outline-primary:hover {
+  background-color: #A8D5BA; /* Verde pálido */
+  color: white;
+}
+
+.post.style1.container.py-4 h2 a {
+  color: #F4F4F4; /* Gris claro */
+  font-size: 1.8rem;
+  text-decoration: none;
+}
+
+.post.style1.container h2 a:hover {
+  color: #A8D5BA; /* Verde pálido */
+}
+
+.post.style1.container .info {
+  font-size: 0.9rem;
+  color: var(--verde-jungla); /* Gris cálido */
 }

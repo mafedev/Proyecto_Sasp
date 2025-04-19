@@ -2,12 +2,12 @@
     /* TONOS VERDE */
     --verde-oscuro: #2c6e40;
     --verde-musgo: #5a7b3b;
-    --verde-musgo-2: #6B8E23;
+    --verde-musgo-2: #6B8E23; /* Fondo */
     --verde-lima: #A8E05E;
     --verde-oliva: #556B2F;
   
     --verde-hierba: #2E8B57;
-    --verde-musgo-palido: #8A9A5B; /* Fondo */
+    --verde-musgo-palido: #8A9A5B; 
     --verde-jungla: #006400;
     --verde-amarillo: #98cf32;
     --amarillo: #eaed22;
@@ -16,7 +16,7 @@
     --marron-arena: #D2B48C;
     --marron-madera: #8B4513;
     --marron-suave: #856734;
-    --marron-tierra-calida: #C89A6B;
+    --marron-suave-2: #9e7e46;
   
     --marron-tierra: #7B3F00;
     --marron-chocolate: #3E2723;
