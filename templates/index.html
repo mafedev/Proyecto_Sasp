@@ -5,6 +5,7 @@
 
 {% block content %} <!-- Se inicia el bloque de contenido que se sobreescribirá en la plantilla base. -->
 
+<link rel="stylesheet" href="index.css"> <!-- Se incluye el CSS específico para la página de inicio. -->
 
 <!-- Carrusel de imágenes -->
 <div class="carrousel" id="carrousel_index">
@@ -67,18 +68,6 @@
   </div><!-- /.row -->
 </div>
 
-
-<div class="container text-center">
-  <h1 class="jumbotron-heading">Album example</h1>
-  <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
-  <p>
-    <a href="#" class="btn btn-primary my-2">Main call to action</a>
-    <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-  </p>
-</div>
-
-
-
 <!-- Texto adicional en la página -->
 <div class="text-center m-5">
   <h2 class="fw-bold">¡Contribuye a la conservación global!</h2>
@@ -112,7 +101,7 @@
     <div class="col-md-6">
       <div class="card h-100">
         <div class="card-body">
-          <h5 class="card-title">📰 Noticias & Blog</h5>
+          <h5 class="card-title">Noticias & Blog</h5>
           <p class="card-text"></p>
           <img src="/static/img/index/blog1.jpg" alt="imagen1" class="img-fluid rounded-start" style="width: 100%; height: 500px; object-fit: cover;">
         </div>
@@ -122,60 +111,71 @@
 </div>
 
 
-<div class="row mb-2">
+<div class="row mb-2 d-flex" id="seccionIndex3">
+  <h3>Voluntariado</h3>
   <div class="col-md-6">
     <div class="card flex-md-row mb-4 box-shadow h-md-250">
       <div class="card-body d-flex flex-column align-items-start">
-        <strong class="d-inline-block mb-2 text-primary">World</strong>
+        <strong class="d-inline-block mb-2 text-primary">Especies en conservación</strong>
         <h3 class="mb-0">
-          <a class="text-dark" href="#">Featured post</a>
+          <a class="text-dark" href="#">Casos exitosos de especies salvadas</a>
         </h3>
-        <div class="mb-1 text-muted">Nov 12</div>
-        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+        <div class="mb-1 text-muted">Mar 12</div>
+        <p class="card-text mb-auto">Haz clic para descubrir historias inspiradoras de especies que han sido salvadas gracias al esfuerzo de la conservación. Aprende cómo estas iniciativas marcan la diferencia y cómo tú también puedes contribuir a preservar la biodiversidad.</p>
         <a href="#">Continue reading</a>
       </div>
-      <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22250%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20250%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1964dd1d953%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A13pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1964dd1d953%22%3E%3Crect%20width%3D%22200%22%20height%3D%22250%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2256.116302490234375%22%20y%3D%22131%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="width: 200px; height: 250px;">
+      <img class="card-img-right flex-auto d-none d-md-block" src="/static/img/index/tortuga.jpg" id="imagenIndexCasos">
     </div>
   </div>
   <div class="col-md-6">
     <div class="card flex-md-row mb-4 box-shadow h-md-250">
       <div class="card-body d-flex flex-column align-items-start">
-        <strong class="d-inline-block mb-2 text-success">Design</strong>
+        <strong class="d-inline-block mb-2 text-success">Voluntariado</strong>
         <h3 class="mb-0">
-          <a class="text-dark" href="#">Post title</a>
+          <a class="text-dark" href="#">Descubre lugares para hacer voluntariado</a>
         </h3>
         <div class="mb-1 text-muted">Nov 11</div>
-        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+        <p class="card-text mb-auto">¿Te interesa el voluntariado? Haz clic aquí para conocer lugares increíbles donde puedes ofrecer tu tiempo y habilidades para causas sociales, de conservación y apoyo comunitario. ¡Haz la diferencia hoy mismo!</p>
         <a href="#">Continue reading</a>
       </div>
-      <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22250%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20250%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1964dd1d956%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A13pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1964dd1d956%22%3E%3Crect%20width%3D%22200%22%20height%3D%22250%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2256.116302490234375%22%20y%3D%22131%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="width: 200px; height: 250px;">
+      <img class="card-img-right flex-auto d-none d-md-block" src="/static/img/voluntariado.jpg" id="imagenIndexCasos">
     </div>
   </div>
 </div>
 
 
-<article id="one" class="post style1 container py-4">
+
+<article id="one" class="post style1 container py-5">
   <div class="row align-items-center">
     <!-- Columna de la imagen -->
-    <div class="col-md-6 mb-3 mb-md-0">
-      <img src="/static/img/planta1.png" alt="Imagen planta" class="img-fluid rounded">
+    <div class="col-md-6 mb-4 mb-md-0">
+      <img src="/static/img/index/huella3.jfif" alt="Imagen planta" class="img-fluid rounded shadow-lg">
     </div>
 
     <!-- Columna del contenido -->
     <div class="col-md-6">
       <header>
-        <h2><a href="generic.html">Ipsum lorem sed magna</a></h2>
-        <p class="info">3 days ago by <a href="#">Jane Doe</a></p>
+        <h2><a href="generic.html" class="text-green">Calcula tu huella de carbono en 3 simples pasos</a></h2>
+        <p class="info text-muted">Publicado hace 3 días por <a href="#">Jane Doe</a></p>
       </header>
-      <p>Nullam posuere erat vel placerat rutrum. Praesent ac consectetur dui, et congue quam. Donec aliquam lacinia
-        condimentum. Integer porta massa sapien, commodo sodales diam suscipit vitae. Aliquam quis felis sed urna semper
-        semper. Phasellus eu scelerisque mi. Vivamus aliquam nisl libero, sit amet scelerisque ligula laoreet vel.</p>
+      <p>Reducir tu huella de carbono es una acción esencial para la conservación del planeta. En este artículo te enseñamos
+        cómo calcularla fácilmente. A través de tres simples pasos, podrás conocer el impacto ambiental de tus actividades diarias
+        y empezar a tomar decisiones más responsables para mitigar ese impacto. ¡El futuro de nuestro planeta depende de todos!</p>
+      
+      <h5>Pasos para calcular tu huella de carbono:</h5>
+      <ul>
+        <li><strong>1. Identificar tus fuentes de emisiones:</strong> Automóviles, energía, residuos, etc.</li>
+        <li><strong>2. Medir el consumo de recursos:</strong> Estima el consumo de energía, agua y transporte.</li>
+        <li><strong>3. Calcular el impacto:</strong> Utiliza herramientas en línea para obtener un cálculo preciso.</li>
+      </ul>
+      
       <ul class="actions list-unstyled">
-        <li><a href="generic.html" class="btn btn-outline-primary">Read More</a></li>
+        <li><a href="generic.html" class="btn btn-outline-success">Leer más</a></li>
       </ul>
     </div>
   </div>
 </article>
+
 
 <article id="one" class="post style1 container py-4">
   <div class="row align-items-center">
