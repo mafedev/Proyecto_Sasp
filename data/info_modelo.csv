@@ -1,0 +1,91 @@
+nombre,nombre_cientifico,estado,amenazas,organizaciones,acciones_recomendadas
+antelope,Antilopinae,Vulnerable,Caza furtiva;Pérdida de hábitat,WWF; African Wildlife Foundation,Protección de ecosistemas;Control de caza ilegal
+badger,Meles meles,No amenazada,Enfermedades;Atropellos,Wildlife Trusts,Monitoreo de salud;Pasos de fauna
+bat,Chiroptera,En peligro,Pérdida de refugios;Virus zoonóticos,Bat Conservation International;WWF,Instalación de refugios;Educación pública
+bear,Ursidae,Vulnerable,Pérdida de hábitat;Cambio climático,WWF; IUCN,Creación de reservas;Gestión de conflictos
+bee,Apis mellifera,En peligro,Plaguicidas;Cambio climático;Enfermedades,Greenpeace; BeeLife,Reducción de agroquímicos;Reforestación
+beetle,Coleoptera,Vulnerable,Contaminación;Destrucción de microhábitats,Insect Conservation Trust,Conservación de bosques;Evitar pesticidas
+bison,Bison bison,Vulnerable,Caza histórica;Reducción del hábitat,IUCN; Bison Conservation Trust,Reintroducción en reservas;Educación local
+boar,Sus scrofa,No amenazada,Control humano;Colisiones con vehículos,None,Monitoreo poblacional;Gestión local
+butterfly,Lepidoptera,Vulnerable,Destrucción de hábitats florales;Plaguicidas,Monarch Watch; WWF,Reforestación con plantas nativas;Evitar químicos
+cat,Felis catus,No amenazada,Especie doméstica,None,Promover esterilización y tenencia responsable
+caterpillar,Larva de Lepidoptera,No amenazada,Pérdida de flora huésped,None,Conservación de flora nativa
+chimpanzee,Pan troglodytes,En peligro,Caza furtiva;Fragmentación del bosque,Jane Goodall Institute;WWF,Educación comunitaria;Protección de hábitats
+cockroach,Blattodea,No amenazada,Control humano,None,Ninguna medida ecológica requerida
+cow,Bos taurus,No amenazada,Intensificación agrícola,None,Fomentar ganadería sostenible
+coyote,Canis latrans,No amenazada,Conflicto con humanos;Expansión urbana,Wildlife Services; Urban Coyote Research,Educación comunitaria;Control no letal
+crab,Brachyura,No amenazada,Contaminación costera;Pesca indiscriminada,Marine Conservation Institute,Regulación pesquera;Protección de manglares
+crow,Corvus brachyrhynchos,No amenazada,Expansión urbana,None,Monitoreo poblacional
+deer,Cervidae,No amenazada,Caza deportiva;Pérdida de hábitat,Wildlife Trusts,Regulación de caza;Conectividad ecológica
+dog,Canis lupus familiaris,No amenazada,Abandono;Mala tenencia,None,Esterilización;Educación responsable
+dolphin,Delphinidae,Vulnerable,Pesca con redes;Contaminación marina,Ocean Conservancy;WWF,Reducción de plástico;Vigilancia pesquera
+donkey,Equus asinus,No amenazada,Explotación laboral,None,Promoción de bienestar animal
+dragonfly,Anisoptera,Vulnerable,Contaminación de ríos;Pérdida de humedales,Freshwater Habitats Trust,Protección de riberas;Educación ambiental
+duck,Anas platyrhynchos,No amenazada,Caza;Contaminación del agua,Duck Unlimited,Protección de humedales;Regulación de caza
+eagle,Aquila chrysaetos,Vulnerable,Caza;Pérdida de nidos,IUCN; Raptor Conservation Foundation,Educación rural;Protección de zonas de anidación
+elephant,Elephas maximus,Vulnerable,Conflictos con humanos;Pérdida de hábitat,WWF; Save the Elephants,Creación de corredores;Monitoreo satelital
+flamingo,Phoenicopterus roseus,No amenazada,Contaminación de lagunas;Turismo desregulado,Audubon Society,Protección de lagunas salinas;Regulación del turismo
+fly,Diptera,No amenazada,Ninguna significativa,None,Sin medidas relevantes
+fox,Vulpes vulpes,No amenazada,Persecución en áreas rurales;Fragmentación,Wildlife Trusts,Educación;Monitoreo
+goat,Capra aegagrus hircus,No amenazada,Sobrepastoreo;Erosión del suelo,None,Manejo sostenible del ganado
+goldfish,Carassius auratus,No amenazada,Invasividad;Liberación irresponsable,Pet Watch,Educación;No liberar mascotas
+goose,Anser anser,No amenazada,Caza recreativa,None,Regulación de caza
+gorilla,Gorilla beringei,En peligro,Caza furtiva;Enfermedades;Deforestación,WWF; Dian Fossey Fund,Protección armada;Programas de conservación comunitaria
+grasshopper,Caelifera,Vulnerable,Pérdida de hábitat;Pesticidas,Invertebrate Conservation Trust,Reducción de químicos;Protección de pastizales
+hamster,Cricetinae,No amenazada,Cría masiva;Liberación inadecuada,None,Tenencia responsable;Control de reproducción
+hare,Lepus europaeus,Vulnerable,Caza;Fragmentación del hábitat,Wildlife Trusts,Protección de zonas rurales;Regulación de caza
+hedgehog,Erinaceus europaeus,Vulnerable,Atropellos;Fragmentación urbana,Hedgehog Preservation Society,Pasos de fauna;Educación vecinal
+hippopotamus,Hippopotamus amphibius,Vulnerable,Conflictos con humanos;Pérdida de humedales,IUCN; African Wildlife Foundation,Monitoreo;Protección de hábitats ribereños
+hornbill,Bucerotidae,Vulnerable,Tala de árboles de anidación;Tráfico ilegal,BirdLife International;WWF,Protección de bosques;Educación comunitaria
+horse,Equus ferus caballus,No amenazada,Manejo no ético,None,Fomento del bienestar animal;Educación ecuestre
+hummingbird,Trochilidae,No amenazada,Destrucción de jardines;Cambio climático,Audubon Society,Promoción de jardines con flora nativa
+hyena,Hyaenidae,Vulnerable,Estigmatización;Pérdida de presas naturales,African Wildlife Foundation,Educación;Conservación de ecosistemas abiertos
+jellyfish,Scyphozoa,No amenazada,Cambio climático;Contaminación marina,Marine Conservation Institute,Monitoreo de ecosistemas marinos
+kangaroo,Macropodidae,No amenazada,Colisiones vehiculares;Caza regulada,Australian Wildlife Conservancy,Señalización vial;Monitoreo poblacional
+koala,Phascolarctos cinereus,En peligro,Deforestación;Incendios forestales,WWF; Koala Foundation,Protección de eucaliptales;Rescate post-incendios
+ladybugs,Coccinellidae,No amenazada,Pesticidas;Especies invasoras,Insect Conservation Trust,Promoción de jardines orgánicos
+leopard,Panthera pardus,En peligro,Caza furtiva;Fragmentación,Panthera;WWF,Monitoreo satelital;Protección legal
+lion,Panthera leo,En peligro,Caza deportiva;Pérdida de presas naturales,WWF; African Parks,Educación comunitaria;Refugios protegidos
+lizard,Lacertilia,No amenazada,Pérdida de microhábitats,None,Protección de zonas rocosas;Evitar químicos
+lobster,Nephropidae,Vulnerable,Pesca excesiva;Contaminación marina,Marine Stewardship Council,Regulación de pesca;Protección de criaderos
+mosquito,Culicidae,No amenazada,Control químico masivo,None,Promoción de control biológico;Educación sanitaria
+moth,Lepidoptera,No amenazada,Contaminación lumínica;Pérdida de flora huésped,None,Reducción de luz artificial;Promoción de biodiversidad
+mouse,Mus musculus,No amenazada,Plagas urbanas,None,Manejo ético;Evitar uso de venenos masivos
+octopus,Octopoda,Vulnerable,Pesca intensiva;Contaminación,Ocean Conservancy;WWF,Pesca sostenible;Monitoreo de hábitats
+okapi,Okapia johnstoni,En peligro,Caza furtiva;Destrucción de selvas,IUCN; WWF,Protección del Congo;Educación comunitaria
+orangutan,Pongo pygmaeus,En peligro crítico,Deforestación;Tráfico de crías,Orangutan Foundation;WWF,Protección de selvas;Rehabilitación
+otter,Lutrinae,Vulnerable,Contaminación del agua;Pérdida de riberas,WWF; Otter Conservation Group,Protección de humedales;Educación local
+owl,Strigiformes,Vulnerable,Pérdida de árboles;Contaminación lumínica,BirdLife International,Protección de zonas de anidación
+ox,Bos primigenius,Extinto en estado silvestre,Desaparición del hábitat;Caza,WWF (referencia genética),Conservación genética;Programas de reintroducción
+oyster,Ostreidae,Vulnerable,Contaminación;Sobrepesca,The Nature Conservancy,Restauración de arrecifes;Regulación de recolección
+panda,Ailuropoda melanoleuca,En peligro,Caza;Pérdida de bambú,WWF; China Conservation & Research Center,Protección de hábitats;Cría en cautiverio
+parrot,Psittaciformes,Vulnerable,Tráfico ilegal;Pérdida de hábitat,BirdLife International,Educación;Prohibición de comercio
+pelecaniformes,Pelecaniformes,No amenazada,Pérdida de zonas húmedas,None,Protección de lagunas;Monitoreo de población
+penguin,Spheniscidae,Vulnerable,Cambio climático;Derrames de petróleo,WWF; Global Penguin Society,Protección de costas;Regulación pesquera
+pig,Sus scrofa,No amenazada,Condiciones de cría industrial,None,Promoción de bienestar animal
+pigeon,Columbidae,No amenazada,Contaminación urbana;Sobrepoblación,None,Estrategias de control ético
+porcupine,Hystricidae,No amenazada,Caza local;Pérdida de refugios,None,Educación rural;Protección de zonas rocosas
+possum,Phalangeriformes,No amenazada,Tráfico ilegal;Depredadores introducidos,Wildlife Victoria,Protección de bosques nativos
+raccoon,Procyon lotor,No amenazada,Conflictos urbanos,None,Educación;Evitar alimentación humana
+rat,Rattus spp.,No amenazada,Plagas urbanas,None,Control ético;Educación sobre higiene urbana
+reindeer,Rangifer tarandus,Vulnerable,Cambio climático;Pérdida de musgo,IUCN; Polar Research Institute,Protección del ártico;Monitoreo de rutas migratorias
+rhinoceros,Rhinocerotidae,En peligro crítico,Caza furtiva;Tráfico de cuernos,WWF; Save the Rhino,Protección armada;Monitoreo satelital
+sandpiper,Scolopacidae,Vulnerable,Pérdida de humedales;Cambio climático,BirdLife International,Protección de rutas migratorias
+seahorse,Hippocampus spp.,Vulnerable,Pesca para medicina tradicional;Pérdida de corales,Project Seahorse,Prohibición de comercio;Protección de arrecifes
+seal,Pinnipedia,Vulnerable,Redes de pesca;Cambio climático,WWF; Ocean Conservancy,Protección de costas;Monitoreo de colonias
+shark,Selachimorpha,En peligro,Caza de aletas;Sobrepesca,Oceana; Shark Trust,Educación;Prohibición de comercio de aletas
+sheep,Ovis aries,No amenazada,Manejo intensivo;Exceso de pastoreo,None,Manejo sostenible del ganado
+snake,Serpentes,No amenazada,Caza;Pérdida de hábitat,None,Educación sobre biodiversidad;Protección de entornos naturales
+sparrow,Passeridae,No amenazada,Contaminación urbana;Pérdida de zonas verdes,None,Promoción de jardines urbanos
+squid,Teuthida,No amenazada,Pesca comercial;Cambio en corrientes oceánicas,None,Investigación y manejo pesquero
+squirrel,Sciuridae,No amenazada,Fragmentación urbana;Tráfico vial,None,Corredores ecológicos;Educación comunitaria
+starfish,Asteroidea,No amenazada,Contaminación oceánica;Blanqueamiento,None,Protección de arrecifes
+swan,Cygnus spp.,No amenazada,Contaminación;Disturbios humanos,Duck Unlimited,Protección de lagos y lagunas
+tiger,Panthera tigris,En peligro crítico,Caza furtiva;Pérdida de hábitat,WWF; Panthera,Refugios protegidos;Educación local
+turkey,Meleagris gallopavo,No amenazada,Caza recreativa,None,Regulación de caza
+turtle,Cheloniidae,En peligro,Caza;Contaminación marina;Luz artificial,Sea Turtle Conservancy,Protección de playas;Reducción de plásticos
+whale,Cetacea,Vulnerable,Caza;Contaminación acústica;Redes,Oceana; IWC,Protección internacional;Regulación de tráfico marítimo
+wolf,Canis lupus,Vulnerable,Conflictos con ganaderos;Caza ilegal,WWF; Defenders of Wildlife,Corredores biológicos;Educación rural
+wombat,Vombatidae,No amenazada,Deforestación;Carreteras,None,Protección de bosques;Cruces seguros
+woodpecker,Picidae,No amenazada,Tala de árboles antiguos,None,Protección de zonas boscosas
+zebra,Equus zebra,Vulnerable,Pérdida de sabanas;Caza furtiva,WWF; African Wildlife Foundation,Monitoreo de hábitats;Educación local
