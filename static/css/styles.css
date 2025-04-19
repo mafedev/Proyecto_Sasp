@@ -43,7 +43,6 @@ input[type=number] {
   background-color: #F5F5DC; /* Beige claro */
   border-radius: 15px; /* Bordes redondeados */
   padding: 30px; /* Espaciado interno */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
 #contacto h1 {
@@ -58,7 +57,6 @@ input[type=number] {
 
 #contacto .form-control {
   border: 1px solid #A9A9A9; /* Gris piedra */
-  border-radius: 10px; /* Bordes redondeados */
   background-color: #FFFFFF; /* Fondo blanco */
   font-size: 1rem;
   color: #333; /* Color del texto */
@@ -77,7 +75,6 @@ input[type=number] {
 #contacto .btn-primary {
   background-color: #6B8E23; /* Verde musgo 2 */
   border: none;
-  border-radius: 10px; /* Bordes redondeados */
   padding: 10px 20px;
   font-size: 1rem;
   font-weight: bold;
@@ -94,12 +91,19 @@ input[type=number] {
   transform: scale(1); /* Vuelve al tamaño original */
 }
 
+#contacto .input-group-text {
+  background-color: #e0e0d1;
+  border: 1px solid #A9A9A9;
+  color: #555;
+  font-size: 1rem;
+}
+
 .fondo_ayuda{
   background-color: #F5F5DC;
 }
 
 .fondo_formulario{
-  background-color: var(--marron-madera);
+  background-color: var(--verde-amarillo);
 }
 
 /* REFUGIOS */
