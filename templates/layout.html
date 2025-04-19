@@ -2,8 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>{% block title %}N-World{% endblock %}</title>
-    <!-- Título de la página, se sobreescribe en cada página -->
+    <title>{% block title %}N-World{% endblock %}</title> <!-- Título de la página, se sobreescribe en cada una -->
 
     <!-- CSS Bootstrap -->
     <link
@@ -11,13 +10,17 @@
       rel="stylesheet"
     />
     <!-- CSS personalizado -->
-    <link href="static/css/styles.css" rel="stylesheet" />
+    <link href="/static/css/styles.css" rel="stylesheet" />
+    <link href="/static/css/colores.css" rel="stylesheet" />
+    <link href="/static/css/index.css" rel="stylesheet" />
+    <link href="/static/css/layout.css" rel="stylesheet" />
+    <link href="/static/css/noticias.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   </head>
 
   <body>
     <!-- Barra de navegación -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top"> <!-- Hace que el menu quede fijo -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top"> <!-- Hace que el menú quede fijo -->
       <div class="container-fluid">
         <a class="navbar-brand" aria-current="page" href="/">N-world</a> <!-- Nombre de la página -->
         <button
