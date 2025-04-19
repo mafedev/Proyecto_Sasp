@@ -81,7 +81,8 @@
     <h1 class="text-center mb-4">Contáctanos</h1>
 
     <!-- Descripción introductoria -->
-    <p class="text-center mb-4">Si tienes alguna duda, sugerencia o comentario, no dudes en ponerte en contacto con nosotros.</p>
+    <p class="text-center mb-4">Si tienes alguna duda, sugerencia o comentario, no dudes en ponerte en contacto con
+      nosotros.</p>
 
     <!-- Formulario de contacto -->
     <form>
@@ -95,7 +96,11 @@
         <!-- Campo de Correo Electrónico -->
         <div class="col-md-6 mb-3">
           <label for="correo" class="form-label">Correo electrónico</label>
-          <input type="email" class="form-control" id="correo" placeholder="nombre@dominio.com" required>
+          <div class="input-group">
+            <input type="email" class="form-control" id="correo" placeholder="nombre" required
+              aria-describedby="basic-addon-correo">
+            <span class="input-group-text" id="basic-addon-correo">@dominio.com</span>
+          </div>
           <div id="correoAyuda" class="form-text">Nunca compartiremos su correo con terceros.</div>
         </div>
       </div>
