@@ -1,7 +1,3 @@
-# Importación de bibliotecas:
-
-# - Jinja2: Motor de plantillas integrado en Flask para renderizar HTML dinámico.
-
 from flask import Flask, render_template, request, redirect, url_for
 import os
 import pandas as pd # Pandas y NumPy: Para manipulación y análisis de datos.
@@ -15,26 +11,107 @@ import base64 # Para codificar imágenes en base64, es decir, convertir imágene
 
 from io import BytesIO
 import csv
-import urllib.parse  # Para codificar correctamente los nombres de las especies
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import json
-from werkzeug.utils import secure_filename
+import urllib.parse  # Para codificar correctamente los nombres de las especies
+from modelo import predecir_nn
+
 
 # Se inicializa la aplicación web
 app = Flask(__name__)
 
-# Configuración para subir imágenes
-app.config['UPLOAD_FOLDER'] = 'static/uploads'
+# Rutas de Flask:
+# Aquí se definen las rutas de la aplicación web.
+# Flask maneja las solicitudes HTTP y renderiza plantillas HTML con Jinja2.
 
-# Cargar modelo y clases
-modelo = load_model('c:\\proyecto_especies\\modelo_especies.h5')
+@app.route("/")
+def index():
+    # Renderiza la plantilla "index.html" utilizando Jinja2 y así con las demás plantillas
+    return render_template("index.html") # Página principal.
 
-with open('c:\\proyecto_especies\\clases.json', 'r') as f:
-    clases = json.load(f)
-    clases = {v: k for k, v in clases.items()}  # Invertimos para buscar por índice
+@app.route("/blog")
+def blog():
+    return render_template("blog.html")
 
-IMG_SIZE = (150, 150)
+@app.route("/casos_exito")
+def casos_exito():
+    return render_template("casos_exito.html")
+
+@app.route("/galeria")
+def galeria():
+    return render_template("galeria.html")
+
+@app.route("/huella_carbono", methods=["GET", "POST"])
+def huella_carbono():
+    return render_template("huella_carbono.html")
+
+@app.route("/huella_persona")
+def huella_persona():
+    return render_template("huella_persona.html")
+
+@app.route("/huella_empresa")
+def huella_empresa():
+    return render_template("huella_empresa.html")
+
+@app.route("/ayudar")
+def acciones():
+    return render_template("ayudar.html")
+
+@app.route("/refugios")
+def refugios():
+    return render_template("refugios.html")
+
+@app.route("/monitorizar", methods=["GET", "POST"])
+def monitorizar():
+    especie_seleccionada = request.form.get("especie") or especies_monitor[0]
+    # Manejar el retorno de predecir_año_extincion correctamente
+    resultado_prediccion = predecir_año_extincion(df_monitor, especie_seleccionada)
+    if resultado_prediccion is None or not isinstance(resultado_prediccion, tuple):
+        año_pred, grafico_b64 = None, None
+    else:
+        año_pred, grafico_b64 = resultado_prediccion
+
+    # Procesar las especies para mostrarlas en las tarjetas
+    cards = info_especies.to_dict(orient="records")
+    for card in cards:
+        card['acciones_recomendadas'] = card.get('acciones_recomendadas', 'No especificado')
+        card['organizaciones'] = card.get('organizaciones', 'No especificado')
+        card['amenazas'] = card.get('amenazas', 'No especificado')
+
+    # Generar el mapa de observaciones
+    observaciones = buscar_en_gbif(especie_seleccionada)
+    mapa_html = crear_mapa_html(observaciones)  # Genera el mapa
+
+    return render_template("monitorizar.html",
+                           especies=cards,
+                           especie=especie_seleccionada,
+                           año_pred=año_pred,
+                           grafico=grafico_b64,
+                           mapa=mapa_html)
+
+@app.route("/estadisticas/<nombre>")
+def estadisticas(nombre):
+    datos_especie = cargar_datos_especie(nombre)
+    if not datos_especie:
+        return "Especie no encontrada", 404
+
+    # Predicción con red neuronal (modelo.py)
+    anio_pred = predecir_nn(nombre)
+
+    # También puedes seguir usando la regresión para el gráfico
+    _, grafico_b64 = predecir_año_extincion(df_monitor, nombre)
+
+    tendencia_reciente = verificar_tendencia_reciente(df_monitor, nombre)
+    registros = buscar_en_gbif(nombre)
+    mapa_html = crear_mapa_html(registros)
+
+    return render_template("estadisticas.html",
+                           especie=nombre,
+                           año_pred=anio_pred,
+                           grafico=grafico_b64,
+                           mapa=mapa_html,
+                           tendencia_reciente=tendencia_reciente,
+                           **datos_especie)
+
 
 # Cargar archivo de información adicional
 def cargar_info_conservacion():
@@ -219,155 +296,8 @@ def cargar_datos_especie(nombre_especie):
 
 df_monitor = cargar_datos("data/especies_en_peligro.csv")
 especies_monitor = df_monitor.columns.tolist()
-
-df_disperso = pd.read_excel("data/especies_extintas.xlsx")
-columna_especie = df_disperso.columns[0]
-años_excel = pd.to_numeric(df_disperso.columns[1:], errors="coerce").dropna().astype(int)
-
 info_especies = pd.read_csv("data/info_especies.csv")  # ← contiene imagen, nombre, poblacion, estado, etc.
 
-# Rutas de Flask:
-# - "/" (index): Página principal.
-# - "/blog": Página de blog.
-# - "/casos_exito": Página de casos de éxito.
-# - "/galeria": Página de galería.
-# - "/huella_carbono", "/huella_persona", "/huella_empresa": Páginas relacionadas con la huella de carbono.
-# - "/ayudar": Página para mostrar acciones para ayudar.
-# - "/refugios": Página de refugios.
-# - "/monitorizar": Página para monitorizar especies en peligro.
-# - "/especies": Página para consultar información de especies específicas.
-# - "/estadisticas/<nombre>": Página para mostrar estadísticas detalladas de una especie.
-# - Aquí se definen las rutas de la aplicación web.
-# - Flask maneja las solicitudes HTTP y renderiza plantillas HTML con Jinja2.
-
-@app.route("/")
-def index():
-    # Renderiza la plantilla "index.html" utilizando Jinja2 y así con las demás plantillas
-    return render_template("index.html")
-
-@app.route("/blog")
-def blog():
-    return render_template("blog.html")
-
-@app.route("/casos_exito")
-def casos_exito():
-    return render_template("casos_exito.html")
-
-@app.route("/galeria")
-def galeria():
-    return render_template("galeria.html")
-
-@app.route("/huella_carbono", methods=["GET", "POST"])
-def huella_carbono():
-    return render_template("huella_carbono.html")
-
-@app.route("/huella_persona")
-def huella_persona():
-    return render_template("huella_persona.html")
-
-@app.route("/huella_empresa")
-def huella_empresa():
-    return render_template("huella_empresa.html")
-
-@app.route("/ayudar")
-def acciones():
-    return render_template("ayudar.html")
-
-@app.route("/refugios")
-def refugios():
-    return render_template("refugios.html")
-
-@app.route("/monitorizar", methods=["GET", "POST"])
-def monitorizar():
-    especie_seleccionada = request.form.get("especie") or especies_monitor[0]
-    # Manejar el retorno de predecir_año_extincion correctamente
-    resultado_prediccion = predecir_año_extincion(df_monitor, especie_seleccionada)
-    if resultado_prediccion is None or not isinstance(resultado_prediccion, tuple):
-        año_pred, grafico_b64 = None, None
-    else:
-        año_pred, grafico_b64 = resultado_prediccion
-
-    # Procesar las especies para mostrarlas en las tarjetas
-    cards = info_especies.to_dict(orient="records")
-    for card in cards:
-        card['acciones_recomendadas'] = card.get('acciones_recomendadas', 'No especificado')
-        card['organizaciones'] = card.get('organizaciones', 'No especificado')
-        card['amenazas'] = card.get('amenazas', 'No especificado')
-
-    # Generar el mapa de observaciones
-    observaciones = buscar_en_gbif(especie_seleccionada)
-    mapa_html = crear_mapa_html(observaciones)  # Genera el mapa
-
-    return render_template("monitorizar.html",
-                           especies=cards,
-                           especie=especie_seleccionada,
-                           año_pred=año_pred,
-                           grafico=grafico_b64,
-                           mapa=mapa_html)
-
-@app.route("/especies", methods=["GET", "POST"])
-def especies():
-    prediccion = None
-    imagen_url = None
-    info = None
-
-    if request.method == 'POST':
-        archivo = request.files['imagen']
-        if archivo:
-            nombre_archivo = secure_filename(archivo.filename)
-            ruta_imagen = os.path.join(app.config['UPLOAD_FOLDER'], nombre_archivo)
-            archivo.save(ruta_imagen)
-
-            # Procesar imagen
-            try:
-                imagen = load_img(ruta_imagen, target_size=IMG_SIZE)
-                imagen = img_to_array(imagen) / 255.0
-                imagen = np.expand_dims(imagen, axis=0)
-
-                # Predicción
-                resultado = modelo.predict(imagen)
-                indice = np.argmax(resultado)
-                prediccion = clases[indice]
-                imagen_url = '/' + ruta_imagen.replace("\\", "/")
-
-                # Buscar info en archivo
-                info = obtener_info_especie(prediccion)
-
-                print(f"Predicción: {prediccion}")  # Depuración
-                print(f"Resultado del modelo: {resultado}")  # Depuración
-
-            except Exception as e:
-                print(f"Error al procesar la imagen: {e}")  # Depuración
-
-    return render_template('especies.html', prediccion=prediccion, imagen_url=imagen_url, info=info)
-
-@app.route("/estadisticas/<nombre>")
-def estadisticas(nombre):
-    datos_especie = cargar_datos_especie(nombre)
-    if not datos_especie:
-        return "Especie no encontrada", 404
-
-    # Manejar el retorno de predecir_año_extincion correctamente
-    resultado_prediccion = predecir_año_extincion(df_monitor, nombre)
-    if resultado_prediccion is None or not isinstance(resultado_prediccion, tuple):
-        año_pred, grafico_b64 = None, None
-    else:
-        año_pred, grafico_b64 = resultado_prediccion
-
-    # Evaluar la tendencia reciente
-    tendencia_reciente = verificar_tendencia_reciente(df_monitor, nombre)
-
-    # Buscar observaciones en GBIF y generar el mapa
-    registros = buscar_en_gbif(nombre)
-    mapa_html = crear_mapa_html(registros)
-
-    return render_template("estadisticas.html",
-                           especie=nombre,
-                           año_pred=año_pred,
-                           grafico=grafico_b64,
-                           mapa=mapa_html,
-                           tendencia_reciente=tendencia_reciente,
-                           **datos_especie)
 
 # Ejecución de la aplicación Flask en modo debug.
 if __name__ == "__main__":
