@@ -63,25 +63,22 @@ section.footer {
 } 
 
 
-/* 
-ENLACES
-ul.list-unstyled li a {
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  TITULOS
-  ul.list-unstyled li a:hover {
-    color: #0056b3;
-  }
-  h3.fw-bold {
-    font-weight: bold;
-    font-size: 1.5rem;
-    color: #343a40;
-  }
-  
-  h3.fs-1 {
-    font-size: 1.75rem;
-  }
-*/
+/* Estilo para los enlaces de los íconos */
+#iconFooter {
+    color: #000;  /* Cambia el color del enlace a negro */
+}
+
+/* Estilo para los íconos, asegurando que ambos iconos tengan color negro */
+.feature i {
+    color: black;  /* Establece el color de los íconos a negro */
+}
+
+/* Estilo para los títulos (links en el footer) */
+#iconFooter a {
+    color: black;  /* Cambia el color del texto a negro */
+    text-decoration: none;  /* Elimina el subrayado del enlace */
+}
+
+#iconFooter a:hover {
+    color: var(--verde-jungla); /* Si deseas un color al pasar el mouse */
+}
