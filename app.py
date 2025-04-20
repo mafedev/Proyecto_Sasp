@@ -296,7 +296,8 @@ def cargar_datos_especie(nombre_especie):
                     'imagen_especie': fila.get('imagen', 'img/default.jpg'),
                     'acciones_recomendadas': fila.get('acciones_recomendadas', 'No especificado'),
                     'organizaciones': fila.get('organizaciones', 'No especificado'),
-                    'amenazas': fila.get('amenazas', 'No especificado')
+                    'amenazas': fila.get('amenazas', 'No especificado'),
+                    'descripcion': fila.get('descripcion', 'Descripción no disponible')  # Agregar descripción
                 }
     return None
 
