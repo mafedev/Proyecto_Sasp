@@ -2,7 +2,18 @@
 {% block title %}Estadísticas de {{ especie }}{% endblock %}
 
 {% block content %}
-<h1 class="mb-4 text-center">Estadísticas de {{ especie }}</h1>
+<h1 class="text-center" id="encabezado_monitorizar">Estadísticas de {{ especie }}</h1>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h3>Información de la Especie</h5>
+  <form method="POST" class="d-inline">
+    <label for="metodo" class="me-2">Método de predicción:</label>
+    <select name="metodo" onchange="this.form.submit()" class="form-select d-inline w-auto">
+        <option value="lineal" {% if metodo == "lineal" %}selected{% endif %}>Regresión Lineal</option>
+        <option value="lstm" {% if metodo == "lstm" %}selected{% endif %}>Modelo LSTM</option>
+    </select>
+  </form>
+</div>
 
 <div class="estadisticas">
   <div class="row align-items-start mb-4">
@@ -14,7 +25,7 @@
   
     <!-- Datos de la especie -->
     <div class="col-12 col-md-8">
-      <h5>Información de la Especie</h5>
+      <p>{{ descripcion }}</p>
       <table class="table table-striped" id="especie_info">
         <thead>
           <tr>
@@ -32,10 +43,6 @@
             <td>{{ habitat }}</td>
           </tr>
           <tr>
-            <th scope="row">Estado:</th>
-            <td>{{ estado }}</td>
-          </tr>
-          <tr>
             <th scope="row">Amenazas:</th>
             <td>{{ amenazas }}</td>
           </tr>
@@ -44,34 +51,39 @@
     </div>
   </div>
   
-  <form method="POST">
-    <label for="metodo">Método de predicción:</label>
-    <select name="metodo" onchange="this.form.submit()">
-        <option value="lineal" {% if metodo == "lineal" %}selected{% endif %}>Regresión Lineal</option>
-        <option value="lstm" {% if metodo == "lstm" %}selected{% endif %}>Modelo LSTM</option>
-    </select>
-</form>
-
-{% if poblacion_historica %}
-  <h5 class="mt-4 text-center">📊 Evolución Histórica de la Población</h5>
-  <table class="table table-bordered table-hover table-sm">
-    <thead class="table-light">
-      <tr>
-        <th>Año</th>
-        <th>Población</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for año, poblacion in poblacion_historica %}
-        <tr>
-          <td>{{ año }}</td>
-          <td>{{ poblacion }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-{% endif %}
-
+  <!-- Lista desplegable con la evolución de la población -->
+  {% if poblacion_historica %}
+  <div class="accordion mb-5">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          Ver evolución de la población
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <h5 class="text-center">Evolución Histórica de la Población</h5>
+          <table class="table table-bordered table-hover table-sm">
+            <thead class="table-light">
+              <tr>
+                <th>Año</th>
+                <th>Población</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for año, poblacion in poblacion_historica %}
+                <tr>
+                  <td>{{ año }}</td>
+                  <td>{{ poblacion }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
 
   <hr>
   
