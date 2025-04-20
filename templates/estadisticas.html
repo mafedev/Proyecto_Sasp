@@ -44,7 +44,35 @@
     </div>
   </div>
   
-  
+  <form method="POST">
+    <label for="metodo">Método de predicción:</label>
+    <select name="metodo" onchange="this.form.submit()">
+        <option value="lineal" {% if metodo == "lineal" %}selected{% endif %}>Regresión Lineal</option>
+        <option value="lstm" {% if metodo == "lstm" %}selected{% endif %}>Modelo LSTM</option>
+    </select>
+</form>
+
+{% if poblacion_historica %}
+  <h5 class="mt-4 text-center">📊 Evolución Histórica de la Población</h5>
+  <table class="table table-bordered table-hover table-sm">
+    <thead class="table-light">
+      <tr>
+        <th>Año</th>
+        <th>Población</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for año, poblacion in poblacion_historica %}
+        <tr>
+          <td>{{ año }}</td>
+          <td>{{ poblacion }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+
+
   <hr>
   
   <div class="row">
@@ -58,12 +86,12 @@
   
     <!-- Gráfico de Evolución Poblacional -->
     <div class="col-md-6 mb-4">
-      <h5 class="text-center">📈 Evolución Poblacional</h5>
+      <h5 class="text-center">Evolución Poblacional</h5>
       <div class="d-flex justify-content-center align-items-center border rounded shadow bg-light p-3" style="height: 400px;">
         {% if grafico %}
           <img src="data:image/png;base64,{{ grafico }}" class="img-fluid" alt="Gráfico de población">
         {% else %}
-          <div class="alert alert-secondary text-center mb-0">❌ No se pudo generar el gráfico (datos insuficientes).</div>
+          <div class="alert alert-secondary text-center mb-0">No se pudo generar el gráfico</div>
         {% endif %}
       </div>
     </div>
@@ -71,25 +99,28 @@
   
   {% if año_pred %}
     <hr>
-    <h4 class="mt-4">📉 Predicción de Extinción</h4>
-  
-    {% if tendencia_reciente and ("incremento" in tendencia_reciente.lower() or "aumento" in tendencia_reciente.lower()) %}
-      <div class="alert alert-success">
-        🌿 En los últimos años, la especie ha mostrado un aumento significativo en su población.
-        Por lo tanto, no es certero indicar un año de extinción. ¡Esperamos que esta especie logre salvarse! 💚
-      </div>
-    {% else %}
-      <p>🧠 Posible extinción en el año: <strong>{{ año_pred }}</strong></p>
-      {% if año_pred - 2024 <= 10 %}
-        <div class="alert alert-danger">⚠️ Riesgo crítico: extinción en menos de 10 años.</div>
+    <div id="prediccion-extincion">
+      <h4 class="mt-4">Predicción de Extinción</h4>
+      {% if tendencia_reciente and ("incremento" in tendencia_reciente.lower() or "aumento" in tendencia_reciente.lower()) %}
+        <div class="alert alert-success">
+          🌿 En los últimos años, la especie ha mostrado un aumento significativo en su población.
+          Por lo tanto, no es certero indicar un año de extinción. ¡Esperamos que esta especie logre salvarse! 💚
+        </div>
+      {% else %}
+        <p>Posible extinción en el año: <strong>{{ año_pred }}</strong></p>
+        {% if año_pred - 2024 <= 10 %}
+          <div class="alert alert-danger">⚠️ Riesgo crítico: extinción en menos de 10 años.</div>
+        {% endif %}
       {% endif %}
-    {% endif %}
+    </div>
   {% endif %}
   
   <hr>
-  <h4 class="mt-4">🌱 Cómo puedes ayudar</h4>
-  <p><strong>Acciones recomendadas:</strong> {{ acciones_recomendadas }}</p>
-  <p><strong>Organizaciones:</strong> {{ organizaciones }}</p>
-  <p><strong>Amenazas:</strong> {{ amenazas }}</p>
+  <div id="como-ayudar">
+    <h4 class="mt-4">Cómo puedes ayudar</h4>
+    <p><strong>Acciones recomendadas:</strong> {{ acciones_recomendadas }}</p>
+    <p><strong>Organizaciones:</strong> {{ organizaciones }}</p>
+    <p><strong>Amenazas:</strong> {{ amenazas }}</p>
+  </div>
 </div>
 {% endblock %}
