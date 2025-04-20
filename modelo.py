@@ -1,40 +1,20 @@
+# modelo.py (PARTE PREDICTIVA)
 import pandas as pd
 import numpy as np
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
+from keras.models import load_model
+from tensorflow.keras.models import load_model
+from tensorflow.keras.losses import MeanSquaredError
 
-# 1. Cargar CSV
-df = pd.read_csv("c:\\proyecto_especies\\data\\especies_extintas.csv")
+modelo = load_model("modelo_entrenado.h5", custom_objects={"mse": MeanSquaredError()})
 
-# 2. Poner especies como filas y años como columnas
-df_t = df.set_index('Año').T
-df_t = df_t.dropna()  # Quitar las que tengan datos faltantes
 
-# 3. X son los datos de población histórica, y es siempre 0 (porque ya están extintas)
-X = df_t.values
-y = np.array([0] * len(df_t))  # Todas se extinguieron
+# Cargar el DataFrame transpuesto (especies como columnas)
+df_extintas = pd.read_csv("data/especies_extintas.csv", index_col=0).T
 
-# 4. Normalizar los datos
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
+def predecir_nn(especie):
+    if especie not in df_extintas.columns:
+        return None
 
-# 5. Dividir para entrenar
-X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
-
-# 6. Crear la red neuronal
-model = Sequential([
-    Dense(64, activation='relu', input_shape=(X.shape[1],)),
-    Dense(32, activation='relu'),
-    Dense(1)  # Solo un número de salida: cuán cerca está de 0
-])
-
-# 7. Compilar y entrenar
-model.compile(optimizer='adam', loss='mse')
-model.fit(X_train, y_train, epochs=100, verbose=1)
-
-# 8. Hacer predicciones
-preds = model.predict(X_test)
-print("Predicción de extinción (debe estar cerca de 0):")
-print(preds)
+    poblacion = df_extintas[especie].fillna(0).values.reshape(1, -1)
+    prediccion = modelo.predict(poblacion)
+    return int(prediccion[0][0])

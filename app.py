@@ -88,27 +88,39 @@ def monitorizar():
                            grafico=grafico_b64,
                            mapa=mapa_html)
 
-@app.route("/estadisticas/<nombre>")
+@app.route("/estadisticas/<nombre>", methods=["GET", "POST"])
 def estadisticas(nombre):
     datos_especie = cargar_datos_especie(nombre)
     if not datos_especie:
         return "Especie no encontrada", 404
 
-    # Predicción con red neuronal (modelo.py)
-    anio_pred = predecir_nn(nombre)
+    metodo = request.form.get("metodo", "lineal")  # por defecto, regresión lineal
+    año_pred = None
+    grafico_b64 = None
 
-    # También puedes seguir usando la regresión para el gráfico
-    _, grafico_b64 = predecir_año_extincion(df_monitor, nombre)
+    if metodo == "lineal":
+        año_pred, grafico_b64 = predecir_año_extincion(df_monitor, nombre)
+    elif metodo == "lstm":
+        año_pred = predecir_nn(nombre)
+        _, grafico_b64 = predecir_año_extincion(df_monitor, nombre)  # reutilizamos el gráfico de regresión
 
     tendencia_reciente = verificar_tendencia_reciente(df_monitor, nombre)
     registros = buscar_en_gbif(nombre)
     mapa_html = crear_mapa_html(registros)
 
+    # Para mostrar la tabla de población histórica
+    poblacion_historica = []
+    if nombre in df_monitor.columns:
+        especie_serie = df_monitor[nombre].dropna()
+        poblacion_historica = list(zip(especie_serie.index, especie_serie.values))
+
     return render_template("estadisticas.html",
                            especie=nombre,
-                           año_pred=anio_pred,
+                           año_pred=año_pred,
                            grafico=grafico_b64,
                            mapa=mapa_html,
+                           metodo=metodo,
+                           poblacion_historica=poblacion_historica,
                            tendencia_reciente=tendencia_reciente,
                            **datos_especie)
 
