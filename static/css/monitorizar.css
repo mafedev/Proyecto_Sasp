@@ -1,6 +1,21 @@
+
+#monitorizar_encabezado {
+  margin: 90px;
+}
+
+#monitorizar {
+  background-color: var(--blanco-verde);
+}
+
+#header_moni {
+  background-image: url("/static/img/cebra.avif");
+  background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+  margin-bottom: 50px;
+}
+
 /* ESTADÍSTICAS */
 .estadisticas {
-    margin: 20px !important;
+    margin: 50px !important;
 }
   
 /* TABLA */
@@ -28,3 +43,4 @@
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: #F5F5DC; /* Beige claro */
 }
+

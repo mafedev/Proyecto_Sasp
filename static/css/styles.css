@@ -168,5 +168,21 @@ input[type=number] {
 
 /* GALERÍA */
 #galeria {
-  margin-top: 80px; /* Ajusta el valor según lo que necesites */
+  margin-top: 60px;
+  margin-bottom: 50px;
+  padding: 20px;
+  background-color: var(--verde-amarillo);
+}
+
+#galeria h2{
+  color: var(--blanco-roto);
+  font-size: 80px;
+}
+
+#galeria p{
+  font-size: 20px;
+}
+
+#contGaleria {
+  margin-bottom: 50px;
 }
