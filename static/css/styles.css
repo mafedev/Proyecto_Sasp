@@ -1,371 +1,3 @@
-/*
-COLORES
-
-  TONOS VERDE
-    Verde oscuro: #2c6e40
-    Verde musgo: #5a7b3b
-    Verde musgo 2: #6B8E23
-    Verde lima: #A8E05E
-    Verde oliva: #556B2F
-
-    CLAROS
-    Verde hierba: #2E8B57
-    Verde hierba: #7CFC00
-    Verde musgo pálido: #8A9A5B // Fondo
-    
-    Verde jungla: #006400
-    Verde lima brillante: #32CD32
-    
-  TONOS MARRÓN
-    Marrón arena: #D2B48C
-    Marrón madera: #8B4513
-    Marrón suave: #9e7e46
-    Marrón tierra cálida: #C89A6B
-
-    OSCUROS
-    Marrón tierra: #7B3F00
-    Marrón chocolate: #3E2723
-    Beige claro: #F1E3D3
-    Marrón terracota: #E27D60
-    Beige claro: #F5F5DC // Café verdoso
-    
-  TONOS GRIS
-    Gris cálido: #8e8d8a
-    Gris oscuro: #4d4d4d
-    Gris muy claro: #f3f3f3
-    Gris piedra: #A9A9A9
-    Gris montaña: #6C6E6B
-    Gris oscuro: #2F4F4F
-
-  TONOS AMARILLO/NARANJA
-    Naranja cálido: #f5a623
-    Amarillo mostaza: #FFD700
-    Beige arena: #F4A300
-    Naranja calabaza: #FFA500
-    Amarillo sol: #FFD700
-    Amarillo limón: #FFF700
-    
-  TONOS ROJO
-    Rojo tomate: #FF6347
-    Rojo coral: #e64a42
-    Rojo flor tropical: #FF6347
-    
-  TONOS AZUL
-    Verde pino oscuro: #2F4F4F //Oscuro
-    Verde pino: #01796F
-    Verde claro: #b4dcb3
-    Azul océano: #1E3A5F
-    Azul cielo: #87CEEB
-    Azul cielo profundo: #1E90FF
-
-    CLAROS
-    Azul celeste: #00BFFF
-    Verde agua: #40E0D0
-    Azul glacial: #5F9EA0
-    
-  TONOS BLANCO
-    Blanco roto: #f0f0f0
-    Blanco nieve: #FFFAFA
-    Blanco niebla: #F5F5F5
-*/
-
-/* ---------- GENERAL ---------- */
-
-body {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  background-color: #8A9A5B;
-}
-
-/* ---------- FOOTER ---------- */
-section.footer {
-  background-color: #f8f9fa;
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-
-.footer .container {
-  max-width: 1200px;
-}
-
-.footer .row {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.footer .col-lg-6 {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  text-align: left; /* Asegura que el texto quede alineado a la izquierda */
-}
-
-.footer .col-lg-6 p {
-  text-align: left;
-}
-
-.footer .col-lg-3 {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  text-align: left;
-}
-
-.footer .col-sm-12 {
-  text-align: left;
-}
-
-.text-gray {
-  color: #6c757d;
-}
-
-.footer .logo-footer {
-  max-width: 100px;
-  height: auto;
-}
-
-/* ---------- CARROUSEL INDEX ---------- */
-#eco-carousel {
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-}
-
-.swiper {
-  height: 100%;
-}
-
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-.swiper-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.eco-caption {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  text-align: center;
-  text-shadow: 2px 2px 8px black;
-  z-index: 10;
-}
-
-#textito {
-  font-size: 50px;
-}
-
-/* CAROUSEL CAPTION */
-.carousel-caption {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  text-align: left;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  border-radius: 5px;
-}
-
-/* Cambiar el borde y el color de fondo del botón cuando está en foco o al pasar el ratón */
-button.btn-outline-success {
-  border-color: #8e8d8a;  /* Cambia el color del borde */
-  color: #007bff;         /* Cambia el color del texto (en este caso, el ícono de la lupa) */
-}
-
-/* Cambiar el borde y el fondo cuando se pasa el ratón (hover) */
-button.btn-outline-success:hover {
-  background-color: #b4dcb3;  /* Cambiar el color de fondo cuando el botón está en hover */
-  color: white;               /* Cambiar el color del texto a blanco */
-  border-color: transparent;  /* Elimina el borde al pasar el ratón */
-}
-
-/* Cambiar el color cuando el botón está presionado (active) */
-button.btn-outline-success:active {
-  background-color: #000000;  /* Cambiar el color de fondo a negro cuando el botón está presionado */
-  border-color: #000000;      /* Cambiar el color del borde a negro */
-}
-
-/* Cambiar el color del ícono dentro del botón cuando está presionado */
-button.btn-outline-success:active img {
-  filter: brightness(0) invert(1);  /* Cambia el color del ícono de la lupa a blanco */
-}
-
-/* Estilo global para la columna */
-.icon-link {
-  text-decoration: none; /* Quitar subrayado */
-  display: inline-block; /* Asegura que los íconos estén alineados correctamente */
-}
-
-/* Estilo para los íconos */
-.icon-img {
-  width: 100px; /* Puedes ajustar el tamaño según lo necesites */
-  height: auto; /* Mantener la relación de aspecto */
-  border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones para hover */
-  cursor: pointer; /* Cambiar el cursor al pasar por encima */
-}
-
-/* Efecto hover para agrandar los íconos */
-.icon-link:hover .icon-img {
-  transform: scale(1.1); /* Aumentar el tamaño del ícono */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
-}
-
-/* Estilo para los textos debajo de los íconos */
-.icon-text {
-  font-size: 1rem; /* Tamaño de fuente moderado */
-  color: #333; /* Color del texto */
-  font-weight: 500; /* Negrita moderada */
-  margin-top: 10px; /* Espaciado entre el ícono y el texto */
-  transition: color 0.3s ease; /* Transición suave para el cambio de color */
-}
-
-/* Cambiar el color del texto cuando el ícono es hover */
-.icon-link:hover .icon-text {
-  color: #007bff; /* Cambiar a un color azul (o el que prefieras) */
-}
-
-#iconos {
-  background-color: #F5F5DC;
-}
-
-
-/* ---------- NAVBAR  ---------- */
-.navbar {
-  background-color: #9e7e46;
-  padding: 10px; /* Espacio interno */
-}
-
-/* Nombre de la app */
-.navbar-brand {
-  color: #5a7b3b;
-}
-
-/* ---------- NOTICIAS ---------- */
-#noticias {
-  background-color: #F5F5DC; /* Beige claro */
-}
-
-#noticias .row {
-  display: flex;
-}
-
-#noticias .col-md-6 {
-  display: flex;
-  align-items: center; /* Centra verticalmente el contenido de las columnas */
-}
-
-#noticias .col-md-6:first-child {
-  justify-content: center;
-  text-align: left;
-}
-
-#noticias .col-md-6 .w-100 {
-  text-align: left;
-}
-
-#noticias .col-md-6 p {
-  font-size: 1.2rem;
-  font-family: 'Arial', sans-serif;
-  color: #333;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  text-align: left;
-}
-
-#noticias .col-md-6 .card img {
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-#noticias .col-md-6 .card-title {
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-#noticias .col-md-6 .btn {
-  display: block;
-  margin: 20px auto 0;
-  font-size: 1rem;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease;
-}
-
-#noticias .col-md-6 .btn:hover {
-  background-color: #0056b3;
-}
-
-/* ============================ */
-/* ENLACES */
-ul.list-unstyled li a {
-  color: #007bff;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-ul.list-unstyled li a:hover {
-  color: #0056b3;
-}
-
-/* ============================ */
-/* TITULOS */
-h3.fw-bold {
-  font-weight: bold;
-  font-size: 1.5rem;
-  color: #343a40;
-}
-
-h3.fs-1 {
-  font-size: 1.75rem;
-}
-
-/* ============================ */
-/* LISTAS */
-li.my-3 {
-  margin-bottom: 0.75rem;
-}
-
-/* ============================ */
-/* ETIQUETAS */
-.bg-success {
-  background-color: #28a745 !important;
-}
-
-.text-dark {
-  color: #343a40 !important;
-}
-
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-
-.px-2 {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-
-.rounded-2 {
-  border-radius: 0.25rem;
-}
-
-
-
-
 /* HUELLA CARBONO */
 .imagen-redondeada {
   width: 100%;
@@ -411,7 +43,6 @@ input[type=number] {
   background-color: #F5F5DC; /* Beige claro */
   border-radius: 15px; /* Bordes redondeados */
   padding: 30px; /* Espaciado interno */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
 #contacto h1 {
@@ -426,7 +57,6 @@ input[type=number] {
 
 #contacto .form-control {
   border: 1px solid #A9A9A9; /* Gris piedra */
-  border-radius: 10px; /* Bordes redondeados */
   background-color: #FFFFFF; /* Fondo blanco */
   font-size: 1rem;
   color: #333; /* Color del texto */
@@ -445,7 +75,6 @@ input[type=number] {
 #contacto .btn-primary {
   background-color: #6B8E23; /* Verde musgo 2 */
   border: none;
-  border-radius: 10px; /* Bordes redondeados */
   padding: 10px 20px;
   font-size: 1rem;
   font-weight: bold;
@@ -462,95 +91,29 @@ input[type=number] {
   transform: scale(1); /* Vuelve al tamaño original */
 }
 
+#contacto .input-group-text {
+  background-color: #e0e0d1;
+  border: 1px solid #A9A9A9;
+  color: #555;
+  font-size: 1rem;
+}
+
 .fondo_ayuda{
   background-color: #F5F5DC;
 }
 
 .fondo_formulario{
-  background-color: #4d4d4d;
-}
-
-/* ============NOTICIAS================ */
-.noticias {
-  padding-top: 80px; /* o 100px si tu navbar es alto */
-  background-image: url('https://images.unsplash.com/photo-1581804928342-4e3405e39c91');
-  color: #ffffff;
-  padding-bottom: 60px; /* Espacio al final para evitar solapamiento */
-}
-
-.noticias #titulo_blog {
-  font-size: 3em;
-  font-weight: bold;
-  color: #000000;
-}
-
-.noticias #subtitulo_blog {
-  font-size: 2em;
-  color: #4caf50;
-}
-
-.noticias #noticias,
-.noticias #blogs {
-  background-color: #1e1e1e;
-  padding: 40px;
-  border-radius: 10px;
-}
-
-.noticias #noticias h2,
-.noticias #blogs h2 {
-  text-transform: uppercase;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.noticias .mb-4 h4 {
-  font-size: 1.6em;
-  color: #81c784;
-}
-
-.noticias .mb-4 p {
-  font-size: 1.1em;
-  color: #eeeeee;
-}
-
-.noticias .mb-4 a {
-  background-color: #388e3c;
-  color: white;
-  padding: 8px 20px;
-  border-radius: 30px;
-  font-size: 1.1em;
-  text-decoration: none;
-}
-
-.noticias .mb-4 a:hover {
-  background-color: #2c6f2b;
+  background-color: var(--verde-amarillo);
 }
 
 /* REFUGIOS */
 #mapas {
-  background-color: #F5F5DC; /* Beige claro */
+  background-color: var(--verde-claro); /* Beige claro */
 }
 
-#encabezado_refugios{
-  overflow-x: hidden;
+#areas_protegidas {
+  background-color: var(--verde-pino);
 }
-
-
-/* Íconos index*/
-#iconos .col-lg-4 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centra los iconos dentro de cada columna */
-  align-items: center; /* Centra el contenido dentro de la columna */
-  text-align: center; /* Centra el texto */
-}
-
-/* Efecto hover para las imágenes */
-.icon-button:hover .icon-img {
-  transform: scale(1.1); /* Aumenta el tamaño de la imagen un 10% */
-  transition: transform 0.2s; /* Hace que el cambio de tamaño sea suave en 0.2 segundos */
-}
-
 
 /* CASOS*/
 .timeline {
@@ -587,39 +150,39 @@ input[type=number] {
   border-radius: 10px;
 }
 
+#casos_salvados {
+  background-color: var(--blanco-verde);
+}
+
+#casos_salvados h2{
+  padding: 50px;
+  background-color: #333;
+  color: #f0f0f0 ;
+}
+
+#especiesRescatadas {
+  padding: 50px;
+  margin:0px;
+  background-color: var(--marron-suave);
+}
+
 /* GALERÍA */
-#cont_galeria {
-  margin-top: 80px;
-  margin-bottom: 30px;
+#galeria {
+  margin-top: 60px;
+  margin-bottom: 50px;
+  padding: 20px;
+  background-color: var(--verde-amarillo);
 }
 
-/* ESTADÍSTICAS */
-.estadisticas {
-  margin: 20px !important;
+#galeria h2{
+  color: var(--blanco-roto);
+  font-size: 80px;
 }
 
-/* TABLA */
-.table {
-  width: 100%;
-  margin-bottom: 1rem;
-  color: #212529;
-  border-collapse: collapse; /* Asegura que las celdas no tengan espacio entre ellas */
-  background-color: #FFFFFF; /* Blanco */
-  border: 1px solid #8A9A5B; /* Verde musgo pálido */
+#galeria p{
+  font-size: 20px;
 }
 
-.table th,
-.table td {
-  padding: 0.75rem;
-  vertical-align: top;
-  border-top: 1px solid #dee2e6;
-}
-
-.table th {
-  background-color: #556B2F; /* Verde oliva */
-  color: white;
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: #F5F5DC; /* Beige claro */
+#contGaleria {
+  margin-bottom: 50px;
 }
