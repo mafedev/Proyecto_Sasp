@@ -1,7 +1,9 @@
-flask
+Flask
+tensorflow
 pandas
 numpy
 matplotlib
 folium
-scikit-learn
+openpyxl
 requests
+Werkzeug

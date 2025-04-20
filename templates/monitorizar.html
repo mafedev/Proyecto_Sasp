@@ -2,8 +2,23 @@
 {% block title %}Monitorización{% endblock %}
 
 {% block content %}
-<h2 class="mb-4">Especies Monitorizadas</h2>
-<div class="row mb-5"> <!-- Fila con tres columnas -->
+<header class="py-5" id="header_moni">
+  <div class="container px-5" id="monitorizar">
+      <div class="row justify-content-center">
+          <div class="col-lg-8 col-xxl-6">
+              <div class="text-center my-5">
+                <h1 class="fw-bolder mb-3" id="monitorizar_encabezado">Especies Monitorizadas en Peligro</h1>
+                <p class="lead fw-normal text-muted mb-4">
+                    Explora las especies más vulnerables que estamos monitoreando para prevenir su extinción y proteger la biodiversidad. Utilizamos datos científicos para predecir su futuro y abordamos las amenazas que enfrentan, como la destrucción de su hábitat, el cambio climático y la caza ilegal.
+                </p>
+                <a class="btn btn-primary btn-lg" href="#scroll-target">Explora las especies y sus predicciones</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</header>
+
+<div class="row mb-5" id="scroll-target"> <!-- Fila con tres columnas -->
   {% for especie in especies %} <!-- Itera sobre cada especie en el archivo csv -->
     <div class="col-md-4 mb-4"> 
       <div class="card h-100 shadow-sm"> <!-- Crea la tarjeta para cada especie -->

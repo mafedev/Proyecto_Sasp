@@ -1,0 +1,347 @@
+/* ---------- CARROUSEL INDEX ---------- */
+#eco-carousel {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+  
+.swiper {
+  height: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.eco-caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  text-shadow: 2px 2px 8px black;
+  z-index: 10;
+}
+
+#textito {
+  font-size: 50px;
+}
+
+/* CAROUSEL CAPTION */
+.carousel-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  text-align: left;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Cambiar el borde y el color de fondo del botón cuando está en foco o al pasar el ratón */
+button.btn-outline-success {
+  border-color: #8e8d8a;  /* Cambia el color del borde */
+  color: #007bff;         /* Cambia el color del texto (en este caso, el ícono de la lupa) */
+}
+
+/* Cambiar el borde y el fondo cuando se pasa el ratón (hover) */
+button.btn-outline-success:hover {
+  background-color: #b4dcb3;  /* Cambiar el color de fondo cuando el botón está en hover */
+  color: white;               /* Cambiar el color del texto a blanco */
+  border-color: transparent;  /* Elimina el borde al pasar el ratón */
+}
+
+/* Cambiar el color cuando el botón está presionado (active) */
+button.btn-outline-success:active {
+  background-color: #000000;  /* Cambiar el color de fondo a negro cuando el botón está presionado */
+  border-color: #000000;      /* Cambiar el color del borde a negro */
+}
+
+/* Cambiar el color del ícono dentro del botón cuando está presionado */
+button.btn-outline-success:active img {
+  filter: brightness(0) invert(1);  /* Cambia el color del ícono de la lupa a blanco */
+}
+
+/* Estilo global para la columna */
+.icon-link {
+  text-decoration: nprimero; /* Quitar subrayado */
+  display: inline-block; /* Asegura que los íconos estén alineados correctamente */
+}
+
+/* Estilo para los íconos */
+.icon-img {
+  width: 100px; /* Puedes ajustar el tamaño según lo necesites */
+  height: auto; /* Mantener la relación de aspecto */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciprimeros para hover */
+  cursor: pointer; /* Cambiar el cursor al pasar por encima */
+}
+
+/* Efecto hover para agrandar los íconos */
+.icon-link:hover .icon-img {
+  transform: scale(1.1); /* Aumentar el tamaño del ícono */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+}
+
+/* Estilo para los textos debajo de los íconos */
+.icon-text {
+  font-size: 1rem; /* Tamaño de fuente moderado */
+  color: #333; /* Color del texto */
+  font-weight: 500; /* Negrita moderada */
+  margin-top: 10px; /* Espaciado entre el ícono y el texto */
+  transition: color 0.3s ease; /* Transición suave para el cambio de color */
+}
+
+/* Cambiar el color del texto cuando el ícono es hover */
+.icon-link:hover .icon-text {
+  color: #007bff; /* Cambiar a un color azul (o el que prefieras) */
+}
+
+#iconos {
+  background-color: #F5F5DC;
+}
+
+/* Íconos index*/
+#iconos .col-lg-4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra los iconos dentro de cada columna */
+  align-items: center; /* Centra el contenido dentro de la columna */
+  text-align: center; /* Centra el texto */
+}
+  
+/* Efecto hover para las imágenes */
+.icon-button:hover .icon-img {
+  transform: scale(1.1); /* Aumenta el tamaño de la imagen un 10% */
+  transition: transform 0.2s; /* Hace que el cambio de tamaño sea suave en 0.2 segundos */
+}
+
+.colapsados p {
+  text-align: center;
+}
+  
+.card-body {
+  margin-bottom: 50px;
+}
+
+#introduccion {
+  position: relative; /* Necesario para posicionar el overlay */
+  margin: 0;
+  padding: 70px;
+  background-image: url("/static/img/mancha.avif");
+  background-size: cover;
+  min-height: 60vh;
+}
+
+#introduccion .text-center.m-5 h2,
+#introduccion .text-center.m-5 p {
+  color: var(--amarillo);
+  position: relative;
+  z-index: 2; /* El texto estará sobre el overlay */
+}
+
+#introduccion .colapsados p {
+  position: relative;
+}
+
+#introduccion::before {
+  content: ''; /* Necesario para crear un pseudo-elemento */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Opacidad del overlay para oscurecer la imagen */
+  z-index: 1; /* Coloca el overlay sobre la imagen de fondo */
+}
+
+#introduccion .btn {
+  position: relative;
+  z-index: 3; /* Botprimeros deben estar encima del overlay */
+}
+
+.collapse {
+  position: relative; /* Asegura que los elementos colapsables estén correctamente posicionados */
+  z-index: 4; /* Coloca el contenido colapsable por encima del overlay */
+}
+
+/* Asegura que el contenido dentro de los colapsables también esté sobre el overlay */
+.collapse .card {
+  position: relative;
+  z-index: 5; /* Las tarjetas del contenido colapsable deben estar encima del overlay */
+}
+
+/*Seccion después de noticias*/
+#imagenIndexCasos {
+  width: 50%; /* Mantén este tamaño para la imagen */
+  height: auto; /* Mantiene la proporción de la imagen */
+  object-fit: cover; /* Asegura que la imagen cubra el área del contenedor */
+}
+
+#seccionIndex3 {
+  padding: 50px;
+  border: var(--blanco-verde);
+}
+
+.hover-title {
+  color: var(--blanco-verde);
+  font-size: 4rem;
+  margin-bottom: 30px;
+}
+
+.hover-title:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+#seccionIndex3 .card-body {
+  color: #34495E; /* Gris oscuro para el texto dentro de la tarjeta */
+}
+
+#seccionIndex3 .card-body a {
+  color: #1E90FF; /* Azul marino para los enlaces */
+}
+
+#seccionIndex3 .card-body a:hover {
+  color: #4682B4; /* Azul más oscuro cuando se pasa el mouse */
+}
+
+/*ARTICULOS*/
+#primero {
+  background-color: var(--marron-suave-2);
+  padding: 80px;
+  width: 100vw;
+}
+
+#primero .row {
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#primero .img-fluid {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%; /* La imagen ocupará el 80% del contenedor */
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#primero h2 a {
+  color: #FFFFFF; /* Color del texto del título */
+  font-size: 1.8rem;
+  text-decoration: none;
+}
+
+#primero h2 a:hover {
+  color: var(--marron-chocolate);
+}
+
+#primero .info {
+  font-size: 0.9rem;
+  color: #3E2723; /* Marrón chocolate */
+}
+
+#primero .btn-outline-success {
+  border-color: var(--blanco-verde);
+  color: var(--blanco-verde);
+  background-color: transparent;
+}
+
+#primero .btn-outline-success:hover {
+  background-color: var(--marron-chocolate);
+  color: white;
+}
+
+#primero ul {
+  padding-left: 1.5rem;
+}
+
+#primero ul li {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: #3E2723; /* Marrón chocolate */
+}
+
+/* Segundo articulo */  
+#segundo .row {
+  display: flex;
+  align-items: center;
+}
+
+#segundo .img-fluid {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#segundo ul {
+  padding-left: 1.5rem;
+}
+
+#segundo ul li {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: #B4A38B; /* Gris cálido */
+}
+
+#segundo ul li strong {
+  color: #A8D5BA; /* Verde pálido */
+}
+
+/*REFUGIOS*/
+#index_refugios{
+  background-color: var(--verde-amarillo); /* Verde claro */
+  padding: 50px;
+  border-radius: 10px;
+}
+
+#index_refugios h1 {
+  color: var(--blanco-verde); /* Verde claro */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.post.style1.container.py-4 {
+  padding: 80px;
+  margin: 60px;
+}
+
+.post.style1.container.py-4 .btn-outline-primary {
+  border-color: #A8D5BA; /* Verde pálido */
+  color: #A8D5BA;
+  background-color: transparent;
+}
+
+.post.style1.container.py-4 .btn-outline-primary:hover {
+  background-color: #A8D5BA; /* Verde pálido */
+  color: white;
+}
+
+.post.style1.container.py-4 h2 a {
+  color: #F4F4F4; /* Gris claro */
+  font-size: 1.8rem;
+  text-decoration: none;
+}
+
+.post.style1.container h2 a:hover {
+  color: #A8D5BA; /* Verde pálido */
+}
+
+.post.style1.container .info {
+  font-size: 0.9rem;
+  color: var(--verde-jungla); /* Gris cálido */
+}

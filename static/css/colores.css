@@ -1,0 +1,56 @@
+:root {
+    /* TONOS VERDE */
+    --verde-oscuro: #2c6e40;
+    --verde-musgo: #5a7b3b;
+    --verde-musgo-2: #6B8E23; /* Fondo */
+    --verde-lima: #A8E05E;
+    --verde-oliva: #556B2F;
+  
+    --verde-hierba: #2E8B57;
+    --verde-musgo-palido: #8A9A5B; 
+    --verde-jungla: #006400;
+    --verde-amarillo: #98cf32;
+    --amarillo: #eaed22;
+    
+    /* TONOS MARRÓN */
+    --marron-arena: #D2B48C;
+    --marron-madera: #8B4513;
+    --marron-suave: #856734;
+    --marron-suave-2: #9e7e46;
+  
+    --marron-tierra: #7B3F00;
+    --marron-chocolate: #3E2723;
+    --beige-claro: #F1E3D3;
+    
+    /* TONOS GRIS */
+    --gris-calido: #8e8d8a;
+    --gris-oscuro: #4d4d4d;
+    --gris-muy-claro: #f3f3f3;
+    --gris-piedra: #A9A9A9;
+    --gris-montana: #6C6E6B;
+    --gris-oscuro-2: #2F4F4F;
+  
+    /* TONOS ROJO */
+    --rojo-tomate: #FF6347;
+    --rojo-coral: #e64a42;
+    --rojo-flor-tropical: #FF6347;
+  
+    /* TONOS AZUL */
+    --verde-pino-oscuro: #2F4F4F;
+    --verde-pino: #01796F;
+    --verde-claro: #b4dcb3;
+    --azul-oceano: #1E3A5F;
+    --azul-cielo: #87CEEB;
+    --azul-cielo-profundo: #1E90FF;
+  
+    --azul-celeste: #00BFFF;
+    --verde-agua: #40E0D0;
+    --azul-glacial: #5F9EA0;
+  
+    /* TONOS BLANCO */
+    --blanco-roto: #f0f0f0;
+    --blanco-verde: #def1d5;
+    --blanco-niebla: #F5F5F5;
+    --beige-claro-2: #F5F5DC;
+}
+  

@@ -1,28 +1,26 @@
 {% extends "layout.html" %}
-{% block title %}Especies{% endblock %}
+{% block title %}Clasificación de Especies{% endblock %}
 
 {% block content %}
-
-<h2>🔍 Búsqueda de Especies</h2>
-<form method="post">
-  <input type="text" name="especie" placeholder="Ej: Panthera onca" value="{{ especie or '' }}">
-  <button type="submit">Buscar</button>
+<h2>📸 Clasificación de Especie</h2>
+<form method="post" enctype="multipart/form-data">
+  <input type="file" name="imagen" accept="image/*" required>
+  <button type="submit" class="btn btn-primary mt-2">Clasificar</button>
 </form>
 
-{% if especie %}
+{% if prediccion %}
   <hr>
-  <h3>📈 Resultados para: {{ especie }}</h3>
+  <h3>🐾 Especie identificada: {{ prediccion }}</h3>
+  <img src="{{ imagen_url }}" alt="Imagen subida" class="img-thumbnail" style="max-width: 300px;">
 
-  {% if año_pred %}
-    <p><strong>Año estimado de extinción:</strong> {{ año_pred }}</p>
-    <img src="data:image/png;base64,{{ grafico }}" class="img-fluid">
+  {% if info %}
+    <p><strong>Estado:</strong> {{ info.estado_conservacion }}</p>
+    <p><strong>Nombre científico:</strong> {{ info.nombre_cientifico }}</p>
+    <p><strong>Amenazas:</strong> {{ info.amenazas }}</p>
+    <p><strong>Organizaciones:</strong> {{ info.organizaciones }}</p>
+    <p><strong>Acciones recomendadas:</strong> {{ info.acciones_recomendadas }}</p>
   {% else %}
-    <p>No se pudo estimar el año de extinción.</p>
-  {% endif %}
-
-  {% if mapa %}
-    <h4>🌍 Ubicaciones</h4>
-    <div>{{ mapa|safe }}</div>
+    <p>No se encontró información adicional para esta especie.</p>
   {% endif %}
 {% endif %}
 {% endblock %}

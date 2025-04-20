@@ -5,6 +5,7 @@
 
 {% block content %} <!-- Se inicia el bloque de contenido que se sobreescribirá en la plantilla base. -->
 
+<link rel="stylesheet" href="index.css"> <!-- Se incluye el CSS específico para la página de inicio. -->
 
 <!-- Carrusel de imágenes -->
 <div class="carrousel" id="carrousel_index">
@@ -42,7 +43,7 @@
         </a>
       </button>
       <h2>Monitorizar especies</h2>
-      <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p> 
+      <p>Seguir el estado de las especies</p>
     </div>
 
     <div class="col-lg-4">
@@ -52,7 +53,7 @@
         </a>
       </button>
       <h2>Buscar especie</h2>
-      <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p> 
+      <p>Busca y descubre especies</p>
     </div>
 
     <div class="col-lg-4">
@@ -62,31 +63,13 @@
         </a>
       </button>
       <h2>Calcula tu Huella</h2>
-      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+      <p>Calcula tu impacto ambiental</p>
     </div>
-  </div><!-- /.row -->
+  </div>
 </div>
-
-
-
-<!-- Texto adicional en la página -->
-<div class="text-center m-5">
-  <h2 class="fw-bold">¡Contribuye a la conservación global!</h2>
-  <p class="lead text-muted">Únete a nosotros para proteger especies en peligro y combatir el cambio climático. Descubre cómo con EcoMonitor, cada acción cuenta.</p>
-  <a href="/especies" class="btn btn-primary">Explorar especies en peligro</a>
-  <a href="/huella_carbono" class="btn btn-dark">Calcula tu huella de carbono</a>
-</div>
-
-
-<!--
-  <h2 class="fw-bold">🌱 ¿Qué hacemos?</h2>
-        <p class="lead text-muted">En EcoMonitor, utilizamos tecnología avanzada para monitorear y proteger especies en peligro de extinción. Nuestro objetivo es crear conciencia y promover acciones efectivas para la conservación de la biodiversidad.</p>
-        <a href="/acciones" class="btn btn-success">Descubre nuestras acciones</a>
--->
-        
 
 <!-- Sección de Noticias -->
-<div class="container mb-5 p-5" id="noticias">
+<div class="container my-5 p-5" id="noticias">
   <div class="row">
     <div class="col-md-6 d-flex align-items-center">
       <div class="w-100">
@@ -102,7 +85,7 @@
     <div class="col-md-6">
       <div class="card h-100">
         <div class="card-body">
-          <h5 class="card-title">📰 Noticias & Blog</h5>
+          <h5 class="card-title">Noticias & Blog</h5>
           <p class="card-text"></p>
           <img src="/static/img/index/blog1.jpg" alt="imagen1" class="img-fluid rounded-start" style="width: 100%; height: 500px; object-fit: cover;">
         </div>
@@ -111,73 +94,155 @@
   </div>
 </div>
 
+<!-- Introducción -->
+<section id="introduccion">
+  <div class="text-center m-5">
+    <h2 class="fw-bold">¡Contribuye a la conservación global!</h2>
+    <p class="text-center m-5">Únete a nosotros para mantenerte informado sobre el estado de las especies en peligro y su progreso. Descubre cómo cada acción contribuye a su protección y al cuidado del medio ambiente.</p>
+  </div>
+  
+  <div class="colapsados">
+    <p class="gap-1">
+      <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">¿Qué hacemos?</a>
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Nuestros objetivos</button>
+    </p>
+    <div class="row">
+      <div class="col">
+        <div class="collapse multi-collapse" id="multiCollapseExample1">
+          <div class="card card-body">Nos enfocamos en monitorear las poblaciones de especies en peligro y predecir sus fechas de extinción para recomendar acciones de conservación efectivas</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="collapse multi-collapse" id="multiCollapseExample2">
+          <div class="card card-body">
+            <ul>
+              <li>Alertar sobre las especies más vulnerables y su posible extinción</li>
+              <li>Brindar recomendaciones basadas en predicciones para guiar estrategias de protección</li>
+            </ul>          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección de Voluntariado -->
+<section id="seccionIndex3">
+  <h3 class="text-center hover-title">Voluntariado y Conservación</h3>
+  <div class="row mb-2 d-flex">
+    <div class="col-md-6">
+      <div class="card flex-md-row mb-4 box-shadow h-md-250">
+        <div class="card-body d-flex flex-column align-items-start">
+          <strong class="d-inline-block mb-2 text-primary">Especies en conservación</strong>
+          <h3 class="mb-0">
+            <a class="text-dark" href="/casos_exito">Casos exitosos de especies salvadas</a>
+          </h3>
+          <div class="mb-1 text-muted">Mar 12</div>
+          <p class="card-text mb-auto">Haz clic para descubrir historias inspiradoras de especies que han sido salvadas gracias al esfuerzo de la conservación. Aprende cómo estas iniciativas marcan la diferencia y cómo tú también puedes contribuir a preservar la biodiversidad.</p>
+          <a href="/casos_exito">Saber más</a>
+        </div>
+        <img class="card-img-right flex-auto d-none d-md-block" src="/static/img/index/tortuga.jpg" id="imagenIndexCasos">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card flex-md-row mb-4 box-shadow h-md-250">
+        <div class="card-body d-flex flex-column align-items-start">
+          <strong class="d-inline-block mb-2 text-success">Voluntariado</strong>
+          <h3 class="mb-0">
+            <a class="text-dark" href="/ayudar">Descubre lugares para hacer voluntariado</a>
+          </h3>
+          <div class="mb-1 text-muted">Nov 11</div>
+          <p class="card-text mb-auto">¿Te interesa el voluntariado? Haz clic aquí para conocer lugares increíbles donde puedes ofrecer tu tiempo y habilidades para causas sociales, de conservación y apoyo comunitario. ¡Haz la diferencia hoy mismo!</p>
+          <a href="/ayudar">Saber más</a>
+        </div>
+        <img class="card-img-right flex-auto d-none d-md-block" src="/static/img/voluntariado.jpg" id="imagenIndexCasos">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Sección de artìculos/imágenes -->
+<article id="primero" class="post style1 my-5">
+  <div class="row align-items-center">
+    <!-- Columna de la imagen -->
+    <div class="col-md-6 mb-4 mb-md-0">
+      <img src="/static/img/index/huella3.jfif" alt="Imagen planta" class="img-fluid rounded shadow-lg">
+    </div>
+
+    <!-- Columna del contenido -->
+    <div class="col-md-6">
+      <header>
+        <h2><a href="generic.html" class="text-green">Calcula tu huella de carbono en 3 simples pasos</a></h2>
+        <p class="info text-muted">Publicado hace 3 días por <a href="/huella_carbono">Gregory</a></p>
+      </header>
+      <p>Reducir tu huella de carbono es una acción esencial para la conservación del planeta. En este artículo te enseñamos
+        cómo calcularla fácilmente. A través de tres simples pasos, podrás conocer el impacto ambiental de tus actividades diarias
+        y empezar a tomar decisiones más responsables para mitigar ese impacto. ¡El futuro de nuestro planeta depende de todos!</p>
+      
+      <h5>Pasos para calcular tu huella de carbono:</h5>
+      <ul>
+        <li><strong>1. Identificar tus fuentes de emisiones:</strong> Automóviles, energía, residuos, etc.</li>
+        <li><strong>2. Medir el consumo de recursos:</strong> Estima el consumo de energía, agua y transporte.</li>
+        <li><strong>3. Calcular el impacto:</strong> Utiliza herramientas en línea para obtener un cálculo preciso.</li>
+      </ul>
+      
+      <ul class="actions list-unstyled">
+        <li><a href="/huella_carbono" class="btn btn-outline-success">Saber más</a></li>
+      </ul>
+    </div>
+  </div>
+</article>
+
+
+<!-- Segunda parte -->
+<article id="segundo" class="post style1 container py-4">
+  <div class="row align-items-center">
+    <div class="col-md-6 order-2 order-md-1">
+      <header>
+        <h2><a href="generic.html">Explora nuestra galería interactiva</a></h2>
+        <p class="info">Hace 3 días por <a href="/galeria">Rocio</a></p>
+      </header>
+      <p>Descubre nuestra galería interactiva, donde podrás explorar diversas especies y acceder a información detallada sobre cada una de ellas. Utiliza las opciones de búsqueda para encontrar la especie que más te interese y conocer todos los datos relevantes de manera fácil y rápida. Una herramienta ideal para investigadores, estudiantes y aficionados a la biología.</p>
+      <ul class="actions list-unstyled">
+        <li><a href="/galeria" class="btn btn-outline-primary">Explorar ahora</a></li>
+      </ul>
+    </div>
+    <div class="col-md-6 order-1 order-md-2 mb-3 mb-md-0">
+      <img src="/static/img/index/galeria.jpg" alt="Imagen galería interactiva" class="img-fluid rounded">
+    </div>
+  </div>
+</article>
+
 <!-- Texto adicional en la página -->
-<div class="text-center mb-5">
-  <h2 class="fw-bold">Explora la biodiversidad del mundo</h2>
-  <p class="lead text-muted">Nuestro planeta está lleno de vida. Descubre las especies más increíbles y cómo podemos protegerlas para las generaciones futuras.</p>
-  <a href="/galeria" class="btn btn-info">Ver Galería de Especies</a>
-</div>
-
-<!-- Sección de tarjetas de información -->
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  <div class="col">
-    <div class="card h-100">
-      <div class="card-body">
-        <h5 class="card-title">🤝 Cómo Ayudar</h5>
-        <p class="card-text">Haz tu parte a través de donaciones o participando como voluntario en proyectos de conservación.</p>
-        <a href="/acciones" class="btn btn-success">Descubre cómo</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="col">
-    <div class="card h-100">
-      <div class="card-body">
-        <h5 class="card-title">🌟 Casos de Éxito</h5>
-        <p class="card-text">Inspírate con historias de especies salvadas gracias a la acción humana.</p>
-        <a href="/casos_exito.html" class="btn btn-warning">Ver casos</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="col">
-    <div class="card h-100">
-      <div class="card-body">
-        <h5 class="card-title">🐾 Especies en Peligro</h5>
-        <p class="card-text">Conoce las especies más amenazadas y cómo podemos ayudar a salvarlas.</p>
-        <a href="/especies" class="btn btn-danger">Ver más</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="col">
-    <div class="card h-100">
-      <div class="card-body">
-        <h5 class="card-title">📸 Galería</h5>
-        <p class="card-text">Descubre impresionantes fotos de especies, hábitats y proyectos de conservación.</p>
-        <a href="/galeria" class="btn btn-secondary">Explorar galería</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="col">
-    <div class="card h-100">
-      <div class="card-body">
-        <h5 class="card-title">♻️ Calculadora de Huella</h5>
-        <p class="card-text">Calcula tu huella de carbono y recibe recomendaciones para reducirla.</p>
-        <a href="/huella-carbono" class="btn btn-dark">Calcular huella</a>
-      </div>
-    </div>
+<div class="text-center m-5" id="index_refugios">
+  <div class="container">
+    <h1 class="display-5">Protegiendo la Vida Salvaje del Mundo</h1>
+    <p class="lead">Explora áreas protegidas que están salvando especies en peligro en todo el planeta.</p>
+    <a href="/refugios" class="btn btn-info">Ver Refugios</a>
   </div>
 </div>
 
-<!-- Texto adicional en la página -->
-<div class="text-center m-5">
-  <h2 class="fw-bold">Proyectos de conservación global</h2>
-  <p class="lead text-muted">Descubre nuestros proyectos en marcha para salvar especies en peligro de extinción. Juntos podemos hacer la diferencia.</p>
-  <a href="/casos_exito.html" class="btn btn-warning">Ver Casos de Éxito</a>
-</div>
+<article id="tercero" class="post style1 container py-4">
+  <div class="row align-items-center">
+    <!-- Columna de la imagen -->
+    <div class="col-md-6 mb-3 mb-md-0">
+      <img src="/static/img/index/monitorizar.jpg" alt="Imagen planta" class="img-fluid rounded">
+    </div>
 
+    <!-- Columna del contenido -->
+    <div class="col-md-6">
+      <header>
+        <h2><a href="/prediccion-extincion">Predicción de Extinción de Especies</a></h2>
+        <p class="info">Hace 3 días por <a href="/monitorizar">Mafe</a></p>
+      </header>
+      <p>Descubre cuándo podrían extinguirse las especies en peligro. Utiliza nuestra herramienta para predecir el año estimado de extinción basado en datos actuales. Ayúdanos a concienciar sobre la importancia de la conservación y la protección de la biodiversidad.</p>
+      <ul class="actions list-unstyled">
+        <li><a href="/monitorizar" class="btn btn-outline-primary">Predecir Año de Extinción</a></li>
+      </ul>
+    </div>
+  </div>
+</article>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> <!--Carrousel-->
 <script src="/static/js/script.js"></script>
