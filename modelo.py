@@ -1,44 +1,40 @@
-import os
-import matplotlib.pyplot as plt
-import tensorflow as tf
-from tensorflow.keras import layers, models
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.callbacks import EarlyStopping
+import pandas as pd
+import numpy as np
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
-# Parámetros
-tamaño_imagen = (150, 150)
-lote = 16
-épocas = 15
+# 1. Cargar CSV
+df = pd.read_csv("c:\\proyecto_especies\\data\\especies_extintas.csv")
 
-# Aumentación de datos
-generador_imagenes = ImageDataGenerator(
-    rescale=1./255,
-    rotation_range=20,
-    width_shift_range=0.2,
-    height_shift_range=0.2,
-    zoom_range=0.2,
-    horizontal_flip=True,
-    validation_split=0.2
-)
+# 2. Poner especies como filas y años como columnas
+df_t = df.set_index('Año').T
+df_t = df_t.dropna()  # Quitar las que tengan datos faltantes
 
-# Cargar datos
-ruta_datos = "data/animals"
-entrenamiento = generador_imagenes.flow_from_directory(
-    ruta_datos,
-    target_size=tamaño_imagen,
-    batch_size=lote,
-    class_mode='categorical',
-    subset='training'
-)
+# 3. X son los datos de población histórica, y es siempre 0 (porque ya están extintas)
+X = df_t.values
+y = np.array([0] * len(df_t))  # Todas se extinguieron
 
-validacion = generador_imagenes.flow_from_directory(
-    ruta_datos,
-    target_size=tamaño_imagen,
-    batch_size=lote,
-    class_mode='categorical',
-    subset='validation'
-)
+# 4. Normalizar los datos
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
 
-# Modelo
-modelo = models.Sequential([
-    layers.Conv2D(32, (3, 3), activation='relu', input_shape=(150, 150, 3
+# 5. Dividir para entrenar
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+
+# 6. Crear la red neuronal
+model = Sequential([
+    Dense(64, activation='relu', input_shape=(X.shape[1],)),
+    Dense(32, activation='relu'),
+    Dense(1)  # Solo un número de salida: cuán cerca está de 0
+])
+
+# 7. Compilar y entrenar
+model.compile(optimizer='adam', loss='mse')
+model.fit(X_train, y_train, epochs=100, verbose=1)
+
+# 8. Hacer predicciones
+preds = model.predict(X_test)
+print("Predicción de extinción (debe estar cerca de 0):")
+print(preds)
