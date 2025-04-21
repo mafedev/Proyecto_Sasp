@@ -5,12 +5,12 @@
 <h1 class="text-center" id="encabezado_monitorizar">Estadísticas de {{ especie }}</h1>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
-  <h3>Información de la Especie</h5>
+  <h3>Información de la Especie</h3>
   <form method="POST" class="d-inline">
     <label for="metodo" class="me-2">Método de predicción:</label>
     <select name="metodo" onchange="this.form.submit()" class="form-select d-inline w-auto">
         <option value="lineal" {% if metodo == "lineal" %}selected{% endif %}>Regresión Lineal</option>
-        <option value="lstm" {% if metodo == "lstm" %}selected{% endif %}>Modelo LSTM</option>
+        <option value="red_neuronal" {% if metodo == "red_neuronal" %}selected{% endif %}>Red Neuronal</option>
     </select>
   </form>
 </div>
@@ -53,7 +53,7 @@
   
   <!-- Lista desplegable con la evolución de la población -->
   {% if poblacion_historica %}
-  <div class="accordion mb-5">
+  <div class="accordion mb-5" id="accordionExample">
     <div class="accordion-item">
       <h2 class="accordion-header">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
@@ -99,13 +99,24 @@
     <!-- Gráfico de Evolución Poblacional -->
     <div class="col-md-6 mb-4">
       <h5 class="text-center">Evolución Poblacional</h5>
-      <div class="d-flex justify-content-center align-items-center border rounded shadow bg-light p-3" style="height: 400px;">
+      {% if metodo == "lineal" %}
         {% if grafico %}
-          <img src="data:image/png;base64,{{ grafico }}" class="img-fluid" alt="Gráfico de población">
+          <div class="d-flex justify-content-center align-items-center border rounded shadow bg-light p-3" style="height: 400px;">
+            <img src="data:image/png;base64,{{ grafico }}" class="img-fluid" alt="Gráfico de regresión lineal">
+          </div>
         {% else %}
-          <div class="alert alert-secondary text-center mb-0">No se pudo generar el gráfico</div>
+          <div class="alert alert-secondary text-center mb-0">No se pudo generar el gráfico de regresión lineal</div>
         {% endif %}
-      </div>
+      {% elif metodo == "red_neuronal" and probabilidad_nn is not none %}
+        <p>Probabilidad de extinción estimada: <strong>{{ (probabilidad_nn * 100) | round(2) }}%</strong></p>
+        {% if probabilidad_nn >= 0.8 %}
+          <div class="alert alert-danger">⚠️ Alta probabilidad de extinción. Se requieren medidas urgentes.</div>
+        {% elif probabilidad_nn >= 0.5 %}
+          <div class="alert alert-warning">⚠️ Riesgo moderado. Se deben tomar acciones preventivas.</div>
+        {% else %}
+          <div class="alert alert-success">🌿 Baja probabilidad de extinción. ¡Buenas noticias!</div>
+        {% endif %}
+      {% endif %}
     </div>
   </div>
   
@@ -123,6 +134,21 @@
         {% if año_pred - 2024 <= 10 %}
           <div class="alert alert-danger">⚠️ Riesgo crítico: extinción en menos de 10 años.</div>
         {% endif %}
+      {% endif %}
+    </div>
+  {% endif %}
+  
+  {% if metodo == "lstm" and probabilidad_nn is not none %}
+    <hr>
+    <div id="prediccion-red-neuronal">
+      <h4 class="mt-4">Predicción con Red Neuronal</h4>
+      <p>Probabilidad de extinción estimada: <strong>{{ (probabilidad_nn * 100) | round(2) }}%</strong></p>
+      {% if probabilidad_nn >= 0.8 %}
+        <div class="alert alert-danger">⚠️ Alta probabilidad de extinción. Se requieren medidas urgentes.</div>
+      {% elif probabilidad_nn >= 0.5 %}
+        <div class="alert alert-warning">⚠️ Riesgo moderado. Se deben tomar acciones preventivas.</div>
+      {% else %}
+        <div class="alert alert-success">🌿 Baja probabilidad de extinción. ¡Buenas noticias!</div>
       {% endif %}
     </div>
   {% endif %}
