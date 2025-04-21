@@ -297,7 +297,8 @@ def cargar_datos_especie(nombre_especie):
                     'acciones_recomendadas': fila.get('acciones_recomendadas', 'No especificado'),
                     'organizaciones': fila.get('organizaciones', 'No especificado'),
                     'amenazas': fila.get('amenazas', 'No especificado'),
-                    'descripcion': fila.get('descripcion', 'Descripción no disponible')  # Agregar descripción
+                    'descripcion': fila.get('descripcion', 'Descripción no disponible'),
+                    'habitat': fila.get('habitat', 'Hábitat no disponible')
                 }
     return None
 
