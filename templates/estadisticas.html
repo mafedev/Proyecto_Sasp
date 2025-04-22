@@ -88,7 +88,7 @@
   <div class="row">
     <!-- Mapa -->
     <div class="col-md-6 mb-4">
-      <h5 class="text-center">🗺️ Mapa de Observaciones</h5>
+      <h5 class="text-center">Mapa de Observaciones</h5>
       <div class="map-container border rounded shadow bg-light p-3" style="height: 400px;">
         {{ mapa|safe }}
       </div>
@@ -96,9 +96,9 @@
 
     <!-- Gráfico o predicción -->
     <div class="col-md-6 mb-4">
-      <h5 class="text-center">🧠 Predicción de Riesgo de Extinción</h5>
       
       {% if metodo == "lineal" %}
+      <h5 class="text-center">Gráfico de predicción</h5>
         {% if grafico %}
           <div class="d-flex justify-content-center align-items-center border rounded shadow bg-light p-3" style="height: 400px;">
             <img src="data:image/png;base64,{{ grafico }}" class="img-fluid" alt="Gráfico de regresión lineal">
@@ -107,21 +107,22 @@
           <div class="alert alert-secondary text-center">No se pudo generar el gráfico de regresión lineal.</div>
         {% endif %}
       {% elif metodo == "red_neuronal" and probabilidad_nn is not none %}
+          <h5 class="text-center">Probabilidad de extinción</h5>
         <div class="alert alert-info text-center">
-          🧠 Probabilidad de extinción estimada por red neuronal: <strong>{{ (probabilidad_nn * 100) | round(2) }}%</strong>
+          Probabilidad de extinción estimada por red neuronal: <strong>{{ (probabilidad_nn * 100) | round(2) }}%</strong>
         </div>
 
         {% if probabilidad_nn >= 0.8 %}
           <div class="alert alert-danger text-center">
-            ⚠️ Alta probabilidad de extinción. Se requieren medidas urgentes.
+            ⚠️ Alta probabilidad de extinción. Se requieren medidas urgentes
           </div>
         {% elif probabilidad_nn >= 0.5 %}
           <div class="alert alert-warning text-center">
-            ⚠️ Riesgo moderado de extinción. Se deben tomar acciones preventivas.
+            ⚠️ Riesgo moderado de extinción. Se deben tomar acciones preventivas
           </div>
         {% else %}
           <div class="alert alert-success text-center">
-            🌿 Riesgo bajo de extinción. ¡Buenas noticias!
+            Riesgo bajo de extinción ¡Buenas noticias!
           </div>
         {% endif %}
       {% endif %}
@@ -129,9 +130,8 @@
   </div>
 
   {% if año_pred and metodo == "lineal" %}
-    <hr>
-    <div id="prediccion-extincion">
-      <h4 class="mt-4">Predicción de Extinción</h4>
+    <div id="prediccion_extincion">
+      <h4 class="m-0">Predicción de Extinción</h4>
       {% if tendencia_reciente and "incremento" in tendencia_reciente.lower() %}
         <div class="alert alert-success">
           En los últimos años, la especie ha mostrado un aumento significativo en su población. ¡Esperamos que logre salvarse!
@@ -147,31 +147,24 @@
         {% endif %}
       {% endif %}
     </div>
-    {% elif metodo == "red_neuronal" and probabilidad_nn is not none %}
-    <div class="alert alert-info text-center">
-      🧠 Probabilidad de extinción estimada por red neuronal: <strong>{{ (probabilidad_nn * 100) | round(2) }}%</strong>
-    </div>
-  
   {% endif %}
-
-  {% if metodo == 'red_neuronal' %}
-  <h3>Probabilidad de extinción</h3>
-  {% if probabilidad_nn is not none %}
-      <p><strong>{{ (probabilidad_nn * 100) | round(2) }}%</strong></p>
-  {% else %}
-      <p><em>No se pudo calcular la probabilidad de extinción para esta especie.</em></p>
-  {% endif %}
-{% endif %}
-
 
   <hr>
 
-  <div id="como-ayudar">
+  <div id="como_ayudar">
     <h4 class="mt-4">Cómo puedes ayudar</h4>
     <p><strong>Acciones recomendadas:</strong> {{ acciones_recomendadas }}</p>
     <p><strong>Organizaciones:</strong> {{ organizaciones }}</p>
     <p><strong>Amenazas:</strong> {{ amenazas }}</p>
   </div>
+
+  <!-- Mostrar recomendaciones de reubicación si la tendencia es decreciente -->
+  {% if reubicacion %}
+  <div class="alert alert-warning mt-4" style="font-size: 1.2em; padding: 20px; border: 2px solid #ffcc00;">
+      <h4 class="text-center">Recomendaciones para Reubicación</h4>
+      <p>{{ reubicacion }}</p>
+  </div>
+  {% endif %}
 </div>
 
 {% endblock %}
