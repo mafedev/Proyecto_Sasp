@@ -1,17 +1,18 @@
-from flask import Flask, render_template, request, redirect, url_for
-import os
-import pandas as pd
-import numpy as np
-import requests
-import folium
-import matplotlib
-matplotlib.use("Agg")
+from flask import Flask, render_template, request, redirect, url_for # Se importa Flask, render_template para renderizar los template, request para manejar las solicitudes HTTP, redirect y url_for para redirigir a otras rutas
+import os # Para rutas de archivos
+import pandas as pd # Para manejar datos en formato CSV y Excel
+import numpy as np # Para operaciones numéricas
+import requests # Para hacer solicitudes HTTP a la API de GBIF
+import folium # Para crear mapas interactivos
+import matplotlib # Para crear gráficos
+matplotlib.use("Agg") # Para evitar problemas con la interfaz gráfica en servidores sin pantalla
 import matplotlib.pyplot as plt
-import base64
-from io import BytesIO
-import csv
-import urllib.parse
-from modelo import predecir_nn
+import base64 # Para codificar imágenes en base64, es decir, convertir imágenes a texto para poder enviarlas por HTTP
+from io import BytesIO # Para las gráficas
+import csv # Para manejar archivos CSV
+import urllib.parse # Para trabajar con URLs
+from modelo import predecir_nn, obtener_df_extintas #Funciones de modelo.py para predecir la probabilidad de extinción usando una red neuronal y obtener el DataFrame de especies extintas
+
 
 # Inicializar la aplicación Flask
 app = Flask(__name__)
@@ -53,24 +54,26 @@ def acciones():
 def refugios():
     return render_template("refugios.html")
 
+# Ruta para la página de monitorización, donde se selecciona una especie y se muestra información sobre ella
 @app.route("/monitorizar", methods=["GET", "POST"])
 def monitorizar():
-    especie_seleccionada = request.form.get("especie") or especies_monitor[0]
-    resultado_prediccion = predecir_año_extincion(df_monitor, especie_seleccionada)
-    if resultado_prediccion is None or not isinstance(resultado_prediccion, tuple):
-        año_pred, grafico_b64 = None, None
+    especie_seleccionada = request.form.get("especie") or especies_monitor[0] # Si no se selecciona ninguna especie, se toma la primera de la lista
+    resultado_prediccion = predecir_año_extincion(df_monitor, especie_seleccionada) # Se llama a la función de predicción de año de extinción
+    if resultado_prediccion is None or not isinstance(resultado_prediccion, tuple): 
+        año_pred, grafico_b64 = None, None # Si no se obtiene un resultado válido, se les asigna none
     else:
-        año_pred, grafico_b64 = resultado_prediccion
+        año_pred, grafico_b64 = resultado_prediccion # Si se obtiene un resultado válido, se asigna el año de predicción y el gráfico en base64
 
-    cards = info_especies.to_dict(orient="records")
-    for card in cards:
-        card['acciones_recomendadas'] = card.get('acciones_recomendadas', 'No especificado')
+    cards = info_especies.to_dict(orient="records") # Se convierte el DataFrame de información de especies a una lista de diccionarios
+    for card in cards: # Se itera sobre cada especie para agregar información adicional
+        card['acciones_recomendadas'] = card.get('acciones_recomendadas', 'No especificado') 
         card['organizaciones'] = card.get('organizaciones', 'No especificado')
         card['amenazas'] = card.get('amenazas', 'No especificado')
 
-    observaciones = buscar_en_gbif(especie_seleccionada)
-    mapa_html = crear_mapa_html(observaciones)
+    observaciones = buscar_en_gbif(especie_seleccionada) # Se buscan observaciones de la especie seleccionada en la API de GBIF
+    mapa_html = crear_mapa_html(observaciones) # Se crea un mapa HTML con las observaciones
 
+    # Se devuelve la plantilla monitorizar.html con la información de las especies, la especie seleccionada, el año de predicción, el gráfico y el mapa
     return render_template("monitorizar.html",
                            especies=cards,
                            especie=especie_seleccionada,
@@ -78,27 +81,30 @@ def monitorizar():
                            grafico=grafico_b64,
                            mapa=mapa_html)
 
-@app.route("/estadisticas/<nombre>", methods=["GET", "POST"])
+# Ruta para la página de estadísticas de una especie específica, se muestra al seleccionar una especie en monitorizar
+@app.route("/estadisticas/<nombre>", methods=["GET", "POST"]) # Se define la ruta con el nombre de la especie como parámetro
 def estadisticas(nombre):
-    datos_especie = cargar_datos_especie(nombre)
-    if not datos_especie:
+    datos_especie = cargar_datos_especie(nombre) # Se carga la información de la especie desde el archivo CSV
+    if not datos_especie: # Si no se encuentra la especie, muestra un mensaje de error
         return "Especie no encontrada", 404
 
-    metodo = request.form.get("metodo", "lineal")
+    metodo = request.form.get("metodo", "lineal") # Se obtiene el método de predicción seleccionado (lineal o red neuronal), por defecto es lineal
     año_pred = None
     grafico_b64 = None
     probabilidad_nn = None
 
-    poblacion_historica = []
-    if nombre in df_monitor.columns:
-        especie_serie = df_monitor[nombre].dropna()
-        poblacion_historica = list(zip(especie_serie.index, especie_serie.values))
+    poblacion_historica = [] # Inicializa la lista de población histórica
+    if nombre in df_monitor.columns: # Verifica si la especie está en el DataFrame de monitoreo
+        especie_serie = df_monitor[nombre].dropna() 
+        poblacion_historica = list(zip(especie_serie.index, especie_serie.values)) 
 
-    if metodo == "lineal":
+    if metodo == "lineal": # Si el método seleccionado es lineal, se llama a la función de predicción de año de extinción
         año_pred, grafico_b64 = predecir_año_extincion(df_monitor, nombre)
-    elif metodo == "red_neuronal":
-        probabilidad_nn = predecir_nn(nombre)
-
+    elif metodo == "red_neuronal": # Si el método seleccionado es red neuronal, se llama a la función de predicción de la red neuronal
+        print("Método seleccionado:", metodo)
+        probabilidad_nn = predecir_nn(nombre) # Se obtiene la probabilidad de extinción de la especie
+        if probabilidad_nn is None: # Si no se obtiene un resultado válido, se asigna None
+            print(f"No se pudo realizar la predicción para la especie: {nombre}")
 
     tendencia_reciente = verificar_tendencia_reciente(df_monitor, nombre)
     registros = buscar_en_gbif(nombre)
@@ -113,12 +119,14 @@ def estadisticas(nombre):
                            amenazas=datos_especie.get("amenazas"),
                            poblacion_historica=poblacion_historica,
                            mapa=mapa_html,
-                           grafico=grafico_b64,
+                           grafico=grafico_b64 if metodo == "lineal" else None,
                            año_pred=año_pred,
                            acciones_recomendadas=datos_especie.get("acciones_recomendadas"),
                            organizaciones=datos_especie.get("organizaciones"),
+                           tendencia_reciente=tendencia_reciente,
                            metodo=metodo,
                            probabilidad_nn=probabilidad_nn)
+
 
 # Funciones auxiliares
 def cargar_info_conservacion():
