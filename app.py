@@ -13,7 +13,6 @@ import csv # Para manejar archivos CSV
 import urllib.parse # Para trabajar con URLs
 from modelo import predecir_nn, obtener_df_extintas #Funciones de modelo.py para predecir la probabilidad de extinción usando una red neuronal y obtener el DataFrame de especies extintas
 
-
 # Inicializar la aplicación Flask
 app = Flask(__name__)
 
@@ -82,31 +81,37 @@ def monitorizar():
                            mapa=mapa_html)
 
 # Ruta para la página de estadísticas de una especie específica, se muestra al seleccionar una especie en monitorizar
-@app.route("/estadisticas/<nombre>", methods=["GET", "POST"]) # Se define la ruta con el nombre de la especie como parámetro
+@app.route("/estadisticas/<nombre>", methods=["GET", "POST"])  # Se define la ruta con el nombre de la especie como parámetro
 def estadisticas(nombre):
-    datos_especie = cargar_datos_especie(nombre) # Se carga la información de la especie desde el archivo CSV
-    if not datos_especie: # Si no se encuentra la especie, muestra un mensaje de error
+    datos_especie = cargar_datos_especie(nombre)  # Se carga la información de la especie desde el archivo CSV
+    if not datos_especie:  # Si no se encuentra la especie, muestra un mensaje de error
         return "Especie no encontrada", 404
 
-    metodo = request.form.get("metodo", "lineal") # Se obtiene el método de predicción seleccionado (lineal o red neuronal), por defecto es lineal
+    metodo = request.form.get("metodo", "lineal")  # Se obtiene el método de predicción seleccionado (lineal o red neuronal), por defecto es lineal
     año_pred = None
     grafico_b64 = None
     probabilidad_nn = None
+    reubicacion = None  # Inicializar variable para la reubicación
 
-    poblacion_historica = [] # Inicializa la lista de población histórica
-    if nombre in df_monitor.columns: # Verifica si la especie está en el DataFrame de monitoreo
-        especie_serie = df_monitor[nombre].dropna() 
-        poblacion_historica = list(zip(especie_serie.index, especie_serie.values)) 
+    poblacion_historica = []  # Inicializa la lista de población histórica
+    if nombre in df_monitor.columns:  # Verifica si la especie está en el DataFrame de monitoreo
+        especie_serie = df_monitor[nombre].dropna()
+        poblacion_historica = list(zip(especie_serie.index, especie_serie.values))
 
-    if metodo == "lineal": # Si el método seleccionado es lineal, se llama a la función de predicción de año de extinción
+    if metodo == "lineal":  # Si el método seleccionado es lineal, se llama a la función de predicción de año de extinción
         año_pred, grafico_b64 = predecir_año_extincion(df_monitor, nombre)
-    elif metodo == "red_neuronal": # Si el método seleccionado es red neuronal, se llama a la función de predicción de la red neuronal
+    elif metodo == "red_neuronal":  # Si el método seleccionado es red neuronal, se llama a la función de predicción de la red neuronal
         print("Método seleccionado:", metodo)
-        probabilidad_nn = predecir_nn(nombre) # Se obtiene la probabilidad de extinción de la especie
-        if probabilidad_nn is None: # Si no se obtiene un resultado válido, se asigna None
+        probabilidad_nn = predecir_nn(nombre)  # Se obtiene la probabilidad de extinción de la especie
+        if probabilidad_nn is None:  # Si no se obtiene un resultado válido, se asigna None
             print(f"No se pudo realizar la predicción para la especie: {nombre}")
 
     tendencia_reciente = verificar_tendencia_reciente(df_monitor, nombre)
+
+    # Si la tendencia es decreciente, obtener la información de reubicación
+    if tendencia_reciente == "Decremento":
+        reubicacion = datos_especie.get("reubicacion", "No hay recomendaciones de reubicación disponibles.")
+
     registros = buscar_en_gbif(nombre)
     mapa_html = crear_mapa_html(registros)
 
@@ -125,7 +130,8 @@ def estadisticas(nombre):
                            organizaciones=datos_especie.get("organizaciones"),
                            tendencia_reciente=tendencia_reciente,
                            metodo=metodo,
-                           probabilidad_nn=probabilidad_nn)
+                           probabilidad_nn=probabilidad_nn,
+                           reubicacion=reubicacion)
 
 
 # Funciones auxiliares
@@ -154,7 +160,8 @@ def cargar_datos_especie(nombre_especie):
                     'organizaciones': fila.get('organizaciones', 'No especificado'),
                     'amenazas': fila.get('amenazas', 'No especificado'),
                     'descripcion': fila.get('descripcion', 'Descripción no disponible'),
-                    'habitat': fila.get('habitat', 'Hábitat no disponible')
+                    'habitat': fila.get('habitat', 'Hábitat no disponible'),
+                    'reubicacion': fila.get('reubicacion', 'No hay recomendaciones de reubicación disponibles.')
                 }
     return None
 
@@ -251,7 +258,7 @@ def verificar_tendencia_reciente(df, especie):
         # Tomar los últimos 10 datos
         ultimos = datos[-10:]
 
-        # Crear valores para X (años ficticios del 0 al 9)
+        # Crear valores para X
         x = np.arange(len(ultimos))
         y = ultimos.values
 
