@@ -220,7 +220,7 @@ button.btn-outline-success:active img {
 
 /*ARTICULOS*/
 #primero {
-  background-color: var(--marron-suave-2);
+  background-color: var(--gris-montana);
   padding: 80px;
   width: 100vw;
 }
@@ -271,10 +271,14 @@ button.btn-outline-success:active img {
   padding-left: 1.5rem;
 }
 
+#primero p {
+  color:var(--verde-claro);
+}
+
 #primero ul li {
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
-  color: #3E2723; /* Marrón chocolate */
+  color: var(--blanco-niebla);
 }
 
 /* Segundo articulo */  
