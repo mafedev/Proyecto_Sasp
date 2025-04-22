@@ -29,6 +29,7 @@
     --gris-piedra: #A9A9A9;
     --gris-montana: #6C6E6B;
     --gris-oscuro-2: #2F4F4F;
+    --gris-claro: #EEEEEE;
   
     /* TONOS ROJO */
     --rojo-tomate: #FF6347;
@@ -50,7 +51,7 @@
     /* TONOS BLANCO */
     --blanco-roto: #f0f0f0;
     --blanco-verde: #def1d5;
-    --blanco-niebla: #F5F5F5;
+    --blanco-niebla: #dfd8d8;
     --beige-claro-2: #F5F5DC;
 }
   

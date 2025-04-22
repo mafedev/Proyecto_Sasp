@@ -1,70 +1,163 @@
-# Importación de bibliotecas:
-
-# - Jinja2: Motor de plantillas integrado en Flask para renderizar HTML dinámico.
-
-from flask import Flask, render_template, request, redirect, url_for
-import os
-import pandas as pd # Pandas y NumPy: Para manipulación y análisis de datos.
-import numpy as np 
-import requests # Para realizar solicitudes HTTP (en este caso, a la API de GBIF)
-import folium # Folium: Para generar mapas interactivos en HTML
-import matplotlib # Para crear gráficos y visualizaciones
-matplotlib.use("Agg") # Configura matplotlib para no usar la interfaz gráfica, porque da problemas
+from flask import Flask, render_template, request, redirect, url_for # Se importa Flask, render_template para renderizar los template, request para manejar las solicitudes HTTP, redirect y url_for para redirigir a otras rutas
+import os # Para rutas de archivos
+import pandas as pd # Para manejar datos en formato CSV y Excel
+import numpy as np # Para operaciones numéricas
+import requests # Para hacer solicitudes HTTP a la API de GBIF
+import folium # Para crear mapas interactivos
+import matplotlib # Para crear gráficos
+matplotlib.use("Agg") # Para evitar problemas con la interfaz gráfica en servidores sin pantalla
 import matplotlib.pyplot as plt
 import base64 # Para codificar imágenes en base64, es decir, convertir imágenes a texto para poder enviarlas por HTTP
+from io import BytesIO # Para las gráficas
+import csv # Para manejar archivos CSV
+import urllib.parse # Para trabajar con URLs
+from modelo import predecir_nn, obtener_df_extintas #Funciones de modelo.py para predecir la probabilidad de extinción usando una red neuronal y obtener el DataFrame de especies extintas
 
-from io import BytesIO
-import csv
-import urllib.parse  # Para codificar correctamente los nombres de las especies
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.image import load_img, img_to_array
-import json
-from werkzeug.utils import secure_filename
 
-# Se inicializa la aplicación web
+# Inicializar la aplicación Flask
 app = Flask(__name__)
 
-# Configuración para subir imágenes
-app.config['UPLOAD_FOLDER'] = 'static/uploads'
+# Rutas de Flask
+@app.route("/")
+def index():
+    return render_template("index.html")
 
-# Cargar modelo y clases
-modelo = load_model('c:\\proyecto_especies\\modelo_especies.h5')
+@app.route("/blog")
+def blog():
+    return render_template("blog.html")
 
-with open('c:\\proyecto_especies\\clases.json', 'r') as f:
-    clases = json.load(f)
-    clases = {v: k for k, v in clases.items()}  # Invertimos para buscar por índice
+@app.route("/casos_exito")
+def casos_exito():
+    return render_template("casos_exito.html")
 
-IMG_SIZE = (150, 150)
+@app.route("/galeria")
+def galeria():
+    return render_template("galeria.html")
 
-# Cargar archivo de información adicional
+@app.route("/huella_carbono", methods=["GET", "POST"])
+def huella_carbono():
+    return render_template("huella_carbono.html")
+
+@app.route("/huella_persona")
+def huella_persona():
+    return render_template("huella_persona.html")
+
+@app.route("/huella_empresa")
+def huella_empresa():
+    return render_template("huella_empresa.html")
+
+@app.route("/ayudar")
+def acciones():
+    return render_template("ayudar.html")
+
+@app.route("/refugios")
+def refugios():
+    return render_template("refugios.html")
+
+# Ruta para la página de monitorización, donde se selecciona una especie y se muestra información sobre ella
+@app.route("/monitorizar", methods=["GET", "POST"])
+def monitorizar():
+    especie_seleccionada = request.form.get("especie") or especies_monitor[0] # Si no se selecciona ninguna especie, se toma la primera de la lista
+    resultado_prediccion = predecir_año_extincion(df_monitor, especie_seleccionada) # Se llama a la función de predicción de año de extinción
+    if resultado_prediccion is None or not isinstance(resultado_prediccion, tuple): 
+        año_pred, grafico_b64 = None, None # Si no se obtiene un resultado válido, se les asigna none
+    else:
+        año_pred, grafico_b64 = resultado_prediccion # Si se obtiene un resultado válido, se asigna el año de predicción y el gráfico en base64
+
+    cards = info_especies.to_dict(orient="records") # Se convierte el DataFrame de información de especies a una lista de diccionarios
+    for card in cards: # Se itera sobre cada especie para agregar información adicional
+        card['acciones_recomendadas'] = card.get('acciones_recomendadas', 'No especificado') 
+        card['organizaciones'] = card.get('organizaciones', 'No especificado')
+        card['amenazas'] = card.get('amenazas', 'No especificado')
+
+    observaciones = buscar_en_gbif(especie_seleccionada) # Se buscan observaciones de la especie seleccionada en la API de GBIF
+    mapa_html = crear_mapa_html(observaciones) # Se crea un mapa HTML con las observaciones
+
+    # Se devuelve la plantilla monitorizar.html con la información de las especies, la especie seleccionada, el año de predicción, el gráfico y el mapa
+    return render_template("monitorizar.html",
+                           especies=cards,
+                           especie=especie_seleccionada,
+                           año_pred=año_pred,
+                           grafico=grafico_b64,
+                           mapa=mapa_html)
+
+# Ruta para la página de estadísticas de una especie específica, se muestra al seleccionar una especie en monitorizar
+@app.route("/estadisticas/<nombre>", methods=["GET", "POST"]) # Se define la ruta con el nombre de la especie como parámetro
+def estadisticas(nombre):
+    datos_especie = cargar_datos_especie(nombre) # Se carga la información de la especie desde el archivo CSV
+    if not datos_especie: # Si no se encuentra la especie, muestra un mensaje de error
+        return "Especie no encontrada", 404
+
+    metodo = request.form.get("metodo", "lineal") # Se obtiene el método de predicción seleccionado (lineal o red neuronal), por defecto es lineal
+    año_pred = None
+    grafico_b64 = None
+    probabilidad_nn = None
+
+    poblacion_historica = [] # Inicializa la lista de población histórica
+    if nombre in df_monitor.columns: # Verifica si la especie está en el DataFrame de monitoreo
+        especie_serie = df_monitor[nombre].dropna() 
+        poblacion_historica = list(zip(especie_serie.index, especie_serie.values)) 
+
+    if metodo == "lineal": # Si el método seleccionado es lineal, se llama a la función de predicción de año de extinción
+        año_pred, grafico_b64 = predecir_año_extincion(df_monitor, nombre)
+    elif metodo == "red_neuronal": # Si el método seleccionado es red neuronal, se llama a la función de predicción de la red neuronal
+        print("Método seleccionado:", metodo)
+        probabilidad_nn = predecir_nn(nombre) # Se obtiene la probabilidad de extinción de la especie
+        if probabilidad_nn is None: # Si no se obtiene un resultado válido, se asigna None
+            print(f"No se pudo realizar la predicción para la especie: {nombre}")
+
+    tendencia_reciente = verificar_tendencia_reciente(df_monitor, nombre)
+    registros = buscar_en_gbif(nombre)
+    mapa_html = crear_mapa_html(registros)
+
+    return render_template("estadisticas.html",
+                           especie=nombre,
+                           imagen_especie=datos_especie.get("imagen_especie"),
+                           descripcion=datos_especie.get("descripcion"),
+                           nombre_cientifico=datos_especie.get("nombre_cientifico"),
+                           habitat=datos_especie.get("habitat"),
+                           amenazas=datos_especie.get("amenazas"),
+                           poblacion_historica=poblacion_historica,
+                           mapa=mapa_html,
+                           grafico=grafico_b64 if metodo == "lineal" else None,
+                           año_pred=año_pred,
+                           acciones_recomendadas=datos_especie.get("acciones_recomendadas"),
+                           organizaciones=datos_especie.get("organizaciones"),
+                           tendencia_reciente=tendencia_reciente,
+                           metodo=metodo,
+                           probabilidad_nn=probabilidad_nn)
+
+
+# Funciones auxiliares
 def cargar_info_conservacion():
-    ruta_archivo = 'data/info_modelo.csv'  # Cambia por .csv si usas csv
+    ruta_archivo = 'data/info_modelo.csv'
     if ruta_archivo.endswith('.xlsx'):
         return pd.read_excel(ruta_archivo)
     else:
         return pd.read_csv(ruta_archivo)
 
-def obtener_info_especie(nombre_especie):
-    df = cargar_info_conservacion()
-    resultado = df[df['nombre'].str.lower() == nombre_especie.lower()]
-    if not resultado.empty:
-        return resultado.iloc[0].to_dict()
-    return None
-
-# FUNCIONES
-# Carga un csv y lo convierte a un dataframe de pandas, establece la columna "Año" como índice
 def cargar_datos(nombre_archivo):
-    df = pd.read_csv(nombre_archivo) # Carga el archivo CSV
-    df.set_index("Año", inplace=True) # Establece la columna "Año" como índice
-    return df # Devuelve el dataframe
-
-# Carga un csv, intercambia las filas con las columnas y convierte el índice a entero
-def cargar_datos_extintos(nombre_archivo):
-    df = pd.read_csv(nombre_archivo, index_col=0).T # Carga el archivo e intercambia filas y columnas
-    df.index = df.index.astype(int) # Convierte el índice a entero
+    df = pd.read_csv(nombre_archivo)
+    df.set_index("Año", inplace=True)
     return df
 
-# Busca en la API de GBIF usando el nombre científico de la especie y devuelve los resultados
+def cargar_datos_especie(nombre_especie):
+    with open('c:\\proyecto_especies\\data\\info_especies.csv', encoding='utf-8') as archivo_csv:
+        lector = csv.DictReader(archivo_csv)
+        for fila in lector:
+            if fila['nombre'] == nombre_especie:
+                return {
+                    'nombre_cientifico': fila.get('nombre_cientifico', 'Desconocido'),
+                    'estado_conservacion': fila.get('estado', 'Desconocido'),
+                    'imagen_especie': fila.get('imagen', 'img/default.jpg'),
+                    'acciones_recomendadas': fila.get('acciones_recomendadas', 'No especificado'),
+                    'organizaciones': fila.get('organizaciones', 'No especificado'),
+                    'amenazas': fila.get('amenazas', 'No especificado'),
+                    'descripcion': fila.get('descripcion', 'Descripción no disponible'),
+                    'habitat': fila.get('habitat', 'Hábitat no disponible')
+                }
+    return None
+
 def buscar_en_gbif(nombre_especie):
     # Primero intenta buscar el nombre completo usando el parámetro `q` para coincidencias amplias
     nombre_especie_codificado = urllib.parse.quote(nombre_especie)
@@ -86,15 +179,13 @@ def buscar_en_gbif(nombre_especie):
             if resultados:  # Si encuentra resultados con una palabra, los devuelve
                 return resultados
 
-    return []  # Si no encuentra nada, devuelve una lista vacía
 
-# Crea un mapa HTML usando Folium y coloca marcadores para cada observación de la especie
 def crear_mapa_html(observaciones):
-    m = folium.Map(location=[0, 0], zoom_start=3) # Crea un mapa centrado en el ecuador y con un zoom inicial de 3
-    for obs in observaciones: # Itera sobre cada observación
-        lat = obs.get("decimalLatitude") # Obtiene la latitud de la observación
-        lon = obs.get("decimalLongitude") # Obtiene la longitud de la observación
-        if lat and lon: # Verifica si la latitud y longitud son válidas
+    m = folium.Map(location=[0, 0], zoom_start=3)
+    for obs in observaciones:
+        lat = obs.get("decimalLatitude")
+        lon = obs.get("decimalLongitude")
+        if lat and lon:
             folium.Marker(
                 location=[lat, lon],
                 popup=f"País: {obs.get('country', 'Desconocido')}"
@@ -103,11 +194,8 @@ def crear_mapa_html(observaciones):
 
 def predecir_año_extincion(df, especie):
     try:
-        # Obtener años y población como arrays numéricos
         anios = df.index.values.astype(float)
         poblacion = pd.to_numeric(df[especie], errors="coerce").values
-
-        # Eliminar valores nulos
         datos_validos = ~np.isnan(poblacion)
         anios = anios[datos_validos]
         poblacion = poblacion[datos_validos]
@@ -115,11 +203,8 @@ def predecir_año_extincion(df, especie):
         if len(anios) < 2:
             return None, None
 
-        # Calcular promedios
         promedio_anios = np.mean(anios)
         promedio_poblacion = np.mean(poblacion)
-
-        # Calcular pendiente (a) e intercepto (b) de la recta
         numerador = np.sum((anios - promedio_anios) * (poblacion - promedio_poblacion))
         denominador = np.sum((anios - promedio_anios) ** 2)
 
@@ -129,25 +214,20 @@ def predecir_año_extincion(df, especie):
         pendiente = numerador / denominador
         intercepto = promedio_poblacion - pendiente * promedio_anios
 
-        # Predecir año en que la población será 0
         if pendiente == 0:
             return None, None
 
         anio_extincion = -intercepto / pendiente
 
-        # Crear el gráfico
         fig, ax = plt.subplots(figsize=(8, 4))
         ax.scatter(anios, poblacion, color='orange', label=especie)
+        poblacion_estim = pendiente * anios + intercepto
+        ax.plot(anios, poblacion_estim, linestyle="--", color="blue", label="Tendencia")
+        ax.legend()
+        ax.set_xlabel("Año")
+        ax.set_ylabel("Población estimada")
+        ax.grid()
 
-        if anio_extincion:
-            poblacion_estim = pendiente * anios + intercepto
-            ax.plot(anios, poblacion_estim, linestyle="--", color="blue", label="Tendencia")
-            ax.legend()
-            ax.set_xlabel("Año")
-            ax.set_ylabel("Población estimada")
-            ax.grid()
-
-        # Convertir el gráfico a imagen base64
         buffer = BytesIO()
         fig.savefig(buffer, format="png")
         buffer.seek(0)
@@ -157,9 +237,8 @@ def predecir_año_extincion(df, especie):
         return int(anio_extincion) if anio_extincion > 0 else None, imagen_base64
 
     except Exception as error:
-        print(f"Error en predecir_anio_extincion: {error}")
+        print(f"Error en predecir_año_extincion: {error}")
         return None, None
-
 
 def verificar_tendencia_reciente(df, especie):
     try:
@@ -195,180 +274,11 @@ def verificar_tendencia_reciente(df, especie):
         return "Error en los datos"
 
 
-def cargar_datos_especie(nombre_especie):
-    with open('c:\\proyecto_especies\\data\\info_especies.csv', encoding='utf-8') as archivo_csv:
-        lector = csv.DictReader(archivo_csv)
-        for fila in lector:
-            if fila['nombre'] == nombre_especie:
-                # Validar que las columnas existan y asignar valores predeterminados si están vacías
-                return {
-                    'nombre_cientifico': fila.get('nombre_cientifico', 'Desconocido'),
-                    'estado_conservacion': fila.get('estado', 'Desconocido'),
-                    'imagen_especie': fila.get('imagen', 'img/default.jpg'),
-                    'acciones_recomendadas': fila.get('acciones_recomendadas', 'No especificado'),
-                    'organizaciones': fila.get('organizaciones', 'No especificado'),
-                    'amenazas': fila.get('amenazas', 'No especificado')
-                }
-    return None
-
-# Carga de datos:
-# - Se cargan datos de especies en peligro desde un archivo CSV.
-# - Se cargan datos de especies extintas desde un archivo Excel.
-# - Se cargan datos adicionales de especies (como imágenes y descripciones) desde otro archivo CSV.
-# - Los datos cargados aquí se utilizan en las rutas de Flask para generar contenido dinámico.
-
+# Cargar datos iniciales
 df_monitor = cargar_datos("data/especies_en_peligro.csv")
 especies_monitor = df_monitor.columns.tolist()
+info_especies = pd.read_csv("data/info_especies.csv")
 
-df_disperso = pd.read_excel("data/especies_extintas.xlsx")
-columna_especie = df_disperso.columns[0]
-años_excel = pd.to_numeric(df_disperso.columns[1:], errors="coerce").dropna().astype(int)
-
-info_especies = pd.read_csv("data/info_especies.csv")  # ← contiene imagen, nombre, poblacion, estado, etc.
-
-# Rutas de Flask:
-# - "/" (index): Página principal.
-# - "/blog": Página de blog.
-# - "/casos_exito": Página de casos de éxito.
-# - "/galeria": Página de galería.
-# - "/huella_carbono", "/huella_persona", "/huella_empresa": Páginas relacionadas con la huella de carbono.
-# - "/ayudar": Página para mostrar acciones para ayudar.
-# - "/refugios": Página de refugios.
-# - "/monitorizar": Página para monitorizar especies en peligro.
-# - "/especies": Página para consultar información de especies específicas.
-# - "/estadisticas/<nombre>": Página para mostrar estadísticas detalladas de una especie.
-# - Aquí se definen las rutas de la aplicación web.
-# - Flask maneja las solicitudes HTTP y renderiza plantillas HTML con Jinja2.
-
-@app.route("/")
-def index():
-    # Renderiza la plantilla "index.html" utilizando Jinja2 y así con las demás plantillas
-    return render_template("index.html")
-
-@app.route("/blog")
-def blog():
-    return render_template("blog.html")
-
-@app.route("/casos_exito")
-def casos_exito():
-    return render_template("casos_exito.html")
-
-@app.route("/galeria")
-def galeria():
-    return render_template("galeria.html")
-
-@app.route("/huella_carbono", methods=["GET", "POST"])
-def huella_carbono():
-    return render_template("huella_carbono.html")
-
-@app.route("/huella_persona")
-def huella_persona():
-    return render_template("huella_persona.html")
-
-@app.route("/huella_empresa")
-def huella_empresa():
-    return render_template("huella_empresa.html")
-
-@app.route("/ayudar")
-def acciones():
-    return render_template("ayudar.html")
-
-@app.route("/refugios")
-def refugios():
-    return render_template("refugios.html")
-
-@app.route("/monitorizar", methods=["GET", "POST"])
-def monitorizar():
-    especie_seleccionada = request.form.get("especie") or especies_monitor[0]
-    # Manejar el retorno de predecir_año_extincion correctamente
-    resultado_prediccion = predecir_año_extincion(df_monitor, especie_seleccionada)
-    if resultado_prediccion is None or not isinstance(resultado_prediccion, tuple):
-        año_pred, grafico_b64 = None, None
-    else:
-        año_pred, grafico_b64 = resultado_prediccion
-
-    # Procesar las especies para mostrarlas en las tarjetas
-    cards = info_especies.to_dict(orient="records")
-    for card in cards:
-        card['acciones_recomendadas'] = card.get('acciones_recomendadas', 'No especificado')
-        card['organizaciones'] = card.get('organizaciones', 'No especificado')
-        card['amenazas'] = card.get('amenazas', 'No especificado')
-
-    # Generar el mapa de observaciones
-    observaciones = buscar_en_gbif(especie_seleccionada)
-    mapa_html = crear_mapa_html(observaciones)  # Genera el mapa
-
-    return render_template("monitorizar.html",
-                           especies=cards,
-                           especie=especie_seleccionada,
-                           año_pred=año_pred,
-                           grafico=grafico_b64,
-                           mapa=mapa_html)
-
-@app.route("/especies", methods=["GET", "POST"])
-def especies():
-    prediccion = None
-    imagen_url = None
-    info = None
-
-    if request.method == 'POST':
-        archivo = request.files['imagen']
-        if archivo:
-            nombre_archivo = secure_filename(archivo.filename)
-            ruta_imagen = os.path.join(app.config['UPLOAD_FOLDER'], nombre_archivo)
-            archivo.save(ruta_imagen)
-
-            # Procesar imagen
-            try:
-                imagen = load_img(ruta_imagen, target_size=IMG_SIZE)
-                imagen = img_to_array(imagen) / 255.0
-                imagen = np.expand_dims(imagen, axis=0)
-
-                # Predicción
-                resultado = modelo.predict(imagen)
-                indice = np.argmax(resultado)
-                prediccion = clases[indice]
-                imagen_url = '/' + ruta_imagen.replace("\\", "/")
-
-                # Buscar info en archivo
-                info = obtener_info_especie(prediccion)
-
-                print(f"Predicción: {prediccion}")  # Depuración
-                print(f"Resultado del modelo: {resultado}")  # Depuración
-
-            except Exception as e:
-                print(f"Error al procesar la imagen: {e}")  # Depuración
-
-    return render_template('especies.html', prediccion=prediccion, imagen_url=imagen_url, info=info)
-
-@app.route("/estadisticas/<nombre>")
-def estadisticas(nombre):
-    datos_especie = cargar_datos_especie(nombre)
-    if not datos_especie:
-        return "Especie no encontrada", 404
-
-    # Manejar el retorno de predecir_año_extincion correctamente
-    resultado_prediccion = predecir_año_extincion(df_monitor, nombre)
-    if resultado_prediccion is None or not isinstance(resultado_prediccion, tuple):
-        año_pred, grafico_b64 = None, None
-    else:
-        año_pred, grafico_b64 = resultado_prediccion
-
-    # Evaluar la tendencia reciente
-    tendencia_reciente = verificar_tendencia_reciente(df_monitor, nombre)
-
-    # Buscar observaciones en GBIF y generar el mapa
-    registros = buscar_en_gbif(nombre)
-    mapa_html = crear_mapa_html(registros)
-
-    return render_template("estadisticas.html",
-                           especie=nombre,
-                           año_pred=año_pred,
-                           grafico=grafico_b64,
-                           mapa=mapa_html,
-                           tendencia_reciente=tendencia_reciente,
-                           **datos_especie)
-
-# Ejecución de la aplicación Flask en modo debug.
+# Ejecutar la aplicación
 if __name__ == "__main__":
     app.run(debug=True)

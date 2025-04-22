@@ -7,3 +7,5 @@ folium
 openpyxl
 requests
 Werkzeug
+scikit-learn
+joblib
