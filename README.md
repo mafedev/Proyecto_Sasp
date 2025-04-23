@@ -60,6 +60,7 @@ Características principales:
 
 ## Estructura del proyecto
 
+```
 proyecto_especies/
 │
 ├── .gitignore                 # Archivos y carpetas ignorados por Git
@@ -98,7 +99,7 @@ proyecto_especies/
 │   ├── monitorizar.html       # Página de monitoreo de especies
 │   ├── refugios.html          # Página de refugios y áreas protegidas
 │
-
+```
 ---
 
 ## Integrantes
