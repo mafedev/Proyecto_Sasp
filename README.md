@@ -1,6 +1,6 @@
-# EcoMonitor – Observatorio Global de Especies en Peligro
+# Monitoreo de especies en peligro de extinción
 
-Aplicación web interactiva para el monitoreo y análisis de especies en peligro de extinción, construida con **Flask**, **Bootstrap 5** y datos abiertos.
+Aplicación web interactiva para el monitoreo, predicción y análisis de especies en peligro de extinción, construida con Flask, Jinja, Bootstrap 5 e inteligencia artificial.
 
 ---
 
@@ -10,28 +10,36 @@ Aplicación web interactiva para el monitoreo y análisis de especies en peligro
 - [Tecnologías](#tecnologías)  
 - [Instalación](#instalación)  
 - [Uso](#uso)  
-- [Estructura del Proyecto](#estructura-del-proyecto)  
-- [Contribuciones](#contribuciones)  
-- [Licencia](#licencia)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [Integrantes](#integrantes)
 
 ---
 
 ## Descripción
 
-**EcoMonitor** es una plataforma web diseñada para visualizar información sobre especies en peligro de extinción. Permite explorar registros, consultar datos por especie, revisar casos de éxito en conservación y acceder a recursos relacionados.
+**N-World** es una aplicación web que combina datos históricos con modelos de inteligencia artificial para predecir la probabilidad de extinción de especies amenazadas.
 
-El objetivo es fomentar la conciencia ambiental a través de herramientas accesibles que combinan ciencia, tecnología y educación.
+Características principales:
+
+- Visualización de datos de población histórica por especie.
+- Predicción de riesgo de extinción mediante regresión lineal o red neuronal.
+- Mapas de distribución geográfica con datos de GBIF e iNaturalist.
+- Información detallada sobre hábitat, amenazas, acciones recomendadas y organizaciones.
+- Interfaz amigable y educativa con enfoque en sostenibilidad y conservación.
 
 ---
 
 ## Tecnologías
 
-- Python 3  
-- Flask  
-- Bootstrap 5  
-- HTML/CSS  
-- JavaScript (opcional)  
-- Jinja2 (para plantillas)  
+- Python 3.10+
+- Flask
+- TensorFlow / Keras
+- Scikit-learn
+- Pandas / NumPy
+- Matplotlib
+- Folium
+- Bootstrap 5
+- Jinja2
 
 ---
 
@@ -42,46 +50,62 @@ El objetivo es fomentar la conciencia ambiental a través de herramientas accesi
    ```bash
    git clone https://github.com/mafedev/Proyecto_Sasp.git
    cd Proyecto_Sasp
-   ```
-
-2. Instala las dependencias:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Ejecuta la aplicación:
-
-   ```bash
-   python app.py
-   ```
-
----
 
 ## Uso
+1. Ejecuta la aplicación con: 
+   ```bash
+   python app.py
 
-1. Accede a la aplicación en tu navegador en `http://127.0.0.1:5000`.
-2. Explora las secciones como monitorización, estadísticas, y casos de éxito.
-3. Sube imágenes para clasificar especies en la sección correspondiente.
+2. En el navegador ir a la ruta http://127.0.0.1:5000
+
+## Estructura del proyecto
+
+proyecto_especies/
+│
+├── .gitignore                 # Archivos y carpetas ignorados por Git
+├── app.py                     # Archivo principal de la aplicación Flask
+├── modelo_entrenado.h5        # Modelo entrenado de la red neuronal
+├── modelo_entrenar.py         # Script para entrenar el modelo
+├── modelo.py                  # Funciones relacionadas con el modelo de predicción
+├── README.md                  # Documentación del proyecto
+├── requirements.txt           # Dependencias del proyecto
+├── scaler.save                # Escalador utilizado para normalizar los datos
+│
+├── data/                      # Archivos de datos
+│   ├── especies_en_peligro.csv   # Datos históricos de población
+│   ├── especies_en_peligro.xlsx  # Versión Excel de los datos históricos
+│   ├── especies_extintas.csv     # Datos de especies extintas
+│   ├── especies_extintas.xlsx    # Versión Excel de los datos extintos
+│   ├── info_especies.csv         # Información detallada de las especies
+│
+├── static/                    # Archivos estáticos (CSS, JS, imágenes, etc.)
+│   ├── data.json              # Datos en formato JSON
+│   ├── css/                   # Archivos de estilos CSS
+│   ├── img/                   # Imágenes utilizadas en la aplicación
+│   ├── js/                    # Archivos JavaScript
+│
+├── templates/                 # Plantillas HTML para la interfaz de usuario
+│   ├── ayudar.html            # Página de cómo ayudar
+│   ├── blog.html              # Página de noticias y blogs
+│   ├── casos_exito.html       # Página de casos de éxito
+│   ├── estadisticas.html      # Página de estadísticas por especie
+│   ├── galeria.html           # Página de galería de especies
+│   ├── huella_carbono.html    # Página para calcular la huella de carbono
+│   ├── huella_empresa.html    # Página para calcular la huella de carbono empresarial
+│   ├── huella_persona.html    # Página para calcular la huella de carbono personal
+│   ├── index.html             # Página principal
+│   ├── layout.html            # Plantilla base para todas las páginas
+│   ├── monitorizar.html       # Página de monitoreo de especies
+│   ├── refugios.html          # Página de refugios y áreas protegidas
+│
 
 ---
 
-## Estructura del Proyecto
-
-- `app.py`: Archivo principal de la aplicación Flask.
-- `templates/`: Contiene las plantillas HTML.
-- `static/`: Archivos estáticos como imágenes, CSS y JavaScript.
-- `modelos/`: Contiene el modelo entrenado y las clases.
-- `data/`: Archivos CSV y Excel con datos de especies.
-
----
-
-## Contribuciones
-
-¡Las contribuciones son bienvenidas! Por favor, abre un issue o un pull request en el repositorio.
-
----
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT.
+## Integrantes
+- Rocio Ayala
+- Gregory Barrientos
+- Alejandro Campi
+- Marcos Domínguez
+- Ainhoa María
+- Maria Mogollón
+- Asier Villarubia
