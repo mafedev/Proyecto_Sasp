@@ -11,7 +11,7 @@ import base64 # Para codificar imágenes en base64, es decir, convertir imágene
 from io import BytesIO # Para las gráficas
 import csv # Para manejar archivos CSV
 import urllib.parse # Para trabajar con URLs
-from modelo import predecir_nn, obtener_df_extintas #Funciones de modelo.py para predecir la probabilidad de extinción usando una red neuronal y obtener el DataFrame de especies extintas
+from modelo import predecir_nn #Funciones de modelo.py para predecir la probabilidad de extinción usando una red neuronal
 
 # Inicializar la aplicación Flask
 app = Flask(__name__)
@@ -33,7 +33,7 @@ def casos_exito():
 def galeria():
     return render_template("galeria.html")
 
-@app.route("/huella_carbono", methods=["GET", "POST"])
+@app.route("/huella_carbono", methods=["GET", "POST"]) # El get y post es para que la página pueda recibir datos del formulario
 def huella_carbono():
     return render_template("huella_carbono.html")
 
@@ -54,31 +54,15 @@ def refugios():
     return render_template("refugios.html")
 
 # Ruta para la página de monitorización, donde se selecciona una especie y se muestra información sobre ella
-@app.route("/monitorizar", methods=["GET", "POST"])
+@app.route("/monitorizar", methods=["GET", "POST"]) # Get y post para 
 def monitorizar():
     especie_seleccionada = request.form.get("especie") or especies_monitor[0] # Si no se selecciona ninguna especie, se toma la primera de la lista
-    resultado_prediccion = predecir_año_extincion(df_monitor, especie_seleccionada) # Se llama a la función de predicción de año de extinción
-    if resultado_prediccion is None or not isinstance(resultado_prediccion, tuple): 
-        año_pred, grafico_b64 = None, None # Si no se obtiene un resultado válido, se les asigna none
-    else:
-        año_pred, grafico_b64 = resultado_prediccion # Si se obtiene un resultado válido, se asigna el año de predicción y el gráfico en base64
+    cards = info_especies.to_dict(orient="records") # Se convierte el DataFrame de información de especies a una lista de diccionarios, cada diccionario es una fila
 
-    cards = info_especies.to_dict(orient="records") # Se convierte el DataFrame de información de especies a una lista de diccionarios
-    for card in cards: # Se itera sobre cada especie para agregar información adicional
-        card['acciones_recomendadas'] = card.get('acciones_recomendadas', 'No especificado') 
-        card['organizaciones'] = card.get('organizaciones', 'No especificado')
-        card['amenazas'] = card.get('amenazas', 'No especificado')
-
-    observaciones = buscar_en_gbif(especie_seleccionada) # Se buscan observaciones de la especie seleccionada en la API de GBIF
-    mapa_html = crear_mapa_html(observaciones) # Se crea un mapa HTML con las observaciones
-
-    # Se devuelve la plantilla monitorizar.html con la información de las especies, la especie seleccionada, el año de predicción, el gráfico y el mapa
+    # Se devuelve la plantilla monitorizar.html con la información de las especies, la especie seleccionada, el año de predicción, el gráfico y el mapa, para poder mostrarlo
     return render_template("monitorizar.html",
                            especies=cards,
-                           especie=especie_seleccionada,
-                           año_pred=año_pred,
-                           grafico=grafico_b64,
-                           mapa=mapa_html)
+                           especie=especie_seleccionada,)
 
 # Ruta para la página de estadísticas de una especie específica, se muestra al seleccionar una especie en monitorizar
 @app.route("/estadisticas/<nombre>", methods=["GET", "POST"])  # Se define la ruta con el nombre de la especie como parámetro
@@ -88,29 +72,28 @@ def estadisticas(nombre):
         return "Especie no encontrada", 404
 
     metodo = request.form.get("metodo", "lineal")  # Se obtiene el método de predicción seleccionado (lineal o red neuronal), por defecto es lineal
-    año_pred = None
+    
+    # Se incializan por si no se obtiene un resultado válido
+    anio_pred = None
     grafico_b64 = None
     probabilidad_nn = None
-    reubicacion = None  # Inicializar variable para la reubicación
+    reubicacion = None 
 
     poblacion_historica = []  # Inicializa la lista de población histórica
-    if nombre in df_monitor.columns:  # Verifica si la especie está en el DataFrame de monitoreo
-        especie_serie = df_monitor[nombre].dropna()
-        poblacion_historica = list(zip(especie_serie.index, especie_serie.values))
+    if nombre in df_monitor.columns:  # Verifica si la especie está en el DataFrame, si está significa que tiene datos históricos
+        especie_serie = df_monitor[nombre].dropna() # Elimina los valores nulos con dropna()
+        poblacion_historica = list(zip(especie_serie.index, especie_serie.values)) # Crea una lista de tuplas con el año y la población, para mostrar en la plantilla
 
-    if metodo == "lineal":  # Si el método seleccionado es lineal, se llama a la función de predicción de año de extinción
-        año_pred, grafico_b64 = predecir_año_extincion(df_monitor, nombre)
+    tendencia_reciente = verificar_tendencia_reciente(df_monitor, nombre) # Verifica la tendencia reciente de la pobalción
+    
+    # Si el método seleccionado es lineal, se llama a la función de predicción de año de extinción
+    if metodo == "lineal":
+        anio_pred, grafico_b64 = predecir_anio_extincion(df_monitor, nombre)
+        # Si la tendencia es decreciente, obteniene la información de reubicación
+        if tendencia_reciente == "Decremento":
+            reubicacion = datos_especie.get("reubicacion", "No hay recomendaciones de reubicación disponibles")
     elif metodo == "red_neuronal":  # Si el método seleccionado es red neuronal, se llama a la función de predicción de la red neuronal
-        print("Método seleccionado:", metodo)
         probabilidad_nn = predecir_nn(nombre)  # Se obtiene la probabilidad de extinción de la especie
-        if probabilidad_nn is None:  # Si no se obtiene un resultado válido, se asigna None
-            print(f"No se pudo realizar la predicción para la especie: {nombre}")
-
-    tendencia_reciente = verificar_tendencia_reciente(df_monitor, nombre)
-
-    # Si la tendencia es decreciente, obtener la información de reubicación
-    if tendencia_reciente == "Decremento":
-        reubicacion = datos_especie.get("reubicacion", "No hay recomendaciones de reubicación disponibles.")
 
     registros = buscar_en_gbif(nombre)
     mapa_html = crear_mapa_html(registros)
@@ -125,7 +108,7 @@ def estadisticas(nombre):
                            poblacion_historica=poblacion_historica,
                            mapa=mapa_html,
                            grafico=grafico_b64 if metodo == "lineal" else None,
-                           año_pred=año_pred,
+                           anio_pred=anio_pred,
                            acciones_recomendadas=datos_especie.get("acciones_recomendadas"),
                            organizaciones=datos_especie.get("organizaciones"),
                            tendencia_reciente=tendencia_reciente,
@@ -133,25 +116,25 @@ def estadisticas(nombre):
                            probabilidad_nn=probabilidad_nn,
                            reubicacion=reubicacion)
 
-
-# Funciones auxiliares
-def cargar_info_conservacion():
-    ruta_archivo = 'data/info_modelo.csv'
-    if ruta_archivo.endswith('.xlsx'):
-        return pd.read_excel(ruta_archivo)
-    else:
-        return pd.read_csv(ruta_archivo)
-
+# FUNCIONES
+# Carga la información del archivo CSV
 def cargar_datos(nombre_archivo):
     df = pd.read_csv(nombre_archivo)
-    df.set_index("Año", inplace=True)
+    df.set_index("Año", inplace=True) # Establece la columna "Año" como índice del DataFrame
     return df
 
+# Cargar datos iniciales
+df_monitor = cargar_datos("data/especies_en_peligro.csv") # Carga el archivo CSV de especies en peligro y lo convierte a un DataFrame
+especies_monitor = df_monitor.columns.tolist() # Obtiene los nombres
+info_especies = pd.read_csv("data/info_especies.csv")  # Cara el CSV con la información de las especies
+
+# Carga los datos de las especies en peligro de extinción
 def cargar_datos_especie(nombre_especie):
-    with open('c:\\proyecto_especies\\data\\info_especies.csv', encoding='utf-8') as archivo_csv:
-        lector = csv.DictReader(archivo_csv)
-        for fila in lector:
-            if fila['nombre'] == nombre_especie:
+    with open('data/info_especies.csv', encoding='utf-8') as archivo_csv: # Abre el archivo CSV con codificación UTF-8, y lo cierra automáticamente al salir del bloque
+        diccionario = csv.DictReader(archivo_csv)
+        
+        for fila in diccionario: # Itera sobre cada fila
+            if fila['nombre'] == nombre_especie: # Si el nombre de la especie coincide con el nombre de la fila
                 return {
                     'nombre_cientifico': fila.get('nombre_cientifico', 'Desconocido'),
                     'estado_conservacion': fila.get('estado', 'Desconocido'),
@@ -165,13 +148,16 @@ def cargar_datos_especie(nombre_especie):
                 }
     return None
 
+# Busca el nombre de la especie en la API de GBIF
 def buscar_en_gbif(nombre_especie):
     # Primero intenta buscar el nombre completo usando el parámetro `q` para coincidencias amplias
     nombre_especie_codificado = urllib.parse.quote(nombre_especie)
     url = f"https://api.gbif.org/v1/occurrence/search?q={nombre_especie_codificado}&limit=50"
     r = requests.get(url)
+
+    # Verifica si la respuesta es exitosa (código 200)
     if r.status_code == 200:
-        resultados = r.json().get("results", [])
+        resultados = r.json().get("results", []) # Obtiene los resultados de la respuesta JSON
         if resultados:  # Si encuentra resultados con el nombre completo, los devuelve
             return resultados
 
@@ -186,88 +172,102 @@ def buscar_en_gbif(nombre_especie):
             if resultados:  # Si encuentra resultados con una palabra, los devuelve
                 return resultados
 
-
+# Función para crear un mapa HTML con las observaciones de la especie
 def crear_mapa_html(observaciones):
-    m = folium.Map(location=[0, 0], zoom_start=3)
-    for obs in observaciones:
-        lat = obs.get("decimalLatitude")
-        lon = obs.get("decimalLongitude")
+    mapa = folium.Map(location=[0, 0], zoom_start=3)
+    for observacion in observaciones: # Cada observación tiene datos como latitud, longitud y país
+        lat = observacion.get("decimalLatitude")
+        lon = observacion.get("decimalLongitude")
+        # Si hay coordenadas, se añade un marcador en el mapa
         if lat and lon:
             folium.Marker(
                 location=[lat, lon],
-                popup=f"País: {obs.get('country', 'Desconocido')}"
-            ).add_to(m)
-    return m._repr_html_()
+                popup=f"País: {observacion.get('country', 'Desconocido')}"
+            ).add_to(mapa)
+    return mapa._repr_html_() # Devuelve el mapa en código HTML
 
-def predecir_año_extincion(df, especie):
+# Función para predecir el año de extinción usando regresión lineal
+def predecir_anio_extincion(df, especie): # Se le pasa el DataFrame y la especie seleccionada
     try:
-        anios = df.index.values.astype(float)
-        poblacion = pd.to_numeric(df[especie], errors="coerce").values
+        anios = df.index.values.astype(float) # Se obtienen los años del índice del DataFrame y se convierten a float
+        poblacion = pd.to_numeric(df[especie], errors="coerce").values # Obtiene los datos de la población y los convierte en números
+
+        # Quita los valores NaN
         datos_validos = ~np.isnan(poblacion)
         anios = anios[datos_validos]
         poblacion = poblacion[datos_validos]
 
+        # Si no hay suficientes años, no se puede hacer la predicción
         if len(anios) < 2:
             return None, None
 
-        promedio_anios = np.mean(anios)
-        promedio_poblacion = np.mean(poblacion)
-        numerador = np.sum((anios - promedio_anios) * (poblacion - promedio_poblacion))
-        denominador = np.sum((anios - promedio_anios) ** 2)
+        # Calculo de la regresión lineal
 
-        if denominador == 0:
+        promedio_anios = np.mean(anios) # Media de todos los años
+        promedio_poblacion = np.mean(poblacion) # Media de todas las poblaciones
+        covarianza = np.sum((anios - promedio_anios) * (poblacion - promedio_poblacion))
+        varianza = np.sum((anios - promedio_anios) ** 2)
+
+        # Si todos los valores son iguales, no se puede predecir el año
+        if varianza == 0:
             return None, None
 
-        pendiente = numerador / denominador
+        # Se calcula la pendiente y el intercepto
+        pendiente = covarianza / varianza
         intercepto = promedio_poblacion - pendiente * promedio_anios
 
+        # 
         if pendiente == 0:
             return None, None
 
-        anio_extincion = -intercepto / pendiente
+        # Se calcula el año de extinción
+        anio_extincion = -intercepto / pendiente # Es la formula de la recta y = mx + b
 
+        # GRÁFICA
+        # Se crea la gráfica de dispersión y la línea de tendencia
         fig, ax = plt.subplots(figsize=(8, 4))
-        ax.scatter(anios, poblacion, color='orange', label=especie)
-        poblacion_estim = pendiente * anios + intercepto
-        ax.plot(anios, poblacion_estim, linestyle="--", color="blue", label="Tendencia")
-        ax.legend()
+        ax.scatter(anios, poblacion, color='orange', label=especie) # Dibuja los puntos
+        poblacion_estim = pendiente * anios + intercepto # Calcula la recta con la formula de la recta
+        ax.plot(anios, poblacion_estim, linestyle="--", color="blue", label="Tendencia") # Dibuja la recta
+        ax.legend() # Añade la leyenda
+        # Etiquetas de los ejes
         ax.set_xlabel("Año")
         ax.set_ylabel("Población estimada")
-        ax.grid()
+        ax.grid() # Cuadrícula
 
-        buffer = BytesIO()
-        fig.savefig(buffer, format="png")
-        buffer.seek(0)
-        imagen_base64 = base64.b64encode(buffer.read()).decode("utf-8")
-        plt.close(fig)
+        buffer = BytesIO() # Crea un buffer para guardar la imagen
+        fig.savefig(buffer, format="png") # Guarda la imagen en el buffer
+        buffer.seek(0) # Mueve el puntero al inicio del buffer
+        imagen_base64 = base64.b64encode(buffer.read()).decode("utf-8") # Codifica la imagen en base64
+        plt.close(fig) # Cierra la imagen
 
-        return int(anio_extincion) if anio_extincion > 0 else None, imagen_base64
+        return int(anio_extincion) if anio_extincion > 0 else None, imagen_base64 # Devuelve el año de extinción y la imagen
 
-    except Exception as error:
-        print(f"Error en predecir_año_extincion: {error}")
+    except Exception as error: 
+        print(f"Error en predecir_anio_extincion: {error}")
         return None, None
 
+# Función para verificar la tendencia reciente de la población de una especie
 def verificar_tendencia_reciente(df, especie):
     try:
-        # Convertir a números y eliminar valores nulos
-        datos = df[especie].astype(float).dropna()
+        datos = df[especie].astype(float).dropna() # Igual que antes, lo convierte a float
 
         if len(datos) < 10:
             return "No hay suficientes datos para evaluar 10 años"
 
-        # Tomar los últimos 10 datos
+        # Se toman los últimos 10 años
         ultimos = datos[-10:]
 
-        # Crear valores para X
+        # Se crean valores ficticios para hacer el cálculo
         x = np.arange(len(ultimos))
         y = ultimos.values
 
         # Calcular regresión lineal manual
-        x_mean = np.mean(x)
-        y_mean = np.mean(y)
-        numerador = np.sum((x - x_mean) * (y - y_mean))
-        denominador = np.sum((x - x_mean) ** 2)
-        pendiente = numerador / denominador if denominador != 0 else 0
+        prom_x = np.mean(x) # Media de los años
+        prom_y = np.mean(y) # Media de la población
+        covarianza = np.sum((x - prom_x) * (y - prom_y)) # Covarianza entre los años y la población
+        varianza = np.sum((x - prom_x) ** 2) # Varianza de los años
+        pendiente = covarianza / varianza if varianza != 0 else 0 # Si la varianza es 0, la pendiente es 0
 
         # Evaluar la tendencia
         if pendiente > 0:
@@ -279,12 +279,6 @@ def verificar_tendencia_reciente(df, especie):
 
     except:
         return "Error en los datos"
-
-
-# Cargar datos iniciales
-df_monitor = cargar_datos("data/especies_en_peligro.csv")
-especies_monitor = df_monitor.columns.tolist()
-info_especies = pd.read_csv("data/info_especies.csv")
 
 # Ejecutar la aplicación
 if __name__ == "__main__":
