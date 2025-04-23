@@ -1,13 +1,10 @@
 :root {
     /* TONOS VERDE */
-    --verde-oscuro: #2c6e40;
     --verde-musgo: #5a7b3b;
     --verde-musgo-2: #6B8E23; /* Fondo */
-    --verde-lima: #A8E05E;
-    --verde-oliva: #556B2F;
-  
-    --verde-hierba: #2E8B57;
     --verde-musgo-palido: #8A9A5B; 
+    --verde-lima: #6f943f;
+    --verde-oliva: #556B2F;
     --verde-jungla: #006400;
     --verde-amarillo: #98cf32;
     --amarillo: #eaed22;
@@ -49,7 +46,7 @@
     --azul-glacial: #5F9EA0;
   
     /* TONOS BLANCO */
-    --blanco-roto: #f0f0f0;
+    --blanco-oscuro: #f0f0f0;
     --blanco-verde: #def1d5;
     --blanco-niebla: #dfd8d8;
     --beige-claro-2: #F5F5DC;
