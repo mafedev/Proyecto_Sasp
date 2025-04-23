@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for # Se importa Flask, render_template para renderizar los template, request para manejar las solicitudes HTTP, redirect y url_for para redirigir a otras rutas
+from flask import Flask, render_template, request # Se importa Flask, render_template para renderizar los template y request para manejar las solicitudes HTTP
 import os # Para rutas de archivos
 import pandas as pd # Para manejar datos en formato CSV y Excel
 import numpy as np # Para operaciones numéricas

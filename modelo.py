@@ -5,8 +5,8 @@ from tensorflow.keras.losses import BinaryCrossentropy
 import joblib
 
 # Cargar modelo y scaler previamente entrenados
-modelo = load_model("modelo_entrenado.h5", custom_objects={"binary_crossentropy": BinaryCrossentropy()})
-scaler = joblib.load("scaler.save")
+modelo = load_model("modelos/modelo_entrenado.h5", custom_objects={"binary_crossentropy": BinaryCrossentropy()})
+scaler = joblib.load("modelos/scaler.save")
 
 # Cargar el DataFrame de monitoreo
 df_monitor = pd.read_csv("data/especies_en_peligro.csv", index_col=0)
