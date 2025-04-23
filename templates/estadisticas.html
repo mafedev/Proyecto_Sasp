@@ -129,7 +129,7 @@
     </div>
   </div>
 
-  {% if año_pred and metodo == "lineal" %}
+  {% if anio_pred and metodo == "lineal" %}
     <div id="prediccion_extincion">
       <h4 class="m-0">Predicción de Extinción</h4>
       {% if tendencia_reciente and "incremento" in tendencia_reciente.lower() %}
@@ -137,10 +137,10 @@
           En los últimos años, la especie ha mostrado un aumento significativo en su población. ¡Esperamos que logre salvarse!
         </div>
       {% else %}
-        <p>Posible año de extinción según regresión lineal: <strong>{{ año_pred }}</strong></p>
-        {% if año_pred - 2024 <= 10 %}
+        <p>Posible año de extinción según regresión lineal: <strong>{{ anio_pred }}</strong></p>
+        {% if anio_pred - 2024 <= 10 %}
           <div class="alert alert-danger">⚠️ Riesgo crítico: extinción en menos de 10 años.</div>
-        {% elif año_pred - 2024 <= 20 %}
+        {% elif anio_pred - 2024 <= 20 %}
           <div class="alert alert-warning">⚠️ Riesgo moderado: extinción en menos de 20 años.</div>
         {% else %}
           <div class="alert alert-secondary">Extinción estimada a largo plazo.</div>
