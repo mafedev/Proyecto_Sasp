@@ -36,6 +36,9 @@ input[type=number] {
 -moz-appearance: textfield; /* Esto no es un error, es una advertencia no afecta en el codigo a menos que usemos Firefox */ 
 }
 
+#formEmpresa {
+  margin-top: 70px;
+}
 
 /* COMO AYUDAR */
 /* Estilo para el formulario de contacto */
@@ -64,7 +67,7 @@ input[type=number] {
 }
 
 #contacto .form-control:focus {
-  border-color: #6B8E23; /* Verde musgo 2 */
+  border-color: var(--verde-musgo-2);
   box-shadow: 0 0 5px rgba(107, 142, 35, 0.5); /* Sombra verde */
 }
 
@@ -73,7 +76,7 @@ input[type=number] {
 }
 
 #contacto .btn-primary {
-  background-color: #6B8E23; /* Verde musgo 2 */
+  background-color: var(--verde-musgo-2);
   border: none;
   padding: 10px 20px;
   font-size: 1rem;
@@ -82,7 +85,7 @@ input[type=number] {
 }
 
 #contacto .btn-primary:hover {
-  background-color: #556B2F; /* Verde oliva */
+  background-color: var(--verde-oliva);
   transform: scale(1.05); /* Aumenta ligeramente el tamaño */
 }
 
@@ -175,7 +178,7 @@ input[type=number] {
 }
 
 #galeria h2{
-  color: var(--blanco-roto);
+  color: var(--blanco-oscuro);
   font-size: 80px;
 }
 
