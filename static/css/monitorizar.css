@@ -4,7 +4,7 @@
 }
 
 #monitorizar {
-  background-color: var(--blanco-verde);
+  background-color: var(--blanco-oscuro);
 }
 
 #header_moni {
@@ -15,39 +15,33 @@
 
 /* ESTADÍSTICAS */
 .estadisticas {
-    margin: 50px !important;
+    margin: 50px;
 }
   
 /* TABLA */
 .table {
   width: 100%;
   margin-bottom: 1rem;
-  color: #212529;
+  color: black;
   border-collapse: collapse; /* Asegura que las celdas no tengan espacio entre ellas */
-  background-color: #FFFFFF; /* Blanco */
-  border: 1px solid #8A9A5B; /* Verde musgo pálido */
+  background-color: var(--blanco-oscuro);
+  border: 1px solid var(--verde-musgo-palido);
 }
 
 .table th,
 .table td {
   padding: 0.75rem;
-  vertical-align: top;
-  border-top: 1px solid #dee2e6;
 }
 
 .table th {
-  background-color: #556B2F; /* Verde oliva */
+  background-color: var(--verde-oliva); /* Verde oliva */
   color: white;
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: #F5F5DC; /* Beige claro */
 }
 
 #encabezado_monitorizar {
   padding: 50px;
   background-color: var(--marron-chocolate);
-  color: #FFF8DC;
+  color: white;
 }
 
 .d-flex.justify-content-between.align-items-center.mb-4 {
@@ -58,4 +52,82 @@
 
 .d-flex.justify-content-between.align-items-center.mb-4 h3 {
   color: var(--beige-claro-2);
+}
+
+/*MAPA*/
+.map-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 50%; /* Ajusta la relación de aspecto para recortar */
+  height: 0;
+  overflow: hidden;
+  display: flex; /* Centra el contenido */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+}
+
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%; /* Reduce el ancho para centrarlo mejor */
+  height: 90%; /* Ajusta la altura para recortar */
+  border: 0;
+}
+
+#prediccion_extincion {
+  margin-top: 20px;
+  padding: 30px;
+  background-color: var(--verde-musgo);
+}
+
+/* TÍTULO: Predicción de Extinción */
+#prediccion_extincion h4 {
+  font-size: clamp(2em, 5vw, 4em); /* Ajusta el tamaño dinámicamente según el ancho de la pantalla */
+  color: var(--blanco-oscuro);
+  word-wrap: break-word; /* Permite que el texto se ajuste si es muy largo */
+  padding: 10px; /* Asegura que no salga del contenedor */
+  margin: 0 20px; /* Añade margen a los lados */
+}
+
+/* SELECTOR DE MODELO */
+.d-flex.justify-content-between.align-items-center.mb-4 {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se ajusten automáticamente */
+  justify-content: center; /* Centra el contenido horizontalmente */
+  margin: 40px; /* Añade margen alrededor del selector */
+  text-align: center; /* Centra el contenido */
+}
+
+.d-flex.justify-content-between.align-items-center.mb-4 h3 {
+  margin-bottom: 10px; /* Añade espacio entre el título y el selector */
+}
+
+#como_ayudar {
+  padding: 30px;
+  background-color: var(--verde-lima);
+}
+
+#como_ayudar h4 {
+  color: var(--blanco-oscuro);
+}
+
+/* Estilos para Red Neuronal */
+#red_neuronal {
+  margin-top: 20px;
+  padding: 30px;
+  background-color: var(--verde-musgo);
+}
+
+/* TÍTULO: Red Neuronal */
+#red_neuronal h3 {
+  color: var(--blanco-oscuro);
+  word-wrap: break-word; /* Permite que el texto se ajuste si es muy largo */
+  padding: 10px; /* Asegura que no salga del contenedor */
+  margin: 0 20px; /* Añade margen a los lados */
+}
+
+#red_neuronal p {
+  color: var(--blanco-oscuro);
+  margin: 0 20px;
 }

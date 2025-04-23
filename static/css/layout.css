@@ -12,12 +12,12 @@ body {
   
 /* Nombre de la app */
 .navbar-brand {
-    color: #5a7b3b;
+    color: var(--verde-musgo);
 }
   
 /* ---------- FOOTER ---------- */
 section.footer {
-    background-color: var(--beige-claro-2);
+    background-color: var(--blanco-oscuro);
     padding-top: 40px;
     padding-bottom: 40px;
 }
